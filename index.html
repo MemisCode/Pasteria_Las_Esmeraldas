@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pastelería Las Esmeraldas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="navbar">
+    <div class="logo">🍰 Las Esmeraldas</div>
+    <nav>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- Portada / Hero -->
+  <section class="hero">
+    <h1>Repostería Artesanal con Amor</h1>
+    <p>Pasteles, postres y bocadillos hechos a la medida para tus momentos especiales.</p>
+    <a href="#catalogo" class="btn-hero">Ver Catálogo</a>
+  </section>
+
+  <!-- Catálogo de Productos -->
+  <section id="catalogo" class="contenedor catalogo">
+    <h2>Nuestras Especialidades</h2>
+    <div class="productos-grid">
+      
+      <!-- Tarjeta 1 -->
+      <div class="card">
+        <div class="img-placeholder">🎂 Foto del Postre</div>
+        <h3>Queque de Chocolate Fudge</h3>
+        <p>Bizcocho de cacao húmedo con suave cobertura de ganache artesanal.</p>
+        <span class="precio">₡15,000</span>
+        <button onclick="pedirPorWhatsApp('Queque de Chocolate Fudge')">🟢 Pedir por WhatsApp</button>
+      </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="card">
+        <div class="img-placeholder">🍰 Foto del Postre</div>
+        <h3>Cheesecake de Frutilla</h3>
+        <p>Base crujiente de galleta con crema suave y mermelada natural.</p>
+        <span class="precio">₡12,000</span>
+        <button onclick="pedirPorWhatsApp('Cheesecake de Frutilla')">🟢 Pedir por WhatsApp</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contacto y Horarios -->
+  <footer id="contacto">
+    <p><strong>Pastelería Las Esmeraldas</strong></p>
+    <p>📍 Costa Rica | 🕒 Pedidos con 48 horas de anticipación</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
