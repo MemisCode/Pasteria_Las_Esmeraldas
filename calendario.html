@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Producción - Las Esmeraldas</title>
+  <!-- Librería FullCalendar -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background-color: #FAFAFA;
+      color: #1A1A1A;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ENCABEZADO */
+    .header-admin {
+      background-color: #1A1A1A;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .header-admin h1 {
+      font-size: 1.35rem;
+      margin: 0;
+      color: #00A86B;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .estado-carga {
+      font-size: 0.85rem;
+      background: #2b2b2b;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      color: #00A86B;
+      font-weight: 600;
+    }
+    .header-admin a {
+      color: white;
+      text-decoration: none;
+      background: #333;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .header-admin a:hover {
+      background: #00A86B;
+    }
+
+    /* BARRA DE 3 VENTANAS (PESTAÑAS) */
+    .tabs-bar {
+      max-width: 1150px;
+      margin: 1.5rem auto 0 auto;
+      padding: 0 1rem;
+      display: flex;
+      gap: 0.6rem;
+      border-bottom: 2px solid #e0e0e0;
+    }
+    .tab-btn {
+      padding: 0.85rem 1.5rem;
+      background: #EAEAEA;
+      border: none;
+      border-radius: 10px 10px 0 0;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover {
+      background: #dcdcdc;
+    }
+    .tab-btn.active {
+      background: #00A86B;
+      color: white;
+    }
+
+    /* CONTENEDOR DE CADA VENTANA */
+    .vista-contenedor {
+      max-width: 1150px;
+      margin: 0 auto 2rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      min-height: 550px;
+    }
+
+    /* VENTANA 1: DÍA ACTUAL (MAÑANA Y TARDE) */
+    .dia-controles {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #eee;
+    }
+    .dia-titulo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1A1A1A;
+      margin: 0;
+      text-transform: capitalize;
+    }
+    .selector-fecha {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .selector-fecha input {
+      padding: 0.45rem 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+    .btn-hoy {
+      background: #1A1A1A;
+      color: white;
+      border: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-hoy:hover {
+      background: #00A86B;
+    }
+
+    /* Barra rápida de fechas con pedidos */
+    .fechas-con-pedidos {
+      margin-bottom: 1.2rem;
+      padding: 0.65rem 1rem;
+      background: #f4fbf8;
+      border: 1px solid #ccece0;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .chip-fecha-rapida {
+      background: white;
+      border: 1px solid #00A86B;
+      color: #00A86B;
+      padding: 0.25rem 0.65rem;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+    .chip-fecha-rapida:hover {
+      background: #00A86B;
+      color: white;
+    }
+
+    .turnos-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 850px) {
+      .turnos-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .bloque-turno {
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fcfcfc;
+    }
+    .turno-header {
+      padding: 0.85rem 1.2rem;
+      font-weight: bold;
+      font-size: 1.05rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .turno-manana .turno-header {
+      background: linear-gradient(135deg, #00A86B, #008f5b);
+    }
+    .turno-tarde .turno-header {
+      background: linear-gradient(135deg, #1A1A1A, #333333);
+    }
+
+    .fila-hora {
+      display: flex;
+      border-bottom: 1px solid #eeeeee;
+      min-height: 60px;
+    }
+    .fila-hora:last-child {
+      border-bottom: none;
+    }
+    .etiqueta-hora {
+      width: 110px;
+      min-width: 110px;
+      background: #f4f4f4;
+      border-right: 1px solid #eeeeee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .espacio-pedidos {
+      flex: 1;
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      justify-content: center;
+    }
+    .sin-pedidos {
+      color: #bbbbbb;
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+
+    /* Tarjeta de cada pedido dentro de la hora */
+    .pedido-chip {
+      background: #00A86B;
+      color: white;
+      padding: 0.55rem 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .pedido-chip:hover {
+      background: #008f5b;
+      transform: translateY(-1px);
+    }
+    .pedido-chip span.hora-exacta {
+      background: rgba(0,0,0,0.2);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+
+    /* ESTILOS FULLCALENDAR */
+    #calendarSemana, #calendarAgenda {
+      min-height: 550px;
+    }
+    .fc-event {
+      cursor: pointer;
+      background-color: #00A86B !important;
+      border-color: #008f5b !important;
+      padding: 2px 4px;
+    }
+
+    /* MODAL DE DETALLES DEL PEDIDO */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 480px;
+      width: 90%;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    .modal-card h2 {
+      margin-top: 0;
+      color: #00A86B;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 0.5rem;
+    }
+    .detalle-item {
+      margin: 0.6rem 0;
+      font-size: 0.95rem;
+    }
+    .btn-cerrar {
+      margin-top: 1.2rem;
+      width: 100%;
+      padding: 0.8rem;
+      background: #1A1A1A;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-wa-cliente {
+      display: block;
+      text-align: center;
+      margin-top: 0.6rem;
+      padding: 0.8rem;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-admin">
+    <h1>🍰 Panel de Producción - Las Esmeraldas</h1>
+    <div class="header-right">
+      <span id="estadoCarga" class="estado-carga">Conectando con Sheets...</span>
+      <a href="index.html">⬅ Volver a la Tienda</a>
+    </div>
+  </header>
+
+  <!-- NAVEGACIÓN DE LAS 3 VENTANAS -->
+  <div class="tabs-bar">
+    <button class="tab-btn active" id="tabDia" onclick="cambiarVentana('dia')">☀️ 1. Día Actual (Por Horas)</button>
+    <button class="tab-btn" id="tabSemana" onclick="cambiarVentana('semana')">📅 2. Calendario (Semana)</button>
+    <button class="tab-btn" id="tabAgenda" onclick="cambiarVentana('agenda')">📋 3. Agenda</button>
+  </div>
+
+  <!-- ================= VENTANA 1: DÍA ACTUAL (PRINCIPAL) ================= -->
+  <div id="ventanaDia" class="vista-contenedor">
+    <div class="dia-controles">
+      <h2 class="dia-titulo" id="tituloFechaActual">Cargando fecha...</h2>
+      <div class="selector-fecha">
+        <label for="inputFechaDia"><strong>Ver fecha:</strong></label>
+        <input type="date" id="inputFechaDia" onchange="renderizarVistaDia(this.value)">
+        <button class="btn-hoy" onclick="irAHoy()">Hoy</button>
+      </div>
+    </div>
+
+    <!-- Atajo automático para saltar a días que tienen pedidos agendados -->
+    <div id="barraFechasConPedidos" class="fechas-con-pedidos" style="display: none;">
+      <strong>📌 Días con pedidos agendados:</strong>
+      <div id="contenedorChipsFechas" style="display: flex; gap: 0.4rem; flex-wrap: wrap;"></div>
+    </div>
+
+    <div class="turnos-grid">
+      <!-- SECCIÓN MAÑANA (9:00 AM a 11:59 AM) -->
+      <div class="bloque-turno turno-manana">
+        <div class="turno-header">
+          <span>🌅 Mañana</span>
+          <span>9:00 AM - 11:59 AM</span>
+        </div>
+        <div id="contenedorManana"></div>
+      </div>
+
+      <!-- SECCIÓN TARDE (12:00 PM a 6:00 PM) -->
+      <div class="bloque-turno turno-tarde">
+        <div class="turno-header">
+          <span>🌇 Tarde</span>
+          <span>12:00 PM - 6:00 PM</span>
+        </div>
+        <div id="contenedorTarde"></div>
+      </div>
+    </div>
+
+    <!-- Bloque opcional por si algún pedido fue agendado fuera del horario 9am-6pm -->
+    <div id="contenedorFueraHorario" style="margin-top: 1.5rem; display: none;">
+      <div class="bloque-turno">
+        <div class="turno-header" style="background: #888;">
+          <span>🕒 Otros horarios del día (Fuera de 9:00 AM - 6:00 PM)</span>
+        </div>
+        <div id="listaFueraHorario" class="espacio-pedidos" style="padding: 1rem;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= VENTANA 2: CALENDARIO (FOCO EN SEMANA) ================= -->
+  <div id="ventanaSemana" class="vista-contenedor" style="display: none;">
+    <div id="calendarSemana"></div>
+  </div>
+
+  <!-- ================= VENTANA 3: AGENDA ================= -->
+  <div id="ventanaAgenda" class="vista-contenedor" style="display: none;">
+    <div id="calendarAgenda"></div>
+  </div>
+
+  <!-- ================= MODAL DE DETALLES DEL PEDIDO ================= -->
+  <div id="modalPedido" class="modal-overlay">
+    <div class="modal-card">
+      <h2 id="modalTitulo">Detalle del Pedido</h2>
+      <div class="detalle-item"><strong>ID Pedido:</strong> <span id="mId"></span></div>
+      <div class="detalle-item"><strong>Cliente:</strong> <span id="mCliente"></span></div>
+      <div class="detalle-item"><strong>Teléfono:</strong> <span id="mTelefono"></span></div>
+      <div class="detalle-item"><strong>Fecha de Entrega:</strong> <span id="mFecha"></span></div>
+      <div class="detalle-item"><strong>Producto:</strong> <span id="mProducto"></span></div>
+      <div class="detalle-item"><strong>Porciones:</strong> <span id="mPorciones"></span></div>
+      <div class="detalle-item"><strong>Detalles / Dedicatoria:</strong> <span id="mDetalles"></span></div>
+      <div class="detalle-item"><strong>Entrega:</strong> <span id="mEntrega"></span></div>
+      
+      <!-- Líneas de cobro desglosadas -->
+      <div class="detalle-item"><strong>Monto Total:</strong> ₡<span id="mMonto"></span></div>
+      <div class="detalle-item"><strong>Adelanto:</strong> <span id="mAdelanto"></span></div>
+      <div class="detalle-item"><strong>Saldo / Estado:</strong> <span id="mPago"></span></div>
+      
+      <a id="btnWhatsappCliente" href="#" target="_blank" class="btn-wa-cliente">💬 Contactar Cliente por WhatsApp</a>
+      <button class="btn-cerrar" onclick="cerrarModal()">Cerrar</button>
+    </div>
+  </div>
+
+  <script>
+    // ⚠️ IMPORTANTE: Pega aquí la URL de tu Google Apps Script
+    const URL_API = "https://script.google.com/macros/s/AKfycbzCW4Q21vZ22_GN2fYLkjn48G3mqfvcg94lD3nAPmuqHTV06tZnW9b2n6P-wYzRyJE/exec";
+
+    let todosLosEventos = [];
+    let calendarSemanaObj = null;
+    let calendarAgendaObj = null;
+
+    function parsearFechaSegura(valor) {
+      if (!valor) return null;
+      if (valor instanceof Date) return isNaN(valor) ? null : valor;
+      let str = String(valor).trim();
+      if (/^\d{4}-\d{2}-\d{2}\s+\d{1,2}:\d{2}/.test(str)) {
+        str = str.replace(/\s+/, 'T');
+      }
+      const d = new Date(str);
+      return isNaN(d) ? null : d;
+    }
+
+    function obtenerFechaLocalISO(fechaObj) {
+      const anio = fechaObj.getFullYear();
+      const mes = String(fechaObj.getMonth() + 1).padStart(2, '0');
+      const dia = String(fechaObj.getDate()).padStart(2, '0');
+      return `${anio}-${mes}-${dia}`;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const hoyISO = obtenerFechaLocalISO(new Date());
+      document.getElementById('inputFechaDia').value = hoyISO;
+      renderizarVistaDia(hoyISO);
+
+      if (URL_API === "TU_URL_AQUI" || !URL_API.startsWith("http")) {
+        document.getElementById('estadoCarga').innerText = "⚠️ Falta pegar tu URL_API en el código";
+        document.getElementById('estadoCarga').style.color = "#ff6b6b";
+        return;
+      }
+
+      fetch(URL_API)
+        .then(res => res.json())
+        .then(eventos => {
+          todosLosEventos = eventos.map(ev => {
+            const f = parsearFechaSegura(ev.start);
+            return {
+              ...ev,
+              start: f ? f.toISOString() : ev.start,
+              fechaLocalObj: f
+            };
+          }).filter(ev => ev.fechaLocalObj !== null);
+
+          document.getElementById('estadoCarga').innerText = `✅ ${todosLosEventos.length} pedidos cargados`;
+
+          mostrarBotonesFechasConPedidos();
+          renderizarVistaDia(document.getElementById('inputFechaDia').value);
+        })
+        .catch(err => {
+          document.getElementById('estadoCarga').innerText = "❌ Error al conectar con Sheets";
+          document.getElementById('estadoCarga').style.color = "#ff6b6b";
+          console.error(err);
+        });
+    });
+
+    function mostrarBotonesFechasConPedidos() {
+      const barra = document.getElementById('barraFechasConPedidos');
+      const contenedor = document.getElementById('contenedorChipsFechas');
+      contenedor.innerHTML = "";
+
+      const fechasUnicas = [...new Set(todosLosEventos.map(ev => obtenerFechaLocalISO(ev.fechaLocalObj)))].sort();
+
+      if (fechasUnicas.length === 0) {
+        barra.style.display = 'none';
+        return;
+      }
+
+      barra.style.display = 'flex';
+      fechasUnicas.forEach(fechaISO => {
+        const btn = document.createElement('button');
+        btn.className = 'chip-fecha-rapida';
+        btn.innerText = fechaISO;
+        btn.onclick = function() {
+          document.getElementById('inputFechaDia').value = fechaISO;
+          renderizarVistaDia(fechaISO);
+        };
+        contenedor.appendChild(btn);
+      });
+    }
+
+    function cambiarVentana(ventana) {
+      document.getElementById('ventanaDia').style.display = (ventana === 'dia') ? 'block' : 'none';
+      document.getElementById('ventanaSemana').style.display = (ventana === 'semana') ? 'block' : 'none';
+      document.getElementById('ventanaAgenda').style.display = (ventana === 'agenda') ? 'block' : 'none';
+
+      document.getElementById('tabDia').classList.toggle('active', ventana === 'dia');
+      document.getElementById('tabSemana').classList.toggle('active', ventana === 'semana');
+      document.getElementById('tabAgenda').classList.toggle('active', ventana === 'agenda');
+
+      if (ventana === 'semana') {
+        if (!calendarSemanaObj) {
+          const elSemana = document.getElementById('calendarSemana');
+          calendarSemanaObj = new FullCalendar.Calendar(elSemana, {
+            initialView: 'timeGridWeek',
+            locale: 'es',
+            slotMinTime: '09:00:00',
+            slotMaxTime: '19:00:00',
+            allDaySlot: false,
+            height: 'auto',
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'timeGridWeek,dayGridMonth'
+            },
+            buttonText: {
+              today: 'Hoy',
+              week: 'Semana',
+              month: 'Mes'
+            },
+            events: todosLosEventos,
+            eventClick: function(info) {
+              mostrarDetallesPedido(info.event.id, info.event.start, info.event.extendedProps);
+            }
+          });
+          calendarSemanaObj.render();
+        } else {
+          calendarSemanaObj.updateSize();
+        }
+      }
+
+      if (ventana === 'agenda') {
+        if (!calendarAgendaObj) {
+          const elAgenda = document.getElementById('calendarAgenda');
+          calendarAgendaObj = new FullCalendar.Calendar(elAgenda, {
+            initialView: 'listMonth',
+            locale: 'es',
+            height: 'auto',
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'listWeek,listMonth'
+            },
+            buttonText: {
+              today: 'Hoy',
+              listWeek: 'Agenda Semanal',
+              listMonth: 'Agenda Mensual'
+            },
+            events: todosLosEventos,
+            eventClick: function(info) {
+              mostrarDetallesPedido(info.event.id, info.event.start, info.event.extendedProps);
+            }
+          });
+          calendarAgendaObj.render();
+        } else {
+          calendarAgendaObj.updateSize();
+        }
+      }
+    }
+
+    function irAHoy() {
+      const hoyISO = obtenerFechaLocalISO(new Date());
+      document.getElementById('inputFechaDia').value = hoyISO;
+      renderizarVistaDia(hoyISO);
+    }
+
+    function renderizarVistaDia(fechaSeleccionadaISO) {
+      if (!fechaSeleccionadaISO) return;
+      const [anio, mes, dia] = fechaSeleccionadaISO.split('-').map(Number);
+      const fechaVisual = new Date(anio, mes - 1, dia);
+      
+      const opcionesTitulo = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('tituloFechaActual').innerText = fechaVisual.toLocaleDateString('es-CR', opcionesTitulo);
+
+      const horasManana = [
+        { hora: 9, etiqueta: "9:00 AM" },
+        { hora: 10, etiqueta: "10:00 AM" },
+        { hora: 11, etiqueta: "11:00 AM" }
+      ];
+
+      const horasTarde = [
+        { hora: 12, etiqueta: "12:00 PM" },
+        { hora: 13, etiqueta: "1:00 PM" },
+        { hora: 14, etiqueta: "2:00 PM" },
+        { hora: 15, etiqueta: "3:00 PM" },
+        { hora: 16, etiqueta: "4:00 PM" },
+        { hora: 17, etiqueta: "5:00 PM" },
+        { hora: 18, etiqueta: "6:00 PM" }
+      ];
+
+      const pedidosDelDia = todosLosEventos.filter(ev => {
+        if (!ev.fechaLocalObj) return false;
+        return obtenerFechaLocalISO(ev.fechaLocalObj) === fechaSeleccionadaISO;
+      });
+
+      const contManana = document.getElementById('contenedorManana');
+      contManana.innerHTML = "";
+      horasManana.forEach(bloque => {
+        contManana.appendChild(crearFilaHora(bloque.hora, bloque.etiqueta, pedidosDelDia));
+      });
+
+      const contTarde = document.getElementById('contenedorTarde');
+      contTarde.innerHTML = "";
+      horasTarde.forEach(bloque => {
+        contTarde.appendChild(crearFilaHora(bloque.hora, bloque.etiqueta, pedidosDelDia));
+      });
+
+      const fueraHorario = pedidosDelDia.filter(ev => {
+        const h = ev.fechaLocalObj.getHours();
+        return h < 9 || h > 18;
+      });
+
+      const contFuera = document.getElementById('contenedorFueraHorario');
+      const listaFuera = document.getElementById('listaFueraHorario');
+      listaFuera.innerHTML = "";
+
+      if (fueraHorario.length > 0) {
+        contFuera.style.display = 'block';
+        fueraHorario.forEach(ev => {
+          listaFuera.appendChild(crearBotonPedido(ev));
+        });
+      } else {
+        contFuera.style.display = 'none';
+      }
+    }
+
+    function crearFilaHora(horaNumero, textoEtiqueta, pedidosDelDia) {
+      const fila = document.createElement('div');
+      fila.className = 'fila-hora';
+
+      const colHora = document.createElement('div');
+      colHora.className = 'etiqueta-hora';
+      colHora.innerText = textoEtiqueta;
+
+      const colPedidos = document.createElement('div');
+      colPedidos.className = 'espacio-pedidos';
+
+      const pedidosEnEstaHora = pedidosDelDia.filter(ev => {
+        return ev.fechaLocalObj.getHours() === horaNumero;
+      });
+
+      if (pedidosEnEstaHora.length === 0) {
+        const vacio = document.createElement('span');
+        vacio.className = 'sin-pedidos';
+        vacio.innerText = 'Disponible';
+        colPedidos.appendChild(vacio);
+      } else {
+        pedidosEnEstaHora.forEach(ev => {
+          colPedidos.appendChild(crearBotonPedido(ev));
+        });
+      }
+
+      fila.appendChild(colHora);
+      fila.appendChild(colPedidos);
+      return fila;
+    }
+
+    function crearBotonPedido(ev) {
+      const props = ev.extendedProps || {};
+      const fechaEv = ev.fechaLocalObj;
+      const horaFormateada = fechaEv.toLocaleTimeString('es-CR', { hour: '2-digit', minute: '2-digit' });
+
+      const chip = document.createElement('div');
+      chip.className = 'pedido-chip';
+      chip.innerHTML = `
+        <span>🍰 ${props.producto || ev.title} (${props.cliente || 'Cliente'})</span>
+        <span class="hora-exacta">${horaFormateada}</span>
+      `;
+      chip.onclick = function() {
+        mostrarDetallesPedido(ev.id, fechaEv, props);
+      };
+      return chip;
+    }
+
+    // Abre el modal de detalles con el desglose de Adelanto y Saldo
+    function mostrarDetallesPedido(id, fechaStart, props) {
+      document.getElementById('modalTitulo').innerText = props.producto || "Detalle del Pedido";
+      document.getElementById('mId').innerText = id || "";
+      document.getElementById('mCliente').innerText = props.cliente || "";
+      document.getElementById('mTelefono').innerText = props.telefono || "";
+      
+      const fechaObj = parsearFechaSegura(fechaStart);
+      document.getElementById('mFecha').innerText = fechaObj ? fechaObj.toLocaleString('es-CR') : 'Sin fecha';
+      
+      document.getElementById('mProducto').innerText = props.producto || "";
+      document.getElementById('mPorciones').innerText = props.porciones || "";
+      document.getElementById('mDetalles').innerText = props.detalles || "";
+      document.getElementById('mEntrega').innerText = props.entrega || "";
+      document.getElementById('mMonto').innerText = props.monto || "Por definir";
+
+      const estadoRaw = String(props.estado_pago || "Pendiente");
+      let textoAdelanto = "₡0";
+      let textoEstado = estadoRaw;
+
+      const matchAdelanto = estadoRaw.match(/Adelanto\s*[¢₡]?([\d.,]+)/i);
+      const matchPendiente = estadoRaw.match(/Pendiente\s*[¢₡]?([\d.,]+)/i);
+
+      if (matchAdelanto) {
+        textoAdelanto = "₡" + matchAdelanto[1];
+        textoEstado = matchPendiente ? `Pendiente: ₡${matchPendiente[1]}` : estadoRaw;
+      } else if (estadoRaw.toLowerCase().includes("cancelado")) {
+        textoAdelanto = `₡${props.monto} (Pago completo)`;
+        textoEstado = "Cancelado (₡0 pendiente)";
+      } else if (!isNaN(parseFloat(estadoRaw)) && isFinite(estadoRaw)) {
+        const numAdelanto = parseFloat(estadoRaw);
+        const numTotal = parseFloat(props.monto) || 0;
+        textoAdelanto = "₡" + numAdelanto;
+        textoEstado = numTotal > numAdelanto ? `Pendiente: ₡${numTotal - numAdelanto}` : "Pendiente";
+      }
+
+      document.getElementById('mAdelanto').innerText = textoAdelanto;
+      document.getElementById('mPago').innerText = textoEstado;
+
+      const numLimpio = String(props.telefono || "").replace(/\D/g, '');
+      const msg = encodeURIComponent(`¡Hola ${props.cliente}! Te escribimos de Pastelería Las Esmeraldas sobre tu pedido ${id} (${props.producto}).`);
+      document.getElementById('btnWhatsappCliente').href = `https://wa.me/506${numLimpio}?text=${msg}`;
+
+      document.getElementById('modalPedido').style.display = 'flex';
+    }
+
+    function cerrarModal() {
+      document.getElementById('modalPedido').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
