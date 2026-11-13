@@ -624,7 +624,7 @@
       horasTarde.forEach(bloque => {
         contTarde.appendChild(crearFilaHora(bloque.hora, bloque.etiqueta, pedidosDelDia));
       });
-
+  // Revisar si hay pedidos en horas fuera de 9am - 6pm
       const fueraHorario = pedidosDelDia.filter(ev => {
         const h = ev.fechaLocalObj.getHours();
         return h < 9 || h > 18;
