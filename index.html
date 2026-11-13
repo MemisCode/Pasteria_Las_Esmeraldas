@@ -15,6 +15,7 @@
     </div>
     <nav class="nav-links">
       <a href="#catalogo">Catálogo</a>
+      <a href="#pedidos">Hacer Pedido</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -40,8 +41,8 @@
         <h3>Queque de Chocolate Fudge</h3>
         <p>Bizcocho de cacao húmedo con suave cobertura de ganache artesanal.</p>
         <span class="precio">₡15,000</span>
-        <button class="btn-whatsapp" onclick="pedirPorWhatsApp('Queque de Chocolate Fudge')">
-          🟢 Pedir por WhatsApp
+        <button class="btn-pedir" onclick="seleccionarProducto('Queque de Chocolate Fudge', 15000)">
+          🍰 Solicitar este Producto
         </button>
       </div>
 
@@ -51,21 +52,94 @@
         <h3>Cheesecake de Frutilla</h3>
         <p>Base crujiente de galleta con crema suave y mermelada natural.</p>
         <span class="precio">₡12,000</span>
-        <button class="btn-whatsapp" onclick="pedirPorWhatsApp('Cheesecake de Frutilla')">
-          🟢 Pedir por WhatsApp
+        <button class="btn-pedir" onclick="seleccionarProducto('Cheesecake de Frutilla', 12000)">
+          🍰 Solicitar este Producto
+        </button>
+      </div>
+
+      <!-- Producto 3 (Personalizado) -->
+      <div class="card">
+        <div class="card-img-placeholder">✨ Foto Queque Personalizado</div>
+        <h3>Queque Personalizado</h3>
+        <p>Diseñado a tu gusto: elige sabor, relleno, temática y dedicatoria.</p>
+        <span class="precio">Según tamaño</span>
+        <button class="btn-pedir" onclick="seleccionarProducto('Queque Personalizado', 'Por cotizar')">
+          ✨ Cotizar Diseño
         </button>
       </div>
 
     </div>
   </section>
 
-  <!-- 4. Sobre Nosotros -->
+  <!-- 4. Formulario de Pedidos (Conectado a Google Sheets) -->
+  <section id="pedidos" class="contenedor">
+    <h2 class="titulo-seccion">Realiza tu Pedido</h2>
+    <div class="form-card">
+      <form id="formularioPedido">
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre Completo *</label>
+            <input type="text" id="nombre" placeholder="Ej. María Fernández" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono / WhatsApp *</label>
+            <input type="tel" id="telefono" placeholder="Ej. 8888-8888" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="producto">Producto *</label>
+            <select id="producto" required>
+              <option value="Queque Personalizado">Queque Personalizado</option>
+              <option value="Queque de Chocolate Fudge">Queque de Chocolate Fudge</option>
+              <option value="Cheesecake de Frutilla">Cheesecake de Frutilla</option>
+              <option value="Otro / Varios">Otro producto</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="porciones">Porciones / Cantidad *</label>
+            <input type="number" id="porciones" min="1" value="15" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fecha">Fecha y Hora de Entrega *</label>
+            <input type="datetime-local" id="fecha" required>
+          </div>
+          <div class="form-group">
+            <label for="entrega">Método de Entrega *</label>
+            <select id="entrega" required>
+              <option value="Retiro en local">Retiro en local</option>
+              <option value="Envío a domicilio">Envío a domicilio</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="detalles">Sabor, relleno, dedicatoria o detalles especiales *</label>
+          <textarea id="detalles" rows="3" placeholder="Indica sabores, texto en el queque o dirección si elegiste envío..." required></textarea>
+        </div>
+
+        <!-- Campo oculto para guardar precio base si viene del catálogo -->
+        <input type="hidden" id="monto_estimado" value="Por definir">
+
+        <button type="submit" id="btnEnviar" class="btn-submit">
+          Registrar Pedido
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 5. Sobre Nosotros -->
   <section id="nosotros" class="contenedor nosotros">
     <h2 class="titulo-seccion">Sobre Nosotros</h2>
     <p>En Pastelería Las Esmeraldas elaboramos cada receta de manera 100% artesanal, seleccionando ingredientes de calidad para llevar sabor y frescura a tu mesa.</p>
   </section>
 
-  <!-- 5. Pie de Página y Contacto -->
+  <!-- 6. Pie de Página y Contacto -->
   <footer id="contacto">
     <p><strong>Pastelería Las Esmeraldas</strong></p>
     <p>📍 Costa Rica | 🕒 Pedidos con anticipación</p>
