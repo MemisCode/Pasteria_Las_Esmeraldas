@@ -32,7 +32,6 @@ document.getElementById("formularioPedido").addEventListener("submit", function(
     fecha_entrega: document.getElementById("fecha").value,
     tipo_producto: document.getElementById("producto").value,
     detalles_producto: document.getElementById("detalles").value,
-    porciones: document.getElementById("porciones").value,
     metodo_entrega: document.getElementById("entrega").value,
     monto_total: document.getElementById("monto_estimado").value,
     estado_pago: "Pendiente"
