@@ -401,8 +401,8 @@
     <div id="calendarAgenda"></div>
   </div>
 
-  <!-- ================= MODAL DE DETALLES DEL PEDIDO ================= -->
-  <div id="modalPedido" class="modal-overlay">
+  <!-- ================= MODAL DE DETALLES DEL PEDIDO (SIN PORCIONES) ================= -->
+  <div id="modalPedido" class="modal-overlay" onclick="if(event.target === this) cerrarModal()">
     <div class="modal-card">
       <h2 id="modalTitulo">Detalle del Pedido</h2>
       <div class="detalle-item"><strong>ID Pedido:</strong> <span id="mId"></span></div>
@@ -432,14 +432,29 @@
     let calendarAgendaObj = null;
 
     function parsearFechaSegura(valor) {
-      if (!valor) return null;
-      if (valor instanceof Date) return isNaN(valor) ? null : valor;
+      if (!valor) return new Date();
+      if (valor instanceof Date) return isNaN(valor) ? new Date() : valor;
+      
       let str = String(valor).trim();
+
+      // Caso 1: Formato YYYY-MM-DD HH:mm -> cambiar espacio por T
       if (/^\d{4}-\d{2}-\d{2}\s+\d{1,2}:\d{2}/.test(str)) {
         str = str.replace(/\s+/, 'T');
       }
+      
+      // Caso 2: Formato DD/MM/YYYY
+      let matchDMY = str.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})(?:\s+(\d{1,2}):(\d{2}))?/);
+      if (matchDMY) {
+        const dia = matchDMY[1].padStart(2, '0');
+        const mes = matchDMY[2].padStart(2, '0');
+        const anio = matchDMY[3];
+        const hora = (matchDMY[4] || "09").padStart(2, '0');
+        const min = (matchDMY[5] || "00").padStart(2, '0');
+        return new Date(`${anio}-${mes}-${dia}T${hora}:${min}:00`);
+      }
+
       const d = new Date(str);
-      return isNaN(d) ? null : d;
+      return isNaN(d) ? new Date() : d;
     }
 
     function obtenerFechaLocalISO(fechaObj) {
@@ -467,10 +482,10 @@
             const f = parsearFechaSegura(ev.start);
             return {
               ...ev,
-              start: f ? f.toISOString() : ev.start,
+              start: f.toISOString(),
               fechaLocalObj: f
             };
-          }).filter(ev => ev.fechaLocalObj !== null);
+          });
 
           document.getElementById('estadoCarga').innerText = `✅ ${todosLosEventos.length} pedidos cargados`;
 
@@ -540,6 +555,7 @@
             },
             events: todosLosEventos,
             eventClick: function(info) {
+              info.jsEvent.preventDefault();
               mostrarDetallesPedido(info.event.id, info.event.start, info.event.extendedProps);
             }
           });
@@ -568,6 +584,7 @@
             },
             events: todosLosEventos,
             eventClick: function(info) {
+              info.jsEvent.preventDefault();
               mostrarDetallesPedido(info.event.id, info.event.start, info.event.extendedProps);
             }
           });
@@ -609,8 +626,8 @@
       ];
 
       const pedidosDelDia = todosLosEventos.filter(ev => {
-        if (!ev.fechaLocalObj) return false;
-        return obtenerFechaLocalISO(ev.fechaLocalObj) === fechaSeleccionadaISO;
+        const f = ev.fechaLocalObj || parsearFechaSegura(ev.start);
+        return obtenerFechaLocalISO(f) === fechaSeleccionadaISO;
       });
 
       const contManana = document.getElementById('contenedorManana');
@@ -624,9 +641,10 @@
       horasTarde.forEach(bloque => {
         contTarde.appendChild(crearFilaHora(bloque.hora, bloque.etiqueta, pedidosDelDia));
       });
-  // Revisar si hay pedidos en horas fuera de 9am - 6pm
+
       const fueraHorario = pedidosDelDia.filter(ev => {
-        const h = ev.fechaLocalObj.getHours();
+        const f = ev.fechaLocalObj || parsearFechaSegura(ev.start);
+        const h = f.getHours();
         return h < 9 || h > 18;
       });
 
@@ -656,7 +674,8 @@
       colPedidos.className = 'espacio-pedidos';
 
       const pedidosEnEstaHora = pedidosDelDia.filter(ev => {
-        return ev.fechaLocalObj.getHours() === horaNumero;
+        const f = ev.fechaLocalObj || parsearFechaSegura(ev.start);
+        return f.getHours() === horaNumero;
       });
 
       if (pedidosEnEstaHora.length === 0) {
@@ -677,7 +696,7 @@
 
     function crearBotonPedido(ev) {
       const props = ev.extendedProps || {};
-      const fechaEv = ev.fechaLocalObj;
+      const fechaEv = ev.fechaLocalObj || parsearFechaSegura(ev.start);
       const horaFormateada = fechaEv.toLocaleTimeString('es-CR', { hour: '2-digit', minute: '2-digit' });
 
       const chip = document.createElement('div');
@@ -686,29 +705,29 @@
         <span>🍰 ${props.producto || ev.title} (${props.cliente || 'Cliente'})</span>
         <span class="hora-exacta">${horaFormateada}</span>
       `;
-      chip.onclick = function() {
+      chip.addEventListener('click', function() {
         mostrarDetallesPedido(ev.id, fechaEv, props);
-      };
+      });
       return chip;
     }
 
-    // Abre el modal de detalles con el desglose de Adelanto y Saldo
+    // Abre el modal de detalles de forma segura (sin mPorciones)
     function mostrarDetallesPedido(id, fechaStart, props) {
-      document.getElementById('modalTitulo').innerText = props.producto || "Detalle del Pedido";
-      document.getElementById('mId').innerText = id || "";
-      document.getElementById('mCliente').innerText = props.cliente || "";
-      document.getElementById('mTelefono').innerText = props.telefono || "";
+      const p = props || {};
+      document.getElementById('modalTitulo').innerText = p.producto || "Detalle del Pedido";
+      document.getElementById('mId').innerText = id || "Sin ID";
+      document.getElementById('mCliente').innerText = p.cliente || "Cliente";
+      document.getElementById('mTelefono').innerText = p.telefono || "Sin teléfono";
       
       const fechaObj = parsearFechaSegura(fechaStart);
       document.getElementById('mFecha').innerText = fechaObj ? fechaObj.toLocaleString('es-CR') : 'Sin fecha';
       
-      document.getElementById('mProducto').innerText = props.producto || "";
-      document.getElementById('mPorciones').innerText = props.porciones || "";
-      document.getElementById('mDetalles').innerText = props.detalles || "";
-      document.getElementById('mEntrega').innerText = props.entrega || "";
-      document.getElementById('mMonto').innerText = props.monto || "Por definir";
+      document.getElementById('mProducto').innerText = p.producto || "";
+      document.getElementById('mDetalles').innerText = p.detalles || "Sin detalles adicionales";
+      document.getElementById('mEntrega').innerText = p.entrega || "Retiro en local";
+      document.getElementById('mMonto').innerText = p.monto || "Por definir";
 
-      const estadoRaw = String(props.estado_pago || "Pendiente");
+      const estadoRaw = String(p.estado_pago || "Pendiente");
       let textoAdelanto = "₡0";
       let textoEstado = estadoRaw;
 
@@ -719,11 +738,11 @@
         textoAdelanto = "₡" + matchAdelanto[1];
         textoEstado = matchPendiente ? `Pendiente: ₡${matchPendiente[1]}` : estadoRaw;
       } else if (estadoRaw.toLowerCase().includes("cancelado")) {
-        textoAdelanto = `₡${props.monto} (Pago completo)`;
+        textoAdelanto = `₡${p.monto || 0} (Pago completo)`;
         textoEstado = "Cancelado (₡0 pendiente)";
       } else if (!isNaN(parseFloat(estadoRaw)) && isFinite(estadoRaw)) {
         const numAdelanto = parseFloat(estadoRaw);
-        const numTotal = parseFloat(props.monto) || 0;
+        const numTotal = parseFloat(p.monto) || 0;
         textoAdelanto = "₡" + numAdelanto;
         textoEstado = numTotal > numAdelanto ? `Pendiente: ₡${numTotal - numAdelanto}` : "Pendiente";
       }
@@ -731,8 +750,8 @@
       document.getElementById('mAdelanto').innerText = textoAdelanto;
       document.getElementById('mPago').innerText = textoEstado;
 
-      const numLimpio = String(props.telefono || "").replace(/\D/g, '');
-      const msg = encodeURIComponent(`¡Hola ${props.cliente}! Te escribimos de Pastelería Las Esmeraldas sobre tu pedido ${id} (${props.producto}).`);
+      const numLimpio = String(p.telefono || "").replace(/\D/g, '');
+      const msg = encodeURIComponent(`¡Hola ${p.cliente || ''}! Te escribimos de Pastelería Las Esmeraldas sobre tu pedido ${id || ''} (${p.producto || ''}).`);
       document.getElementById('btnWhatsappCliente').href = `https://wa.me/506${numLimpio}?text=${msg}`;
 
       document.getElementById('modalPedido').style.display = 'flex';
