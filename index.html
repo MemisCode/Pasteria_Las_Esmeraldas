@@ -30,47 +30,99 @@
     </div>
   </section>
 
-  <!-- 3. Catálogo de Productos -->
+  <!-- 3. Catálogo de Productos (Tarjetas visibles en la página) -->
   <section id="catalogo" class="contenedor">
     <h2 class="titulo-seccion">Nuestras Especialidades</h2>
     <div class="productos-grid">
       
-      <!-- Producto 1 -->
+      <!-- Producto 1: Queques Personalizados -->
       <div class="card">
-        <div class="card-img-placeholder">🎂 Foto Producto 1</div>
-        <h3>Queque de Chocolate Fudge</h3>
-        <p>Bizcocho de cacao húmedo con suave cobertura de ganache artesanal.</p>
-        <span class="precio">₡15,000</span>
-        <button class="btn-pedir" onclick="seleccionarProducto('Queque de Chocolate Fudge', 15000)">
-          🍰 Solicitar este Producto
-        </button>
-      </div>
-
-      <!-- Producto 2 -->
-      <div class="card">
-        <div class="card-img-placeholder">🍰 Foto Producto 2</div>
-        <h3>Cheesecake de Frutilla</h3>
-        <p>Base crujiente de galleta con crema suave y mermelada natural.</p>
-        <span class="precio">₡12,000</span>
-        <button class="btn-pedir" onclick="seleccionarProducto('Cheesecake de Frutilla', 12000)">
-          🍰 Solicitar este Producto
-        </button>
-      </div>
-
-      <!-- Producto 3 (Personalizado) -->
-      <div class="card">
-        <div class="card-img-placeholder">✨ Foto Queque Personalizado</div>
-        <h3>Queque Personalizado</h3>
-        <p>Diseñado a tu gusto: elige sabor, relleno, temática y dedicatoria.</p>
+        <div class="card-img-placeholder">🎂 Queques a tu Medida</div>
+        <h3>Queques Personalizados</h3>
+        <p>Desde tamaño Mini (4-6 porc.) hasta #32 (60 porc.). Elige sabor, relleno y temática.</p>
         <span class="precio">Según tamaño</span>
-        <button class="btn-pedir" onclick="seleccionarProducto('Queque Personalizado', 'Por cotizar')">
-          ✨ Cotizar Diseño
+        <button class="btn-pedir" onclick="seleccionarProducto('Queque Mediano', 'Por cotizar')">
+          ✨ Cotizar Queque
+        </button>
+      </div>
+
+      <!-- Producto 2: Tres Leches -->
+      <div class="card">
+        <div class="card-img-placeholder">🍰 Especialidad de la Casa</div>
+        <h3>Tres Leches Artesanal</h3>
+        <p>Bizcocho esponjoso bañado en nuestra mezcla tradicional de tres leches y lustre suave.</p>
+        <span class="precio">12 porciones</span>
+        <button class="btn-pedir" onclick="seleccionarProducto('Tres Leches', 'Por cotizar')">
+          🍰 Solicitar Tres Leches
+        </button>
+      </div>
+
+      <!-- Producto 3: Arrollado Decorado -->
+      <div class="card">
+        <div class="card-img-placeholder">🍓 Relleno y Decorado</div>
+        <h3>Arrollado Decorado</h3>
+        <p>Suave arrollado relleno de dulce de leche o jalea, finamente decorado para compartir.</p>
+        <span class="precio">10 porciones</span>
+        <button class="btn-pedir" onclick="seleccionarProducto('Arrollado Decorado', 'Por cotizar')">
+          🍰 Solicitar Arrollado
+        </button>
+      </div>
+
+      <!-- Producto 4: Torta de Chocolate -->
+      <div class="card">
+        <div class="card-img-placeholder">🍫 Intenso Cacao</div>
+        <h3>Torta de Chocolate</h3>
+        <p>Queque de chocolate suave y esponjoso, ideal para amantes del cacao artesanal.</p>
+        <span class="precio">12 porciones</span>
+        <button class="btn-pedir" onclick="seleccionarProducto('Torta Chocolate', 'Por cotizar')">
+          🍫 Solicitar Torta
+        </button>
+      </div>
+
+      <!-- Producto 5: Torta Húmeda -->
+      <div class="card">
+        <div class="card-img-placeholder">✨ Sabor Tradicional</div>
+        <h3>Torta Húmeda</h3>
+        <p>Receta especial con textura extra suave y húmeda, perfecta para toda ocasión.</p>
+        <span class="precio">12 porciones</span>
+        <button class="btn-pedir" onclick="seleccionarProducto('Torta Humeda', 'Por cotizar')">
+          🍰 Solicitar Torta Húmeda
+        </button>
+      </div>
+
+      <!-- Producto 6: Flan de Coco -->
+      <div class="card">
+        <div class="card-img-placeholder">🥥 Postre Casero</div>
+        <h3>Flan de Coco</h3>
+        <p>Delicioso flan horneado con textura cremosa, coco rallado y caramelo dorado.</p>
+        <span class="precio">10 porciones</span>
+        <button class="btn-pedir" onclick="seleccionarProducto('Flan Coco', 'Por cotizar')">
+          🍮 Solicitar Flan
         </button>
       </div>
 
     </div>
   </section>
-
+  <!-- Banda de Proceso en 3 Pasos (Estilo Poilâne) -->
+  <section class="pasos-banda">
+    <div class="pasos-grid">
+      <div class="paso-item">
+        <span>01.</span>
+        <h4>Elige tu Especialidad</h4>
+        <p>Selecciona el tamaño de tu queque o postre artesanal según tus invitados.</p>
+      </div>
+      <div class="paso-item">
+        <span>02.</span>
+        <h4>Agenda tu Encargo</h4>
+        <p>Completa el formulario con la fecha de entrega, sabores y dedicatoria.</p>
+      </div>
+      <div class="paso-item">
+        <span>03.</span>
+        <h4>Confirmación y Entrega</h4>
+        <p>Coordina el adelanto por SINPE Móvil vía WhatsApp y retira fresco en local.</p>
+      </div>
+    </div>
+  </section>
   <!-- 4. Formulario de Pedidos (Conectado a Google Sheets) -->
   <section id="pedidos" class="contenedor">
     <h2 class="titulo-seccion">Realiza tu Pedido</h2>
@@ -90,12 +142,34 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="producto">Producto *</label>
+            <label for="producto">Producto / Tamaño *</label>
             <select id="producto" required>
-              <option value="Queque Personalizado">Queque Personalizado</option>
-              <option value="Queque de Chocolate Fudge">Queque de Chocolate Fudge</option>
-              <option value="Cheesecake de Frutilla">Cheesecake de Frutilla</option>
-              <option value="Otro / Varios">Otro producto</option>
+              <option value="" disabled selected>Selecciona un producto...</option>
+              
+              <optgroup label="🎂 Queques Personalizados / Decorados">
+                <option value="Queque Mini" data-porciones="5">Queque Mini (4-6 porciones)</option>
+                <option value="Queque Pequeño" data-porciones="10">Queque Pequeño (8-10 porciones)</option>
+                <option value="Queque Mediano" data-porciones="15">Queque Mediano (12-15 porciones)</option>
+                <option value="Queque Grande" data-porciones="20">Queque Grande (18-20 porciones)</option>
+                <option value="Queque 20" data-porciones="25">Queque #20 (22-25 porciones)</option>
+                <option value="Queque 24" data-porciones="35">Queque #24 (30-35 porciones)</option>
+                <option value="Queque 28" data-porciones="45">Queque #28 (40-45 porciones)</option>
+                <option value="Queque 32" data-porciones="60">Queque #32 (55-60 porciones)</option>
+              </optgroup>
+
+              <optgroup label="🍰 Especialidades y Postres">
+                <option value="Tres Leches" data-porciones="12">Tres Leches Entero</option>
+                <option value="Arrollado Decorado" data-porciones="10">Arrollado Decorado</option>
+                <option value="Arrollado" data-porciones="10">Arrollado Tradicional</option>
+                <option value="Torta Chocolate" data-porciones="12">Torta de Chocolate</option>
+                <option value="Torta Humeda" data-porciones="12">Torta Húmeda</option>
+                <option value="Flan Coco" data-porciones="10">Flan de Coco</option>
+              </optgroup>
+
+              <optgroup label="✨ Otros Encargos">
+                <option value="Bocadillos / Mesa Dulce" data-porciones="25">Bocadillos / Mesa Dulce</option>
+                <option value="Otro / Varios" data-porciones="1">Otro producto (Especificar en detalles)</option>
+              </optgroup>
             </select>
           </div>
           <div class="form-group">
@@ -142,7 +216,7 @@
   <!-- 6. Pie de Página y Contacto -->
   <footer id="contacto">
     <p><strong>Pastelería Las Esmeraldas</strong></p>
-    <p>📍 Costa Rica | 🕒 Pedidos con anticipación</p>
+    <p>📍 Desamparados, Costa Rica | 🕒 Pedidos con anticipación</p>
   </footer>
 
   <script src="script.js"></script>

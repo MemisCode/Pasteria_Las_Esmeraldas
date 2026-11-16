@@ -1,230 +1,523 @@
-/* ===================================================
-   RESET Y CONFIGURACIÓN GENERAL
-   =================================================== */
+/* Importación de tipografías estilo editorial / artesanal (Poilâne) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+
+:root {
+  --bg-crema: #FAF6F0;        /* Fondo principal vainilla / crema cálido */
+  --bg-tarjeta: #FFFFFF;      /* Blanco puro para tarjetas y formulario */
+  --bg-secundario: #F2ECE1;   /* Tono trigo suave para secciones alternas */
+  --esmeralda: #1B4D3E;       /* Verde Esmeralda profundo principal */
+  --esmeralda-hover: #12352B; /* Verde más oscuro al tocar botones */
+  --dorado-trigo: #C89B6E;    /* Dorado corteza / caramelo para detalles */
+  --texto-oscuro: #2C2523;    /* Café espresso casi negro (más cálido que el negro puro) */
+  --texto-suave: #6E655F;     /* Gris tierra para descripciones */
+  --borde-fino: #E5DEC9;      /* Línea divisoria sutil estilo Poilâne */
+}
+
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background-color: #FAFAFA;
-  color: #1A1A1A;
+  background-color: var(--bg-crema);
+  color: var(--texto-oscuro);
+  font-family: 'Plus Jakarta Sans', sans-serif;
   line-height: 1.6;
 }
 
-/* ===================================================
-   1. ENCABEZADO / NAVBAR
-   =================================================== */
+h1, h2, h3, .precio {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--esmeralda);
+}
+
+/* 1. Barra de Navegación */
 .navbar {
-  background-color: #1A1A1A;
-  padding: 0.8rem 1.5rem;
+  background-color: var(--bg-crema);
+  border-bottom: 1px solid var(--borde-fino);
+  padding: 1rem 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
 }
 
 .logo-img {
-  height: 45px;
+  max-height: 55px;
   width: auto;
-  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.8rem;
 }
 
 .nav-links a {
-  color: #FFFFFF;
   text-decoration: none;
-  margin-left: 1rem;
-  font-size: 0.95rem;
+  color: var(--texto-oscuro);
+  font-size: 0.9rem;
   font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-  color: #00A86B;
+  color: var(--esmeralda);
 }
 
-/* ===================================================
-   2. PORTADA / HERO
-   =================================================== */
+/* 2. Portada / Hero Minimalista */
 .hero {
-  background: linear-gradient(135deg, #1A1A1A 0%, #00A86B 100%);
-  color: white;
+  background: linear-gradient(rgba(27, 77, 62, 0.85), rgba(18, 53, 43, 0.9)), url('img/hero-bg.jpg') center/cover no-repeat;
+  background-color: var(--esmeralda);
+  color: var(--bg-crema);
   text-align: center;
-  padding: 4rem 1.5rem;
+  padding: 5.5rem 1.5rem;
+  border-bottom: 3px solid var(--dorado-trigo);
+}
+
+.hero-content {
+  max-width: 680px;
+  margin: 0 auto;
 }
 
 .hero h1 {
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
+  color: var(--bg-crema);
+  font-size: 3rem;
   font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 1rem;
 }
 
 .hero p {
   font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto 1.8rem auto;
-  opacity: 0.9;
+  color: #E5DEC9;
+  margin-bottom: 2rem;
 }
 
 .btn-hero {
   display: inline-block;
-  background-color: #00A86B;
-  color: white;
-  padding: 0.9rem 2rem;
-  border-radius: 25px;
+  background-color: var(--dorado-trigo);
+  color: #FFFFFF;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  transition: background-color 0.2s ease;
+  padding: 0.9rem 2.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  transition: background-color 0.25s ease, transform 0.2s ease;
 }
 
 .btn-hero:hover {
-  background-color: #008f5b;
+  background-color: #b58658;
+  transform: translateY(-2px);
 }
 
-/* ===================================================
-   3. SECCIONES GENERALES Y CATÁLOGO
-   =================================================== */
+/* Contenedores Generales */
 .contenedor {
-  padding: 3rem 1.5rem;
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
+  padding: 4.5rem 1.5rem;
 }
 
 .titulo-seccion {
   text-align: center;
-  font-size: 1.8rem;
-  color: #1A1A1A;
-  margin-bottom: 2rem;
-  position: relative;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
-.titulo-seccion::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 4px;
-  background-color: #00A86B;
-  margin: 0.5rem auto 0 auto;
-  border-radius: 2px;
+.subtitulo-seccion {
+  text-align: center;
+  color: var(--texto-suave);
+  font-size: 1rem;
+  max-width: 580px;
+  margin: 0 auto 3rem auto;
 }
 
+/* 3. Catálogo de Productos Estilo Poilâne */
 .productos-grid {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
-/* TARJETAS DE PRODUCTO */
 .card {
-  background: white;
-  border-radius: 12px;
-  padding: 1.2rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  border: 1px solid #f0f0f0;
-  text-align: center;
+  background-color: var(--bg-tarjeta);
+  border: 1px solid var(--borde-fino);
+  border-radius: 6px;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--dorado-trigo);
+  transform: translateY(-4px);
 }
 
 .card-img-placeholder {
-  height: 200px;
-  background-color: #f3f3f3;
+  background-color: var(--bg-secundario);
+  color: var(--esmeralda);
+  height: 190px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  color: #888888;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: 1.25rem;
+  border: 1px dashed var(--dorado-trigo);
 }
 
 .card h3 {
-  font-size: 1.25rem;
+  font-size: 1.65rem;
   margin-bottom: 0.5rem;
-  color: #1A1A1A;
 }
 
 .card p {
+  color: var(--texto-suave);
   font-size: 0.95rem;
-  color: #666666;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
 }
 
 .precio {
   display: block;
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: #00A86B;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--dorado-trigo);
   margin-bottom: 1rem;
+  border-top: 1px solid var(--borde-fino);
+  padding-top: 0.75rem;
 }
 
-.btn-whatsapp {
+.btn-pedir {
   width: 100%;
-  background-color: #25D366;
-  color: white;
-  border: none;
-  padding: 0.85rem;
-  border-radius: 8px;
-  font-weight: bold;
+  background-color: transparent;
+  color: var(--esmeralda);
+  border: 1px solid var(--esmeralda);
+  padding: 0.8rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.2s ease;
+  transition: all 0.25s ease;
 }
 
-.btn-whatsapp:hover {
-  background-color: #1ebc57;
+.btn-pedir:hover {
+  background-color: var(--esmeralda);
+  color: #FFFFFF;
 }
 
-/* ===================================================
-   4. SOBRE NOSOTROS Y FOOTER
-   =================================================== */
-.nosotros p {
-  text-align: center;
-  max-width: 700px;
+/* Franja de Proceso en 3 Pasos (Inspiración Poilâne) */
+.pasos-banda {
+  background-color: var(--bg-secundario);
+  border-top: 1px solid var(--borde-fino);
+  border-bottom: 1px solid var(--borde-fino);
+  padding: 3rem 1.5rem;
+}
+
+.pasos-grid {
+  max-width: 1000px;
   margin: 0 auto;
-  font-size: 1.1rem;
-  color: #444444;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  text-align: center;
+}
+
+.paso-item span {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dorado-trigo);
+  margin-bottom: 0.3rem;
+}
+
+.paso-item h4 {
+  color: var(--esmeralda);
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.paso-item p {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+/* 4. Formulario de Pedidos */
+.form-card {
+  background-color: var(--bg-tarjeta);
+  border: 1px solid var(--borde-fino);
+  border-radius: 6px;
+  padding: 2.5rem;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--esmeralda);
+  margin-bottom: 0.45rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--borde-fino);
+  border-radius: 4px;
+  background-color: var(--bg-crema);
+  color: var(--texto-oscuro);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--esmeralda);
+  background-color: #FFFFFF;
+}
+
+.btn-submit {
+  width: 100%;
+  background-color: var(--esmeralda);
+  color: #FFFFFF;
+  border: none;
+  padding: 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.25s ease;
+}
+
+.btn-submit:hover {
+  background-color: var(--esmeralda-hover);
+}
+
+/* 5. Sobre Nosotros y Footer */
+.nosotros {
+  text-align: center;
+  max-width: 760px;
+  border-top: 1px solid var(--borde-fino);
 }
 
 footer {
-  background-color: #1A1A1A;
-  color: white;
+  background-color: var(--esmeralda);
+  color: var(--bg-crema);
   text-align: center;
-  padding: 2rem 1.5rem;
-  margin-top: 3rem;
-  font-size: 0.95rem;
+  padding: 2.5rem 1.5rem;
+  font-size: 0.9rem;
+  border-top: 3px solid var(--dorado-trigo);
 }
 
-footer p {
-  margin-bottom: 0.5rem;
-  opacity: 0.9;
-}
-
-/* ===================================================
-   ADAPTACIÓN A PANTALLAS MÁS GRANDES (TABLET / DESKTOP)
-   =================================================== */
-@media (min-width: 768px) {
-  .productos-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+/* Adaptación para Celulares (Mobile-First) */
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .form-card {
+    padding: 1.5rem;
   }
 }
+/* =========================================================
+   DETALLES ORNAMENTALES: ARABESCOS Y DIVISIONES CLÁSICAS
+   ========================================================= */
 
-@media (min-width: 1024px) {
-  .productos-grid {
-    grid-template-columns: repeat(3, 1fr);
+/* 1. Divisor con arabesco y joya esmeralda debajo de los títulos H2 */
+.titulo-seccion {
+  position: relative;
+  padding-bottom: 1.4rem;
+  margin-bottom: 2.2rem;
+}
+
+.titulo-seccion::after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 20px;
+  margin: 0.5rem auto 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  /* Arabesco simétrico en dorado trigo con diamante esmeralda central */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24' fill='none'%3E%3Cpath d='M10 12 H70 C80 12 82 4 90 4 C95 4 97 9 100 12 C103 9 105 4 110 4 C118 4 120 12 130 12 H190' stroke='%23C89B6E' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M75 12 C82 12 84 20 90 20 C95 20 97 15 100 12 C103 15 105 20 110 20 C116 20 118 12 125 12' stroke='%23C89B6E' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpolygon points='100,6 105,12 100,18 95,12' fill='%231B4D3E'/%3E%3Ccircle cx='55' cy='12' r='2' fill='%23C89B6E'/%3E%3Ccircle cx='145' cy='12' r='2' fill='%23C89B6E'/%3E%3C/svg%3E");
+}
+
+/* 2. Marco de papelería fina con arabescos en las esquinas del Formulario */
+.form-card {
+  position: relative;
+  /* Doble marco sutil estilo caja de pastelería artesanal */
+  box-shadow: inset 0 0 0 6px var(--bg-tarjeta), inset 0 0 0 7px var(--borde-fino);
+}
+
+.form-card::before,
+.form-card::after {
+  content: "";
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  pointer-events: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Arabesco esquina superior izquierda */
+.form-card::before {
+  top: 12px;
+  left: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' fill='none'%3E%3Cpath d='M2 38 V12 C2 6 6 2 12 2 H38' stroke='%23C89B6E' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M8 28 V14 C8 10 10 8 14 8 H28' stroke='%23C89B6E' stroke-width='1' stroke-linecap='round'/%3E%3Cpath d='M2 18 C8 18 18 8 18 2' stroke='%23C89B6E' stroke-width='1.2'/%3E%3Ccircle cx='13' cy='13' r='2' fill='%231B4D3E'/%3E%3C/svg%3E");
+}
+
+/* Arabesco esquina inferior derecha */
+.form-card::after {
+  bottom: 12px;
+  right: 12px;
+  transform: rotate(180deg);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' fill='none'%3E%3Cpath d='M2 38 V12 C2 6 6 2 12 2 H38' stroke='%23C89B6E' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M8 28 V14 C8 10 10 8 14 8 H28' stroke='%23C89B6E' stroke-width='1' stroke-linecap='round'/%3E%3Cpath d='M2 18 C8 18 18 8 18 2' stroke='%23C89B6E' stroke-width='1.2'/%3E%3Ccircle cx='13' cy='13' r='2' fill='%231B4D3E'/%3E%3C/svg%3E");
+}
+
+/* 3. Esquinas delicadas en las tarjetas de producto (brillan al pasar el cursor) */
+.card {
+  position: relative;
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-color: var(--dorado-trigo);
+  border-style: solid;
+  opacity: 0.45;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.card::before {
+  top: 8px;
+  left: 8px;
+  border-width: 1.5px 0 0 1.5px;
+}
+
+.card::after {
+  bottom: 8px;
+  right: 8px;
+  border-width: 0 1.5px 1.5px 0;
+}
+
+.card:hover::before,
+.card:hover::after {
+  width: 26px;
+  height: 26px;
+  opacity: 1;
+}
+/* =========================================================
+   MARCO EDITORIAL DE PÁGINA COMPLETA CON 4 ARABESCOS
+   ========================================================= */
+
+/* Damos un ligero respiro en los bordes para que el marco luzca */
+body {
+  padding: 12px;
+}
+
+/* 1. Doble filete dorado y esmeralda + Esquinas Superiores (Izquierda y Derecha) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 10px; /* Separación de 10px respecto al borde de la pantalla */
+  border: 1px solid var(--dorado-trigo);
+  outline: 1px solid rgba(27, 77, 62, 0.2);
+  outline-offset: -5px;
+  pointer-events: none; /* Permite hacer clic a través del marco */
+  z-index: 9999;
+
+  /* Dos arabescos superiores dibujados con SVG en las esquinas */
+  background-image: 
+    /* Esquina Superior Izquierda */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60' fill='none'%3E%3Cpath d='M2 58 V16 C2 8 8 2 16 2 H58' stroke='%23C89B6E' stroke-width='2'/%3E%3Cpath d='M8 42 V18 C8 12 12 8 18 8 H42' stroke='%231B4D3E' stroke-width='1.2'/%3E%3Cpath d='M2 26 C14 26 26 14 26 2' stroke='%23C89B6E' stroke-width='1.5'/%3E%3Cpolygon points='15,11 19,15 15,19 11,15' fill='%231B4D3E'/%3E%3Ccircle cx='28' cy='8' r='2' fill='%23C89B6E'/%3E%3Ccircle cx='8' cy='28' r='2' fill='%23C89B6E'/%3E%3C/svg%3E"),
+    /* Esquina Superior Derecha */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60' fill='none'%3E%3Cg transform='translate(60,0) scale(-1,1)'%3E%3Cpath d='M2 58 V16 C2 8 8 2 16 2 H58' stroke='%23C89B6E' stroke-width='2'/%3E%3Cpath d='M8 42 V18 C8 12 12 8 18 8 H42' stroke='%231B4D3E' stroke-width='1.2'/%3E%3Cpath d='M2 26 C14 26 26 14 26 2' stroke='%23C89B6E' stroke-width='1.5'/%3E%3Cpolygon points='15,11 19,15 15,19 11,15' fill='%231B4D3E'/%3E%3Ccircle cx='28' cy='8' r='2' fill='%23C89B6E'/%3E%3Ccircle cx='8' cy='28' r='2' fill='%23C89B6E'/%3E%3C/g%3E%3C/svg%3E");
+  background-position: top 4px left 4px, top 4px right 4px;
+  background-repeat: no-repeat;
+  background-size: 46px 46px;
+}
+
+/* 2. Esquinas Inferiores (Izquierda y Derecha) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 10px;
+  pointer-events: none;
+  z-index: 9999;
+
+  background-image: 
+    /* Esquina Inferior Izquierda */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60' fill='none'%3E%3Cg transform='translate(0,60) scale(1,-1)'%3E%3Cpath d='M2 58 V16 C2 8 8 2 16 2 H58' stroke='%23C89B6E' stroke-width='2'/%3E%3Cpath d='M8 42 V18 C8 12 12 8 18 8 H42' stroke='%231B4D3E' stroke-width='1.2'/%3E%3Cpath d='M2 26 C14 26 26 14 26 2' stroke='%23C89B6E' stroke-width='1.5'/%3E%3Cpolygon points='15,11 19,15 15,19 11,15' fill='%231B4D3E'/%3E%3Ccircle cx='28' cy='8' r='2' fill='%23C89B6E'/%3E%3Ccircle cx='8' cy='28' r='2' fill='%23C89B6E'/%3E%3C/g%3E%3C/svg%3E"),
+    /* Esquina Inferior Derecha */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60' fill='none'%3E%3Cg transform='translate(60,60) scale(-1,-1)'%3E%3Cpath d='M2 58 V16 C2 8 8 2 16 2 H58' stroke='%23C89B6E' stroke-width='2'/%3E%3Cpath d='M8 42 V18 C8 12 12 8 18 8 H42' stroke='%231B4D3E' stroke-width='1.2'/%3E%3Cpath d='M2 26 C14 26 26 14 26 2' stroke='%23C89B6E' stroke-width='1.5'/%3E%3Cpolygon points='15,11 19,15 15,19 11,15' fill='%231B4D3E'/%3E%3Ccircle cx='28' cy='8' r='2' fill='%23C89B6E'/%3E%3Ccircle cx='8' cy='28' r='2' fill='%23C89B6E'/%3E%3C/g%3E%3C/svg%3E");
+  background-position: bottom 4px left 4px, bottom 4px right 4px;
+  background-repeat: no-repeat;
+  background-size: 46px 46px;
+}
+
+/* Ajuste fino en celulares para que el marco sea más delgado y no quite espacio */
+@media (max-width: 700px) {
+  body {
+    padding: 6px;
+  }
+  body::before,
+  body::after {
+    inset: 6px;
+    background-size: 34px 34px;
   }
 }
