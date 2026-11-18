@@ -49,8 +49,15 @@ h1, h2, h3, .precio {
 }
 
 .logo-img {
-  max-height: 55px;
+  max-height: 95px;
   width: auto;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .logo-img {
+    max-height: 80px;
+  }
 }
 
 .nav-links {
