@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pastelería Las Esmeraldas</title>
-  <link rel="stylesheet" href="styles.css">
   <title>Pastelería Las Esmeraldas | Queques Especiales</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -25,7 +24,7 @@
   </header>
 
   <!-- 2. Portada / Hero -->
-<section class="hero">
+  <section class="hero">
     <div class="hero-marco">
       <span class="hero-eyebrow">Tradición Artesanal desde 1980 • Costa Rica</span>
       <h1>El Arte de Celebrar con Dulzura</h1>
@@ -40,81 +39,457 @@
       </div>
     </div>
   </section>
-  <!-- 3. Catálogo de Productos (Tarjetas visibles en la página) -->
+
+  <!-- 3. Catálogo de Especialidades -->
   <section id="catalogo" class="contenedor">
     <h2 class="titulo-seccion">Nuestras Especialidades</h2>
     <div class="productos-grid">
+      <!-- Principal 1: Queque Mini -->
+      <article class="card">
+        <div class="card-contenido">
+          <div class="card-img-wrap">
+            <img src="img/Tradicional.jpg" alt="Queque Mini con decoración tradicional" class="card-img">
+          </div>
+          <span class="card-etiqueta">Más vendido · Tradicional</span>
+          <h3>Queque Mini</h3>
+          <p>
+            Ideal para un antojo o detalle íntimo. Masa clásica sin preservantes en decoración tradicional
+            con colores predeterminados.
+          </p>
+        </div>
+        <div class="card-pie">
+          <span class="porciones">2 porciones</span>
+          <span class="relleno"><strong>Relleno:</strong> Leche condensada con cierto grado de cocción</span>
+          <span class="precio">₡4.000</span>
+          <button
+            type="button"
+            class="btn-pedir btn-ver-detalle"
+            data-producto="Queque Mini"
+            data-porciones-num="2"
+            data-precio-num="4000"
+            data-titulo="Queque Mini"
+            data-etiqueta="Decoración Tradicional · Más vendido"
+            data-porciones="2 porciones"
+            data-precio="₡4.000"
+            data-tiempo="Disponible o para el día siguiente (colores predeterminados)"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="La clásica receta tradicional, sabor vainilla, en decoración tradicional."
+          >
+            Ver detalles
+          </button>
+        </div>
+      </article>
+
+      <!-- Principal 2: Queque Pequeño -->
+      <article class="card">
+        <div class="card-contenido">
+          <div class="card-img-wrap">
+            <img src="img/Tradicional.jpg" alt="Queque Pequeño con decoración tradicional" class="card-img">
+          </div>
+          <span class="card-etiqueta">Más vendido · Tradicional</span>
+          <h3>Queque Pequeño</h3>
+          <p>
+            Uno de los favoritos de la casa para reuniones familiares. Receta tradicional horneada sin
+            preservantes en colores clásicos.
+          </p>
+        </div>
+        <div class="card-pie">
+          <span class="porciones">10 a 12 porciones</span>
+          <span class="relleno"><strong>Relleno:</strong> Leche condensada con cierto grado de cocción</span>
+          <span class="precio">₡10.500</span>
+          <button
+            type="button"
+            class="btn-pedir btn-ver-detalle"
+            data-producto="Queque Pequeño"
+            data-porciones-num="10"
+            data-precio-num="10500"
+            data-titulo="Queque Pequeño"
+            data-etiqueta="Decoración Tradicional · Más vendido"
+            data-porciones="10 a 12 porciones"
+            data-precio="₡10.500"
+            data-tiempo="Disponible o para el día siguiente (colores predeterminados)"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="La clásica receta tradicional, precio base en decoración tradicional."
+          >
+            Ver detalles
+          </button>
+        </div>
+      </article>
+
+      <!-- Principal 3: Queque Mediano -->
+      <article class="card">
+        <div class="card-contenido">
+          <div class="card-img-wrap">
+            <img src="img/Tradicional.jpg" alt="Queque Mediano con decoración tradicional" class="card-img">
+          </div>
+          <span class="card-etiqueta">Más vendido · Tradicional</span>
+          <h3>Queque Mediano</h3>
+          <p>
+            Equilibrio perfecto entre tamaño y sabor artesanal para celebraciones en casa, con nuestra
+            receta base tradicional sin preservantes.
+          </p>
+        </div>
+        <div class="card-pie">
+          <span class="porciones">12 a 14 porciones</span>
+          <span class="relleno"><strong>Relleno:</strong> Leche condensada con cierto grado de cocción</span>
+          <span class="precio">₡13.000</span>
+          <button
+            type="button"
+            class="btn-pedir btn-ver-detalle"
+            data-producto="Queque Mediano"
+            data-porciones-num="12"
+            data-precio-num="13000"
+            data-titulo="Queque Mediano"
+            data-etiqueta="Decoración Tradicional · Más vendido"
+            data-porciones="12 a 14 porciones"
+            data-precio="₡13.000"
+            data-tiempo="Disponible o para el día siguiente (colores predeterminados)"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="La clásica receta tradicional, precio base en decoración tradicional."
+          >
+            Ver detalles
+          </button>
+        </div>
+      </article>
+
+<!-- Tarjeta 4: Más Tamaños -->
+      <article class="card card-tamanos">
+        <div class="card-contenido">
+          <span class="card-etiqueta">Eventos y Celebraciones</span>
+          <h3>Más Tamaños</h3>
+          <p class="card-tamanos-intro">
+            Disponibles en decoración tradicional o personalizada (personalizados y <strong>hoja de arroz</strong> requieren 48 h).
+          </p>
+
+          <div class="tabla-tamanos-wrap">
+            <table class="tabla-tamanos tabla-tamanos-compacta">
+              <thead>
+                <tr>
+                  <th>Tamaño</th>
+                  <th>Porciones</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Grande</strong></td>
+                  <td>20</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn-tabla btn-ver-detalle"
+                      data-producto="Queque Grande"
+                      data-porciones-num="20"
+                      data-relleno="Leche condensada con cierto grado de cocción"
+                      data-precio-num="17000"
+                      data-titulo="Queque Grande"
+                      data-etiqueta="Decoración Tradicional"
+                      data-porciones="20 porciones"
+                      data-precio="₡17.000"
+                      data-tiempo="48 horas"
+                      data-imagen="img/Grande.jpg"
+                      data-descripcion="La clásica receta tradicional, precio base en decoración tradicional. Ideal para celebraciones medianas y familiares"
+                    >
+                      Ver
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Queque 20</strong></td>
+                  <td>25</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn-tabla btn-ver-detalle"
+                      data-producto="Queque 20"
+                      data-porciones-num="25"
+                      data-relleno="Leche condensada con cierto grado de cocción"
+                      data-precio-num="20000"
+                      data-titulo="Queque 20"
+                      data-etiqueta="Decoración Tradicional"
+                      data-porciones="25 porciones"
+                      data-precio="₡20.000"
+                      data-tiempo="48 horas"
+                      data-imagen=""
+                      data-descripcion="Queque 20 de 25 porciones ideal para celebraciones medianas y familiares."
+                    >
+                      Ver
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Queque 24</strong></td>
+                  <td>30</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn-tabla btn-ver-detalle"
+                      data-producto="Queque 24"
+                      data-porciones-num="30"
+                      data-relleno="Leche condensada con cierto grado de cocción"
+                      data-precio-num="24000"
+                      data-titulo="Queque 24"
+                      data-etiqueta="Decoración Tradicional"
+                      data-porciones="30 porciones"
+                      data-precio="₡24.000"
+                      data-tiempo="48 horas"
+                      data-imagen="img/Queque24.jpg"
+                      data-descripcion="Queque 24 de 30 porciones, receta tradicional, precio base en decoración tradicional."
+                    >
+                      Ver
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Queque 28</strong></td>
+                  <td>35</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn-tabla btn-ver-detalle"
+                      data-producto="Queque 28"
+                      data-porciones-num="35"
+                      data-relleno="Leche condensada con cierto grado de cocción"
+                      data-precio-num="28000"
+                      data-titulo="Queque 28"
+                      data-etiqueta="Decoración Tradicional"
+                      data-porciones="35 porciones"
+                      data-precio="₡28.000"
+                      data-tiempo="48 horas"
+                      data-imagen="img/Queque28.jpg"
+                      data-descripcion="Queque 28 de 35 porciones pensado para eventos y reuniones amplias, receta tradicional, precio base en decoración tradicional.."
+                    >
+                      Ver
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Queque 32</strong></td>
+                  <td>40</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn-tabla btn-ver-detalle"
+                      data-producto="Queque 32"
+                      data-porciones-num="40"
+                      data-relleno="Leche condensada con cierto grado de cocción"
+                      data-precio-num="32000"
+                      data-titulo="Queque 32"
+                      data-etiqueta="Decoración Tradicional"
+                      data-porciones="40 porciones"
+                      data-precio="₡32.000"
+                      data-tiempo="48 horas"
+                      data-imagen="img/Queque32.jpg"
+                      data-descripcion="Queque 32 de 40 porciones, nuestro formato más grande para celebraciones de gran capacidad, receta tradicional, precio base en decoración tradicional."
+                      
+                    >
+                      Ver
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <!-- Principal 5: Queques Personalizados -->
+      <article class="card">
+        <div class="card-contenido">
+          <div class="card-img-wrap">
+            <img src="img/QuequeBoda.jpg" alt="Ejemplo de queque personalizado y de boda" class="card-img">
+          </div>
+          <span class="card-etiqueta">Principal · 48 h anticipación</span>
+          <h3>Queques Personalizados</h3>
+          <p>
+            Disponibles en cualquier tamaño del catálogo, con diseño a medida, temática especial (como
+            bodas o motivos como abejas) o <strong>hoja de arroz impresa</strong>.
+          </p>
+        </div>
+        <div class="card-pie">
+          <span class="porciones">Desde 2 hasta 40+ porciones</span>
+          <span class="precio">Precio base + adicional</span>
+          <button
+            type="button"
+            class="btn-pedir btn-ver-detalle"
+            data-producto="Queque Personalizado"
+            data-porciones-num="12"
+            data-precio-num="Por definir"
+            data-titulo="Queques Personalizados"
+            data-etiqueta="Sobre pedido · 48 horas de anticipación"
+            data-porciones="Cualquier tamaño (2 a 40+ porciones)"
+            data-precio="Base del tamaño + adicional según diseño"
+            data-tiempo="Requiere 48 horas de anticipación"
+            data-imagen="img/QuequeBoda.jpg"
+            data-descripcion="Personalizamos cualquier tamaño sobre su receta base tradicional. Incluye opciones de decoración temática, eventos/bodas e impresión en hoja de arroz. El adicional varía según el diseño solicitado."
+          >
+            Ver detalles
+          </button>
+        </div>
+      </article>
+
+      <!-- Postre 1: Tres Leches -->
+      <article class="card">
+        <div class="card-contenido">
+          <div class="card-img-placeholder">Tres Leches Artesanal</div>
+          <span class="card-etiqueta">Postre de Casa</span>
+          <h3>Tres Leches</h3>
+          <p>
+            Suave, húmedo y balanceado, preparado con el cariño de siempre para compartir en sobremesa
+            o celebraciones especiales.
+          </p>
+        </div>
+        <div class="card-pie">
+          <span class="porciones">6 a 8 porciones</span>
+          <span class="precio">₡16.000</span>
+          <button
+            type="button"
+            class="btn-pedir btn-ver-detalle"
+            data-producto="Tres Leches"
+            data-porciones-num="8"
+            data-precio-num="16000"
+            data-titulo="Tres Leches"
+            data-etiqueta="Postre de Casa"
+            data-porciones="6 a 8 porciones"
+            data-precio="₡16.000"
+            data-tiempo="Consultar disponibilidad o encargar con anticipación"
+            data-imagen=""
+            data-descripcion="Postre Tres Leches de 6 a 8 porciones, ideal para compartir en familia o acompañar cualquier celebración."
+          >
+            Ver detalles
+          </button>
+        </div>
+      </article>
+
+      <!-- Postre 2: Flan de Coco -->
+      <article class="card">
+        <div class="card-contenido">
+          <div class="card-img-placeholder">Flan de Coco</div>
+          <span class="card-etiqueta">Postre de Casa</span>
+          <h3>Flan de Coco</h3>
+          <p>
+            Textura cremosa y sabor casero a coco con caramelo dorado, pensado para quienes buscan un
+            clásico distinto en la mesa.
+          </p>
+        </div>
+        <div class="card-pie">
+          <span class="porciones">6 a 8 porciones</span>
+          <span class="precio">₡16.000</span>
+          <button
+            type="button"
+            class="btn-pedir btn-ver-detalle"
+            data-producto="Flan Coco"
+            data-porciones-num="8"
+            data-precio-num="16000"
+            data-titulo="Flan de Coco"
+            data-etiqueta="Postre de Casa"
+            data-porciones="6 a 8 porciones"
+            data-precio="₡16.000"
+            data-tiempo="Consultar disponibilidad o encargar con anticipación"
+            data-imagen=""
+            data-descripcion="Flan de Coco tradicional de 6 a 8 porciones, con acabado suave y sabor casero."
+          >
+            Ver detalles
+          </button>
+        </div>
+      </article>
+    <!-- Arrollado Sin Decorar -->
+      <article class="card">
+        <div class="card-contenido">
+          <div class="card-img-wrap">
+            <img src="img/Arrollado.jpg" alt="Arrollado tradicional sin decorar de 50 cm" class="card-img">
+          </div>
+          <span class="card-etiqueta">50 cm · Sin decorar</span>
+          <h3>Arrollado</h3>
+          <p>
+            Clásico arrollado de 50 cm de largo con nuestra receta tradicional, sin decorar, ideal
+            para compartir en familia o acompañar reuniones.
+          </p>
+        </div>
+        <div class="card-pie">
+          <span class="porciones">20 porciones · 50 cm</span>
+          <span class="relleno"><strong>Relleno:</strong> Leche condensada con cierto grado de cocción</span>
+          <span class="precio">₡16.000</span>
+          <button
+            type="button"
+            class="btn-pedir btn-ver-detalle"
+            data-producto="Arrollado"
+            data-porciones-num="20"
+            data-precio-num="16000"
+            data-titulo="Arrollado"
+            data-etiqueta="50 cm · Sin decorar"
+            data-porciones="20 porciones (50 cm de largo)"
+            data-precio="₡16.000"
+            data-tiempo="Consultar disponibilidad o encargar con anticipación"
+            data-imagen="img/Arrollado.jpg"
+            data-descripcion="Arrollado de 50 cm de largo para 20 porciones, en presentación tradicional sin decorar."
+          >
+            Ver detalles
+          </button>
+        </div>
+      </article>
+
+      <!-- Arrollado Decorado con Merengue Italiano -->
+      <article class="card">
+        <div class="card-contenido">
+          <div class="card-img-wrap">
+            <img src="img/ArrolladoDec.jpg" alt="Arrollado decorado con merengue italiano de 50 cm" class="card-img">
+          </div>
+          <span class="card-etiqueta">50 cm · Merengue italiano</span>
+          <h3>Arrollado Decorado</h3>
+          <p>
+            Arrollado de 50 cm de largo acabado con suave merengue italiano, perfecto para dar un
+            toque especial a celebraciones y mesas dulces.
+          </p>
+        </div>
+        <div class="card-pie">
+          <span class="porciones">20 porciones · 50 cm</span>
+          <span class="relleno"><strong>Relleno:</strong> Leche condensada con cierto grado de cocción</span>
+          <span class="precio">₡17.000</span>
+          <button
+            type="button"
+            class="btn-pedir btn-ver-detalle"
+            data-producto="Arrollado Decorado"
+            data-porciones-num="20"
+            data-precio-num="17000"
+            data-titulo="Arrollado Decorado"
+            data-etiqueta="50 cm · Merengue italiano"
+            data-porciones="20 porciones (50 cm de largo)"
+            data-precio="₡17.000"
+            data-tiempo="Consultar disponibilidad o encargar con anticipación"
+            data-imagen="img/ArrolladoDec.jpg"
+            data-descripcion="Arrollado de 50 cm de largo para 20 porciones, decorado con merengue italiano."
+          >
+            Ver detalles
+          </button>
+        </div>
+      </article>
       
-      <!-- Producto 1: Queques Personalizados -->
-      <div class="card">
-        <div class="card-img-placeholder">🎂 Queques a tu Medida</div>
-        <h3>Queques Personalizados</h3>
-        <p>Desde tamaño Mini (4-6 porc.) hasta #32 (60 porc.). Elige sabor, relleno y temática.</p>
-        <span class="precio">Según tamaño</span>
-        <button class="btn-pedir" onclick="seleccionarProducto('Queque Mediano', 'Por cotizar')">
-          ✨ Cotizar Queque
-        </button>
       </div>
-
-      <!-- Producto 2: Tres Leches -->
-      <div class="card">
-        <div class="card-img-placeholder">🍰 Especialidad de la Casa</div>
-        <h3>Tres Leches Artesanal</h3>
-        <p>Bizcocho esponjoso bañado en nuestra mezcla tradicional de tres leches y lustre suave.</p>
-        <span class="precio">12 porciones</span>
-        <button class="btn-pedir" onclick="seleccionarProducto('Tres Leches', 'Por cotizar')">
-          🍰 Solicitar Tres Leches
-        </button>
-      </div>
-
-      <!-- Producto 3: Arrollado Decorado -->
-      <div class="card">
-        <div class="card-img-placeholder">🍓 Relleno y Decorado</div>
-        <h3>Arrollado Decorado</h3>
-        <p>Suave arrollado relleno de dulce de leche o jalea, finamente decorado para compartir.</p>
-        <span class="precio">10 porciones</span>
-        <button class="btn-pedir" onclick="seleccionarProducto('Arrollado Decorado', 'Por cotizar')">
-          🍰 Solicitar Arrollado
-        </button>
-      </div>
-
-      <!-- Producto 4: Torta de Chocolate -->
-      <div class="card">
-        <div class="card-img-placeholder">🍫 Intenso Cacao</div>
-        <h3>Torta de Chocolate</h3>
-        <p>Queque de chocolate suave y esponjoso, ideal para amantes del cacao artesanal.</p>
-        <span class="precio">12 porciones</span>
-        <button class="btn-pedir" onclick="seleccionarProducto('Torta Chocolate', 'Por cotizar')">
-          🍫 Solicitar Torta
-        </button>
-      </div>
-
-      <!-- Producto 5: Torta Húmeda -->
-      <div class="card">
-        <div class="card-img-placeholder">✨ Sabor Tradicional</div>
-        <h3>Torta Húmeda</h3>
-        <p>Receta especial con textura extra suave y húmeda, perfecta para toda ocasión.</p>
-        <span class="precio">12 porciones</span>
-        <button class="btn-pedir" onclick="seleccionarProducto('Torta Humeda', 'Por cotizar')">
-          🍰 Solicitar Torta Húmeda
-        </button>
-      </div>
-
-      <!-- Producto 6: Flan de Coco -->
-      <div class="card">
-        <div class="card-img-placeholder">🥥 Postre Casero</div>
-        <h3>Flan de Coco</h3>
-        <p>Delicioso flan horneado con textura cremosa, coco rallado y caramelo dorado.</p>
-        <span class="precio">10 porciones</span>
-        <button class="btn-pedir" onclick="seleccionarProducto('Flan Coco', 'Por cotizar')">
-          🍮 Solicitar Flan
-        </button>
-      </div>
-
-    </div>
   </section>
+
+  <!-- Ventana Modal de Detalles del Producto -->
+  <div id="modal-detalle" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <div class="modal-caja">
+      <button type="button" class="modal-cerrar" id="modal-cerrar" aria-label="Cerrar ventana de detalles">&times;</button>
+      <div id="modal-media" class="modal-media"></div>
+      <div class="modal-cuerpo">
+        <span id="modal-etiqueta" class="card-etiqueta"></span>
+        <h3 id="modal-titulo"></h3>
+        <p id="modal-descripcion" class="modal-descripcion"></p>
+        <div class="modal-datos">
+          <div><strong>Porciones:</strong> <span id="modal-porciones"></span></div>
+          <div id="modal-relleno-row"><strong>Relleno:</strong> <span id="modal-relleno"></span></div>
+          <div><strong>Precio:</strong> <span id="modal-precio"></span></div>
+          <div><strong>Tiempo:</strong> <span id="modal-tiempo"></span></div>
+        </div>
+        <button type="button" class="btn-submit" id="btn-modal-ordenar">Hacer pedido u ordenar</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Banda de Proceso en 3 Pasos (Estilo Poilâne) -->
-  <section class="pasos-banda">
+  <section id="como-pedir" class="pasos-banda">
     <div class="pasos-grid">
       <div class="paso-item">
         <span>01.</span>
@@ -133,12 +508,124 @@
       </div>
     </div>
   </section>
+
   <!-- 4. Formulario de Pedidos (Conectado a Google Sheets) -->
   <section id="pedidos" class="contenedor">
     <h2 class="titulo-seccion">Realiza tu Pedido</h2>
     <div class="form-card">
       <form id="formularioPedido">
         
+        <div class="form-group">
+          <label for="producto">Producto *</label>
+          <select id="producto" required>
+            <option value="" disabled selected>Selecciona un producto...</option>
+            
+            <optgroup label="🎂 Queques (Precio Base Decoración Tradicional)">
+              <option value="Queque Mini" data-porciones="2" data-precio="4000">Queque Mini (2 porciones · ₡4.000)</option>
+              <option value="Queque Pequeño" data-porciones="10" data-precio="10500">Queque Pequeño (10-12 porciones · ₡10.500)</option>
+              <option value="Queque Mediano" data-porciones="12" data-precio="13000">Queque Mediano (12-14 porciones · ₡13.000)</option>
+              <option value="Queque Grande" data-porciones="20" data-precio="17000">Queque Grande (20 porciones · ₡17.000)</option>
+              <option value="Queque 20" data-porciones="25" data-precio="20000">Queque #20 (25 porciones · ₡20.000)</option>
+              <option value="Queque 24" data-porciones="30" data-precio="24000">Queque #24 (30 porciones · ₡24.000)</option>
+              <option value="Queque 28" data-porciones="35" data-precio="28000">Queque #28 (35 porciones · ₡28.000)</option>
+              <option value="Queque 32" data-porciones="40" data-precio="32000">Queque #32 (40 porciones · ₡32.000)</option>
+              <option value="Queque Personalizado" data-porciones="12" data-precio="Por definir">Queque Personalizado / Hoja de Arroz (48 h anticipación)</option>
+            </optgroup>
+
+            <optgroup label="🍰 Especialidades y Postres">
+              <option value="Tres Leches" data-porciones="8" data-precio="16000">Tres Leches (6-8 porciones · ₡16.000)</option>
+              <option value="Flan Coco" data-porciones="8" data-precio="16000">Flan de Coco (6-8 porciones · ₡16.000)</option>
+              <option value="Arrollado Decorado" data-porciones="20" data-precio="17000">Arrollado Decorado · 50 cm (20 porciones · ₡17.000)</option>
+              <option value="Arrollado" data-porciones="20" data-precio="16000">Arrollado Sin Decorar · 50 cm (20 porciones · ₡16.000)</option>
+              <option value="Torta Chocolate" data-porciones="12" data-precio="Por definir">Torta de Chocolate</option>
+              <option value="Torta Humeda" data-porciones="12" data-precio="Por definir">Torta Húmeda</option>
+            </optgroup>
+
+            <optgroup label="✨ Otros Encargos">
+              <option value="Bocadillos / Mesa Dulce" data-porciones="25" data-precio="Por definir">Bocadillos / Mesa Dulce</option>
+              <option value="Otro / Varios" data-porciones="1" data-precio="Por definir">Otro producto (Especificar en detalles)</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Opciones dinámicas solo para Queques -->
+        <div id="opciones-queque" class="opciones-queque oculto">
+          <div class="form-group">
+            <label>Tipo de Decoración *</label>
+            <div class="deco-toggle">
+              <label class="deco-opcion">
+                <input type="radio" name="tipo_decoracion" value="Tradicional" checked>
+                <span>Tradicional <small>(Día siguiente)</small></span>
+              </label>
+              <label class="deco-opcion">
+                <input type="radio" name="tipo_decoracion" value="Personalizado">
+                <span>Personalizado <small>(48 h anticipación)</small></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Color Principal del Queque</label>
+            <div class="colores-grid" id="selector-colores">
+              <button type="button" class="color-btn activo" data-color="Blanco" title="Blanco">
+                <span class="color-circulo" style="background-color: #FFFFFF;"></span>
+                <small>Blanco</small>
+              </button>
+              <button type="button" class="color-btn" data-color="Celeste" title="Celeste">
+                <span class="color-circulo" style="background-color: #A7D8F0;"></span>
+                <small>Celeste</small>
+              </button>
+              <button type="button" class="color-btn" data-color="Rosado" title="Rosado">
+                <span class="color-circulo" style="background-color: #F4B6C2;"></span>
+                <small>Rosado</small>
+              </button>
+              <button type="button" class="color-btn" data-color="Amarillo" title="Amarillo">
+                <span class="color-circulo" style="background-color: #F7DC6F;"></span>
+                <small>Amarillo</small>
+              </button>
+              <button type="button" class="color-btn" data-color="Lila" title="Lila">
+                <span class="color-circulo" style="background-color: #D2B4DE;"></span>
+                <small>Lila</small>
+              </button>
+              <button type="button" class="color-btn" data-color="Verde" title="Verde">
+                <span class="color-circulo" style="background-color: #A9DFBF;"></span>
+                <small>Verde</small>
+              </button>
+              <button type="button" class="color-btn" data-color="Otro" title="Otro color o combinado">
+                <span class="color-circulo color-otro"></span>
+                <small>Otro</small>
+              </button>
+            </div>
+            <input type="hidden" id="color_seleccionado" value="Blanco">
+            <input type="text" id="color_otro" class="oculto" placeholder="Especifica el color o combinación deseada..." style="margin-top: 0.65rem;">
+          </div>
+
+          <!-- Panel extra visible solo si elige Personalizado -->
+          <div id="panel-personalizado" class="panel-personalizado oculto">
+            <div class="form-group">
+              <label>Extras y Acabados (opcional)</label>
+              <div class="extras-checks">
+                <label><input type="checkbox" name="extras_queque" value="Hoja de arroz impresa"> Hoja de arroz impresa</label>
+                <label><input type="checkbox" name="extras_queque" value="Confitillo"> Confitillo</label>
+                <label><input type="checkbox" name="extras_queque" value="Números de chocolate"> Números de chocolate</label>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label for="imagen_whatsapp">¿Enviarás una imagen de referencia o para hoja de arroz?</label>
+              <select id="imagen_whatsapp">
+                <option value="No">No, solo con la descripción</option>
+                <option value="Sí, para imprimir en hoja de arroz">Sí, imagen para imprimir en hoja de arroz</option>
+                <option value="Sí, referencia del diseño deseado">Sí, foto de referencia de cómo quiero el queque</option>
+              </select>
+              <p class="aviso-whatsapp">
+                📎 Si eliges enviar imagen, al registrar tu pedido se abrirá WhatsApp para que nos adjuntes la foto directamente en el chat.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Datos del cliente -->
         <div class="form-row">
           <div class="form-group">
             <label for="nombre">Nombre Completo *</label>
@@ -150,44 +637,7 @@
           </div>
         </div>
 
-        <div class="form-row">
-          <div class="form-group">
-            <label for="producto">Producto / Tamaño *</label>
-            <select id="producto" required>
-              <option value="" disabled selected>Selecciona un producto...</option>
-              
-              <optgroup label="🎂 Queques Personalizados / Decorados">
-                <option value="Queque Mini" data-porciones="5">Queque Mini (4-6 porciones)</option>
-                <option value="Queque Pequeño" data-porciones="10">Queque Pequeño (8-10 porciones)</option>
-                <option value="Queque Mediano" data-porciones="15">Queque Mediano (12-15 porciones)</option>
-                <option value="Queque Grande" data-porciones="20">Queque Grande (18-20 porciones)</option>
-                <option value="Queque 20" data-porciones="25">Queque #20 (22-25 porciones)</option>
-                <option value="Queque 24" data-porciones="35">Queque #24 (30-35 porciones)</option>
-                <option value="Queque 28" data-porciones="45">Queque #28 (40-45 porciones)</option>
-                <option value="Queque 32" data-porciones="60">Queque #32 (55-60 porciones)</option>
-              </optgroup>
-
-              <optgroup label="🍰 Especialidades y Postres">
-                <option value="Tres Leches" data-porciones="12">Tres Leches Entero</option>
-                <option value="Arrollado Decorado" data-porciones="10">Arrollado Decorado</option>
-                <option value="Arrollado" data-porciones="10">Arrollado Tradicional</option>
-                <option value="Torta Chocolate" data-porciones="12">Torta de Chocolate</option>
-                <option value="Torta Humeda" data-porciones="12">Torta Húmeda</option>
-                <option value="Flan Coco" data-porciones="10">Flan de Coco</option>
-              </optgroup>
-
-              <optgroup label="✨ Otros Encargos">
-                <option value="Bocadillos / Mesa Dulce" data-porciones="25">Bocadillos / Mesa Dulce</option>
-                <option value="Otro / Varios" data-porciones="1">Otro producto (Especificar en detalles)</option>
-              </optgroup>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="porciones">Porciones / Cantidad *</label>
-            <input type="number" id="porciones" min="1" value="15" required>
-          </div>
-        </div>
-
+        <!-- Fecha y método de entrega -->
         <div class="form-row">
           <div class="form-group">
             <label for="fecha">Fecha y Hora de Entrega *</label>
@@ -204,7 +654,7 @@
 
         <div class="form-group">
           <label for="detalles">Sabor, relleno, dedicatoria o detalles especiales *</label>
-          <textarea id="detalles" rows="3" placeholder="Indica sabores, texto en el queque o dirección si elegiste envío..." required></textarea>
+          <textarea id="detalles" rows="3" placeholder="Indica colores, si deseas confitillo, números de chocolate, hoja de arroz o dirección de envío..." required></textarea>
         </div>
 
         <!-- Campo oculto para guardar precio base si viene del catálogo -->
@@ -220,14 +670,14 @@
   <!-- 5. Sobre Nosotros -->
   <section id="nosotros" class="contenedor nosotros">
     <h2 class="titulo-seccion">Sobre Nosotros</h2>
-    <p>En Pastelería Las Esmeraldas elaboramos cada receta de manera 100% artesanal, seleccionando ingredientes de calidad para llevar sabor y frescura a tu mesa.</p>
+    <p>En Pastelería Las Esmeraldas elaboramos cada receta de manera 100% artesanal desde 1980, utilizando harina, huevos, leche y mantequilla sin mejorantes ni preservantes para llevar sabor y frescura a tu mesa.</p>
   </section>
 
   <!-- 6. Pie de Página y Contacto -->
- <footer id="contacto">
-  <p><strong>Pastelería Las Esmeraldas — Queques Especiales</strong></p>
-  <p>📍 Desamparados, Costa Rica | 🕒 Pedidos con anticipación</p>
-</footer>
+  <footer id="contacto">
+    <p><strong>Pastelería Las Esmeraldas — Queques Especiales</strong></p>
+    <p>📍 Desamparados, Costa Rica | 🕒 Pedidos con anticipación</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
