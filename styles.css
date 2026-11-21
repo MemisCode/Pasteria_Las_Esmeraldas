@@ -142,16 +142,27 @@ h1, h2, h3, .precio {
 }
 
 /* 2. Portada / Hero Editorial */
+/* 2. Portada / Hero Editorial a ancho completo */
 .hero {
-  background: 
-    radial-gradient(circle at top, rgba(200, 155, 110, 0.14), transparent 65%),
-    linear-gradient(rgba(23, 66, 53, 0.92), rgba(16, 46, 37, 0.96)),
-    url('img/hero-bg.jpg') center/cover no-repeat;
+  width: 100%;
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--esmeralda);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   color: var(--bg-crema);
   text-align: center;
   padding: 4.5rem 1.5rem;
   border-bottom: 3px solid var(--dorado-trigo);
+}
+
+.hero-historia {
+  background-image:
+    radial-gradient(circle at center, rgba(16, 46, 37, 0.68), rgba(12, 34, 27, 0.88)),
+    url('hero-historia.jpg');
 }
 
 .hero-marco {
@@ -1087,4 +1098,48 @@ body::after {
   margin-bottom: 0.9rem;
   padding-top: 0.65rem;
   border-top: 1px solid var(--borde-fino);
+}
+
+.aviso-fecha {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--esmeralda);
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+/* Selector de tamaño base en la tarjeta de Queques Personalizados */
+.personalizado-base-box {
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: var(--bg-crema);
+  border: 1px solid var(--borde-fino);
+  border-radius: 4px;
+}
+
+.personalizado-base-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--esmeralda);
+  margin-bottom: 0.4rem;
+}
+
+.personalizado-base-select {
+  width: 100%;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--borde-fino);
+  border-radius: 4px;
+  background-color: var(--bg-tarjeta);
+  color: var(--texto-oscuro);
+  font-family: inherit;
+  font-size: 0.88rem;
+}
+
+.personalizado-base-select:focus {
+  outline: none;
+  border-color: var(--esmeralda);
 }

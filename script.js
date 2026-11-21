@@ -54,6 +54,7 @@ function actualizarPanelPersonalizado() {
   } else {
     panelPersonalizadoEl.classList.add("oculto");
   }
+  actualizarMinimoFecha();
 }
 
 radiosDecoracion.forEach((radio) => {
@@ -103,7 +104,57 @@ selectProductoEl.addEventListener("change", function () {
   } else {
     opcionesQuequeEl.classList.add("oculto");
   }
+  actualizarMinimoFecha();
 });
+
+// Validación dinámica de fecha (bloquea fechas pasadas y exige 48 h en personalizados/grandes)
+const inputFechaEl = document.getElementById("fecha");
+const avisoFechaEl = document.getElementById("aviso-fecha");
+const PRODUCTOS_48H = [
+  "Queque Personalizado",
+  "Queque Grande",
+  "Queque 20",
+  "Queque 24",
+  "Queque 28",
+  "Queque 32"
+];
+
+function formatearFechaLocal(fecha) {
+  const pad = (n) => String(n).padStart(2, "0");
+  return `${fecha.getFullYear()}-${pad(fecha.getMonth() + 1)}-${pad(fecha.getDate())}T${pad(fecha.getHours())}:${pad(fecha.getMinutes())}`;
+}
+
+function requiere48Horas() {
+  const prod = selectProductoEl.value;
+  const esQueque = prod.toLowerCase().includes("queque");
+  const deco = document.querySelector('input[name="tipo_decoracion"]:checked')?.value;
+  return PRODUCTOS_48H.includes(prod) || (esQueque && deco === "Personalizado");
+}
+
+function actualizarMinimoFecha() {
+  if (!inputFechaEl) return;
+
+  const ahora = new Date();
+  const exige48h = requiere48Horas();
+  const fechaMinima = exige48h
+    ? new Date(ahora.getTime() + 48 * 60 * 60 * 1000)
+    : ahora;
+
+  const minFormateado = formatearFechaLocal(fechaMinima);
+  inputFechaEl.min = minFormateado;
+
+  if (avisoFechaEl) {
+    avisoFechaEl.classList.toggle("oculto", !exige48h);
+  }
+
+  // Si ya había elegido una fecha que ahora queda por debajo del mínimo, se limpia
+  if (inputFechaEl.value && inputFechaEl.value < minFormateado) {
+    inputFechaEl.value = "";
+  }
+}
+
+// Ejecutar al cargar la página
+actualizarMinimoFecha();
 
 // 4. Ventana Modal de Detalles del Catálogo
 (function () {
@@ -130,17 +181,45 @@ selectProductoEl.addEventListener("change", function () {
 
   document.querySelectorAll(".btn-ver-detalle").forEach((btn) => {
     btn.addEventListener("click", () => {
+      const tarjetaPadre = btn.closest(".card");
+      const selectorBase = tarjetaPadre ? tarjetaPadre.querySelector("#base-queque-personalizado") : null;
+
+      let productoFinal = btn.dataset.producto || "";
+      let tituloFinal = btn.dataset.titulo || "";
+      let porcionesTextoFinal = btn.dataset.porciones || "";
+      let porcionesNumFinal = btn.dataset.porcionesNum || "";
+      let precioTextoFinal = btn.dataset.precio || "";
+      let precioNumFinal = btn.dataset.precioNum || "Por definir";
+
+      if (selectorBase && selectorBase.value) {
+        const optBase = selectorBase.options[selectorBase.selectedIndex];
+        const baseNombre = selectorBase.value;
+        const basePorc = optBase ? optBase.getAttribute("data-porciones") : "";
+        const basePrecio = optBase ? optBase.getAttribute("data-precio") : "";
+
+        productoFinal = `Queque Personalizado (${baseNombre})`;
+        tituloFinal = `Queques Personalizados · ${baseNombre}`;
+        if (basePorc) {
+          porcionesTextoFinal = `${basePorc} porciones (base ${baseNombre})`;
+          porcionesNumFinal = basePorc;
+        }
+        if (basePrecio) {
+          precioTextoFinal = basePrecio;
+          precioNumFinal = basePrecio;
+        }
+      }
+
       datosSeleccionados = {
-        producto: btn.dataset.producto || "",
-        precioNum: btn.dataset.precioNum || "Por definir",
-        porcionesNum: btn.dataset.porcionesNum || ""
+        producto: productoFinal,
+        precioNum: precioNumFinal,
+        porcionesNum: porcionesNumFinal
       };
 
       etiquetaEl.textContent = btn.dataset.etiqueta || "";
-      tituloEl.textContent = btn.dataset.titulo || "";
+      tituloEl.textContent = tituloFinal;
       descEl.textContent = btn.dataset.descripcion || "";
-      porcionesEl.textContent = btn.dataset.porciones || "";
-      precioEl.textContent = btn.dataset.precio || "";
+      porcionesEl.textContent = porcionesTextoFinal;
+      precioEl.textContent = precioTextoFinal;
       tiempoEl.textContent = btn.dataset.tiempo || "";
 
       if (btn.dataset.relleno) {
@@ -151,9 +230,9 @@ selectProductoEl.addEventListener("change", function () {
       }
 
       if (btn.dataset.imagen) {
-        mediaEl.innerHTML = `<img src="${btn.dataset.imagen}" alt="${btn.dataset.titulo || "Producto"}">`;
+        mediaEl.innerHTML = `<img src="${btn.dataset.imagen}" alt="${tituloFinal || "Producto"}">`;
       } else {
-        mediaEl.innerHTML = `<span>${btn.dataset.titulo || "Especialidad"}</span>`;
+        mediaEl.innerHTML = `<span>${tituloFinal || "Especialidad"}</span>`;
       }
 
       modal.classList.add("activo");
@@ -193,6 +272,16 @@ selectProductoEl.addEventListener("change", function () {
 // 5. Envío del formulario a la pestaña "Pedidos" + Redirección a WhatsApp
 document.getElementById("formularioPedido").addEventListener("submit", async function (e) {
   e.preventDefault();
+
+  actualizarMinimoFecha();
+  if (inputFechaEl.value < inputFechaEl.min) {
+    const msg = requiere48Horas()
+      ? "Este queque requiere al menos 48 horas de anticipación. Por favor elige una fecha y hora posterior."
+      : "Por favor selecciona una fecha y hora futura para la entrega.";
+    alert(msg);
+    inputFechaEl.focus();
+    return;
+  }
 
   const btn = document.getElementById("btnEnviar");
   btn.innerText = "Registrando pedido...";
