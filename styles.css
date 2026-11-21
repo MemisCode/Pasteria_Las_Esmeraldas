@@ -6,6 +6,7 @@
   --bg-tarjeta: #FFFFFF;      /* Blanco puro para tarjetas y formulario */
   --bg-secundario: #F2ECE1;   /* Tono trigo suave para secciones alternas */
   --esmeralda: #1B4D3E;       /* Verde Esmeralda profundo principal */
+  --esmeralda-oscuro: #0F2920;/* Verde esmeralda muy oscuro para alto contraste */
   --esmeralda-hover: #12352B; /* Verde más oscuro al tocar botones */
   --dorado-trigo: #C89B6E;    /* Dorado corteza / caramelo para detalles */
   --texto-oscuro: #2C2523;    /* Café espresso casi negro (más cálido que el negro puro) */
@@ -141,11 +142,21 @@ h1, h2, h3, .precio {
   width: 100%;
 }
 
-/* 2. Portada / Hero Editorial */
-/* 2. Portada / Hero Editorial a ancho completo */
-.hero {
+/* 2. Hero Editorial Rotativo a Ancho Completo (sin saltos entre diapositivas) */
+.hero-slider {
+  position: relative;
   width: 100%;
-  min-height: 460px;
+  height: 440px;
+  background-color: var(--esmeralda);
+  border-bottom: 3px solid var(--dorado-trigo);
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,23 +166,66 @@ h1, h2, h3, .precio {
   background-repeat: no-repeat;
   color: var(--bg-crema);
   text-align: center;
-  padding: 4.5rem 1.5rem;
-  border-bottom: 3px solid var(--dorado-trigo);
+  padding: 18px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
 }
 
-.hero-historia {
+.hero-slide.activa {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.slide-historia {
+  background-position: center bottom;
   background-image:
-    radial-gradient(circle at center, rgba(16, 46, 37, 0.68), rgba(12, 34, 27, 0.88)),
-    url('hero-historia.jpg');
+    radial-gradient(
+      ellipse at center,
+      rgba(12, 34, 27, 0.52) 0%,
+      rgba(12, 34, 27, 0.22) 55%,
+      rgba(12, 34, 27, 0.05) 100%
+    ),
+    url('img/hero-historia.jpg');
+}
+
+.slide-catalogo {
+  background-image:
+    radial-gradient(
+      ellipse at center,
+      rgba(12, 34, 27, 0.52) 0%,
+      rgba(12, 34, 27, 0.22) 55%,
+      rgba(12, 34, 27, 0.05) 100%
+    ),
+    url('img/hero-catalogo.jpg');
+}
+
+.slide-personalizados {
+  background-image:
+    radial-gradient(
+      ellipse at center,
+      rgba(12, 34, 27, 0.52) 0%,
+      rgba(12, 34, 27, 0.22) 55%,
+      rgba(12, 34, 27, 0.05) 100%
+    ),
+    url('img/hero-personalizados.jpg');
 }
 
 .hero-marco {
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-  border: 1px solid rgba(200, 155, 110, 0.45);
-  outline: 1px solid rgba(200, 155, 110, 0.2);
-  outline-offset: -7px;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1.75rem 1.5rem 2.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2.25px solid rgba(200, 155, 110, 0.85);
+  outline: 1.25px solid rgba(200, 155, 110, 0.5);
+  outline-offset: -8px;
   border-radius: 4px;
 }
 
@@ -190,11 +244,19 @@ h1, h2, h3, .precio {
   margin: 0 auto;
 }
 
-.hero h1 {
+.hero-slide h1 {
   color: var(--bg-crema);
-  font-size: 3.3rem;
+  font-size: 3.1rem;
   font-weight: 700;
   line-height: 1.12;
+  margin-bottom: 1.1rem;
+}
+
+.hero-slide h2 {
+  color: var(--bg-crema);
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.14;
   margin-bottom: 1.1rem;
 }
 
@@ -208,12 +270,37 @@ h1, h2, h3, .precio {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 16' fill='none'%3E%3Cline x1='8' y1='8' x2='68' y2='8' stroke='%23C89B6E' stroke-width='1.2'/%3E%3Cline x1='92' y1='8' x2='152' y2='8' stroke='%23C89B6E' stroke-width='1.2'/%3E%3Cpolygon points='80,2 86,8 80,14 74,8' fill='%23C89B6E'/%3E%3Ccircle cx='62' cy='8' r='1.8' fill='%23C89B6E'/%3E%3Ccircle cx='98' cy='8' r='1.8' fill='%23C89B6E'/%3E%3C/svg%3E");
 }
 
-.hero p {
-  font-size: 1.08rem;
-  color: #EAE3D2;
+.hero-slide .hero-eyebrow {
+  display: inline-block;
+  background-color: rgba(15, 41, 32, 0.78);
+  color: var(--bg-crema);
+  border: 1px solid rgba(200, 155, 110, 0.65);
+  padding: 0.32rem 0.9rem;
+  border-radius: 3px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 1.1rem;
+  text-shadow: none;
+}
+
+.hero-slide h1,
+.hero-slide h2 {
+  color: var(--bg-crema);
+  text-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.8),
+    0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+.hero-slide p {
+  font-size: 1.06rem;
+  color: #F5EFE6;
   max-width: 580px;
-  margin: 0 auto 2.2rem auto;
+  margin: 0 auto 2rem auto;
   line-height: 1.7;
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.85),
+    0 4px 14px rgba(0, 0, 0, 0.5);
 }
 
 .hero-botones {
@@ -244,6 +331,17 @@ h1, h2, h3, .precio {
   transform: translateY(-2px);
 }
 
+.hero-slide .btn-hero {
+  background-color: var(--esmeralda);
+  color: var(--bg-crema);
+  border: 1.5px solid var(--dorado-trigo);
+}
+
+.hero-slide .btn-hero:hover {
+  background-color: var(--dorado-trigo);
+  color: var(--esmeralda-oscuro);
+}
+
 .btn-hero-secundario {
   display: inline-block;
   background-color: transparent;
@@ -265,6 +363,32 @@ h1, h2, h3, .precio {
   transform: translateY(-2px);
 }
 
+/* Indicadores inferiores discretos del Hero Rotativo */
+.hero-indicadores {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.65rem;
+  z-index: 5;
+}
+
+.hero-dot {
+  width: 28px;
+  height: 4px;
+  border: none;
+  border-radius: 2px;
+  background-color: rgba(250, 246, 240, 0.4);
+  cursor: pointer;
+  transition: background-color 0.3s ease, width 0.3s ease;
+}
+
+.hero-dot.activa {
+  width: 42px;
+  background-color: var(--dorado-trigo);
+}
+
 /* Contenedores Generales */
 .contenedor {
   max-width: 1120px;
@@ -273,10 +397,24 @@ h1, h2, h3, .precio {
 }
 
 .titulo-seccion {
+  position: relative;
   text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  padding-bottom: 1.4rem;
+  margin-bottom: 2.2rem;
+}
+
+.titulo-seccion::after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 20px;
+  margin: 0.5rem auto 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24' fill='none'%3E%3Cpath d='M10 12 H70 C80 12 82 4 90 4 C95 4 97 9 100 12 C103 9 105 4 110 4 C118 4 120 12 130 12 H190' stroke='%23C89B6E' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M75 12 C82 12 84 20 90 20 C95 20 97 15 100 12 C103 15 105 20 110 20 C116 20 118 12 125 12' stroke='%23C89B6E' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpolygon points='100,6 105,12 100,18 95,12' fill='%231B4D3E'/%3E%3Ccircle cx='55' cy='12' r='2' fill='%23C89B6E'/%3E%3Ccircle cx='145' cy='12' r='2' fill='%23C89B6E'/%3E%3C/svg%3E");
 }
 
 .subtitulo-seccion {
@@ -287,7 +425,7 @@ h1, h2, h3, .precio {
   margin: 0 auto 3rem auto;
 }
 
-/* 3. Catálogo de Productos Estilo Poilâne */
+/* 3. Catálogo de Productos */
 .productos-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -427,6 +565,206 @@ h1, h2, h3, .precio {
   color: #FFFFFF;
 }
 
+/* Contenedor a ancho casi completo con margen mínimo respecto al borde de la página */
+.contenedor.contenedor-amplio {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 4.5rem 0.65rem;
+}
+
+/* Vitrina Editorial de Favoritos de la Casa (1.ª derecha, 2.ª izquierda, 3.ª derecha) */
+.favoritos-editorial {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.favorito-fila {
+  display: grid;
+  grid-template-columns: 1fr 1.65fr;
+  gap: 1.15rem;
+  align-items: stretch;
+}
+
+/* Filas impares (1.ª y 3.ª): cuadro a la izquierda, imagen pegada a la derecha */
+.favorito-fila:nth-child(odd) .favorito-cuadro {
+  order: 1;
+}
+
+.favorito-fila:nth-child(odd) .favorito-media {
+  order: 2;
+}
+
+.favorito-fila:nth-child(odd) .favorito-titulo-placa {
+  right: auto;
+  left: 14px;
+  text-align: left;
+}
+
+/* Fila par (2.ª): imagen pegada a la izquierda, cuadro a la derecha */
+.favorito-fila:nth-child(even) {
+  grid-template-columns: 1.65fr 1fr;
+}
+
+.favorito-fila:nth-child(even) .favorito-media {
+  order: 1;
+}
+
+.favorito-fila:nth-child(even) .favorito-cuadro {
+  order: 2;
+}
+
+.favorito-fila:nth-child(even) .favorito-titulo-placa {
+  left: auto;
+  right: 14px;
+  text-align: right;
+}
+
+.favorito-media {
+  position: relative;
+  height: 500px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--borde-fino);
+  background-color: var(--bg-secundario);
+}
+
+.favorito-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.favorito-fila:hover .favorito-img {
+  transform: scale(1.05);
+}
+
+/* Placa editorial en la esquina inferior de la foto */
+.favorito-titulo-placa {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  max-width: calc(100% - 28px);
+  background-color: rgba(15, 41, 32, 0.88);
+  border: 1.5px solid var(--dorado-trigo);
+  border-radius: 4px;
+  padding: 0.65rem 1.2rem;
+  text-align: right;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+.favorito-badge {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  color: #E7C69C;
+  margin-bottom: 0.15rem;
+}
+
+.favorito-titulo-placa h3 {
+  color: var(--bg-crema);
+  font-size: 1.75rem;
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* Cuadro descriptivo centrado con botón anclado abajo al centro */
+.favorito-cuadro {
+  position: relative;
+  background-color: var(--bg-tarjeta);
+  border: 1px solid var(--borde-fino);
+  border-radius: 6px;
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  transition: border-color 0.25s ease;
+}
+
+.favorito-fila:hover .favorito-cuadro {
+  border-color: var(--dorado-trigo);
+}
+
+.favorito-desc {
+  color: var(--texto-suave);
+  font-size: 0.98rem;
+  line-height: 1.68;
+  max-width: 440px;
+  margin: 0 auto 1rem auto;
+}
+
+.favorito-meta {
+  width: 100%;
+  max-width: 340px;
+  padding-top: 0.85rem;
+  margin: 0 auto 1.25rem auto;
+  border-top: 1px solid var(--borde-fino);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.favorito-porciones {
+  font-size: 0.94rem;
+  font-weight: 600;
+  color: var(--esmeralda);
+}
+
+.favorito-nota {
+  font-size: 0.82rem;
+  color: var(--texto-suave);
+}
+
+.favorito-cuadro .btn-ver-detalle {
+  width: auto;
+  align-self: center;
+  margin-top: auto;
+  padding: 0.75rem 1.85rem;
+}
+
+@media (max-width: 820px) {
+  .contenedor.contenedor-amplio {
+    padding: 3rem 0.65rem;
+  }
+
+  .favorito-fila,
+  .favorito-fila:nth-child(odd),
+  .favorito-fila:nth-child(even) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* En móvil restaurar siempre: foto arriba, texto abajo */
+  .favorito-fila:nth-child(odd) .favorito-media,
+  .favorito-fila:nth-child(even) .favorito-media {
+    order: 1;
+  }
+
+  .favorito-fila:nth-child(odd) .favorito-cuadro,
+  .favorito-fila:nth-child(even) .favorito-cuadro {
+    order: 2;
+  }
+
+  .favorito-fila:nth-child(odd) .favorito-titulo-placa,
+  .favorito-fila:nth-child(even) .favorito-titulo-placa {
+    left: auto;
+    right: 14px;
+    text-align: right;
+  }
+
+  .favorito-media {
+    height: 260px;
+  }
+}
+
 /* Guía de Tamaños Secundarios, Terciarios y Extras */
 .guia-tamanos {
   margin-top: 3.5rem;
@@ -474,6 +812,7 @@ h1, h2, h3, .precio {
   color: var(--esmeralda);
   background-color: var(--bg-crema);
 }
+
 /* Tarjeta compacta de Más Tamaños dentro del grid */
 .card-tamanos-intro {
   font-size: 0.88rem;
@@ -540,6 +879,7 @@ h1, h2, h3, .precio {
   font-size: 0.9rem;
   color: var(--texto-suave);
 }
+
 /* Ventana Modal de Detalles */
 .modal-overlay {
   display: none;
@@ -668,12 +1008,14 @@ h1, h2, h3, .precio {
 
 /* 4. Formulario de Pedidos */
 .form-card {
+  position: relative;
   background-color: var(--bg-tarjeta);
   border: 1px solid var(--borde-fino);
   border-radius: 6px;
   padding: 2.5rem;
   max-width: 760px;
   margin: 0 auto;
+  box-shadow: inset 0 0 0 6px var(--bg-tarjeta), inset 0 0 0 7px var(--borde-fino);
 }
 
 .form-row {
@@ -802,6 +1144,38 @@ footer {
   }
 }
 
+@media (max-width: 700px) {
+  body {
+    padding: 6px;
+  }
+
+  body::before,
+  body::after {
+    inset: 6px;
+    background-size: 34px 34px;
+  }
+
+  .hero-slider {
+    height: 390px;
+  }
+
+  .hero-slide {
+    padding: 12px;
+  }
+
+  .hero-marco {
+    padding: 1.25rem 0.9rem 1.9rem;
+  }
+
+  .hero-slide h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero-slide h2 {
+    font-size: 1.85rem;
+  }
+}
+
 @media (max-width: 640px) {
   .productos-grid {
     grid-template-columns: 1fr;
@@ -815,29 +1189,6 @@ footer {
 /* =========================================================
    DETALLES ORNAMENTALES: ARABESCOS Y DIVISIONES CLÁSICAS
    ========================================================= */
-
-.titulo-seccion {
-  position: relative;
-  padding-bottom: 1.4rem;
-  margin-bottom: 2.2rem;
-}
-
-.titulo-seccion::after {
-  content: "";
-  display: block;
-  width: 200px;
-  height: 20px;
-  margin: 0.5rem auto 0;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 24' fill='none'%3E%3Cpath d='M10 12 H70 C80 12 82 4 90 4 C95 4 97 9 100 12 C103 9 105 4 110 4 C118 4 120 12 130 12 H190' stroke='%23C89B6E' stroke-width='1.5' stroke-linecap='round'/%3E%3Cpath d='M75 12 C82 12 84 20 90 20 C95 20 97 15 100 12 C103 15 105 20 110 20 C116 20 118 12 125 12' stroke='%23C89B6E' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpolygon points='100,6 105,12 100,18 95,12' fill='%231B4D3E'/%3E%3Ccircle cx='55' cy='12' r='2' fill='%23C89B6E'/%3E%3Ccircle cx='145' cy='12' r='2' fill='%23C89B6E'/%3E%3C/svg%3E");
-}
-
-.form-card {
-  position: relative;
-  box-shadow: inset 0 0 0 6px var(--bg-tarjeta), inset 0 0 0 7px var(--borde-fino);
-}
 
 .form-card::before,
 .form-card::after {
@@ -930,16 +1281,6 @@ body::after {
   background-size: 46px 46px;
 }
 
-@media (max-width: 700px) {
-  body {
-    padding: 6px;
-  }
-  body::before,
-  body::after {
-    inset: 6px;
-    background-size: 34px 34px;
-  }
-}
 /* Opciones dinámicas de Queques (Color y Personalización) */
 .oculto {
   display: none !important;
@@ -1142,4 +1483,57 @@ body::after {
 .personalizado-base-select:focus {
   outline: none;
   border-color: var(--esmeralda);
+}
+
+/* Sobretítulo editorial y botones de cierre sobre fondo crema */
+.eyebrow-seccion {
+  display: block;
+  text-align: center;
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2.2px;
+  color: var(--dorado-trigo);
+  margin-bottom: 0.45rem;
+}
+
+.btn-seccion-esmeralda {
+  display: inline-block;
+  background-color: var(--esmeralda);
+  color: var(--bg-crema);
+  text-decoration: none;
+  padding: 0.95rem 2.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  border: 1.5px solid var(--esmeralda);
+  transition: all 0.25s ease;
+}
+
+.btn-seccion-esmeralda:hover {
+  background-color: var(--esmeralda-hover);
+  border-color: var(--dorado-trigo);
+  transform: translateY(-2px);
+}
+
+.btn-enlace-editorial {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--esmeralda);
+  text-decoration: none;
+  border: 1.5px solid var(--esmeralda);
+  padding: 0.85rem 2rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+.btn-enlace-editorial:hover {
+  background-color: var(--esmeralda);
+  color: var(--bg-crema);
 }

@@ -23,48 +23,93 @@
     </div>
   </header>
 
-  <!-- 2. Portada / Hero -->
-<!-- 2. Franja 1: Historia (Apertura Hero a ancho completo) -->
-  <section class="hero hero-historia">
-    <div class="hero-marco">
-      <span class="hero-eyebrow">Tradición Artesanal desde 1980 • Desamparados, Costa Rica</span>
-      <h1>Más de cuatro décadas horneando con receta de casa</h1>
-      <div class="hero-ornamento" aria-hidden="true"></div>
-      <p>
-        Nacimos en 1980 con una convicción sencilla: preparar cada queque con harina, huevos,
-        leche y mantequilla reales, sin mejorantes ni preservantes.
-      </p>
-      <div class="hero-botones">
-        <a href="nosotros.html" class="btn-hero">Conocer Nuestra Historia</a>
+  <!-- 2. Hero Editorial Rotativo (Historia, Catálogo y Personalizados) -->
+  <section class="hero-slider" id="heroSlider" aria-roledescription="carrusel" aria-label="Destacados principales">
+
+    <!-- Slide 1: Historia -->
+    <article class="hero-slide activa slide-historia">
+      <div class="hero-marco">
+        <span class="hero-eyebrow">Tradición Artesanal desde 1980 • Desamparados, Costa Rica</span>
+        <h1>Más de cuatro décadas horneando con receta de casa</h1>
+        <div class="hero-ornamento" aria-hidden="true"></div>
+        <p>
+          Nacimos en 1980 con una convicción sencilla: preparar cada queque con harina, huevos,
+          leche y mantequilla reales, sin mejorantes ni preservantes.
+        </p>
+        <div class="hero-botones">
+          <a href="nosotros.html" class="btn-hero">Conocer Nuestra Historia</a>
+        </div>
       </div>
+    </article>
+
+    <!-- Slide 2: Catálogo -->
+    <article class="hero-slide slide-catalogo" aria-hidden="true">
+      <div class="hero-marco">
+        <span class="hero-eyebrow">Recetas Clásicas y Postres de Casa</span>
+        <h2>Nuestro Catálogo Artesanal</h2>
+        <div class="hero-ornamento" aria-hidden="true"></div>
+        <p>
+          Desde queques para compartir en familia o grandes celebraciones hasta arrollados,
+          tres leches y flan de coco, elaborados con ingredientes reales.
+        </p>
+        <div class="hero-botones">
+          <a href="catalogo.html" class="btn-hero">Explorar Catálogo</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Slide 3: Queques Personalizados -->
+    <article class="hero-slide slide-personalizados" aria-hidden="true">
+      <div class="hero-marco">
+        <span class="hero-eyebrow">Diseños a la Medida • 48 h de Anticipación</span>
+        <h2>Queques Personalizados para tus Celebraciones</h2>
+        <div class="hero-ornamento" aria-hidden="true"></div>
+        <p>
+          Bodas, temáticas especiales, impresión en hoja de arroz, números de chocolate o confitillo
+          sobre el tamaño de queque que prefieras.
+        </p>
+        <div class="hero-botones">
+          <a href="personalizados.html" class="btn-hero">Diseñar mi Queque</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Indicadores inferiores discretos -->
+    <div class="hero-indicadores" role="tablist" aria-label="Seleccionar diapositiva">
+      <button type="button" class="hero-dot activa" data-slide="0" aria-label="Historia"></button>
+      <button type="button" class="hero-dot" data-slide="1" aria-label="Catálogo"></button>
+      <button type="button" class="hero-dot" data-slide="2" aria-label="Personalizados"></button>
     </div>
   </section>
 
   <!-- 3. Favoritos de la Casa -->
-  <section id="destacados" class="contenedor">
+  <section id="destacados" class="contenedor contenedor-amplio">
+    <span class="eyebrow-seccion">Horneado Diario • Sin Preservantes</span>
     <h2 class="titulo-seccion">Favoritos de la Casa</h2>
     <p class="subtitulo-seccion">
       Recetas clásicas horneadas sin mejorantes ni preservantes, pensadas para compartir en familia o acompañar cualquier celebración.
     </p>
 
-    <div class="productos-grid">
-      <!-- Destacado 1: Queque Pequeño -->
-      <article class="card">
-        <div class="card-contenido">
-          <div class="card-img-wrap">
-            <img src="img/Tradicional.jpg" alt="Queque Pequeño con decoración tradicional" class="card-img">
+    <div class="favoritos-editorial">
+      <!-- Favorito 1: Queque Pequeño (Cuadro izquierda / Foto derecha) -->
+      <article class="favorito-fila">
+        <div class="favorito-media">
+          <img src="img/Tradicional.jpg" alt="Queque Pequeño con decoración tradicional" class="favorito-img">
+          <div class="favorito-titulo-placa">
+            <span class="favorito-badge">Más vendido · Tradicional</span>
+            <h3>Queque Pequeño</h3>
           </div>
-          <span class="card-etiqueta">Más vendido · Tradicional</span>
-          <h3>Queque Pequeño</h3>
-          <p>
-            Uno de los favoritos de la casa para reuniones familiares. Receta tradicional horneada sin
-            preservantes en colores clásicos.
-          </p>
         </div>
-        <div class="card-pie">
-          <span class="porciones">10 a 12 porciones</span>
-          <span class="relleno"><strong>Relleno:</strong> Leche condensada con cierto grado de cocción</span>
-          <span class="precio">₡10.500</span>
+
+        <div class="favorito-cuadro">
+          <p class="favorito-desc">
+            Uno de los favoritos de la casa para reuniones familiares. Masa clásica horneada con
+            harina, huevos, leche y mantequilla reales, sin mejorantes ni preservantes.
+          </p>
+          <div class="favorito-meta">
+            <span class="favorito-porciones">10 a 12 porciones</span>
+            <span class="favorito-nota">Colores clásicos predeterminados</span>
+          </div>
           <button
             type="button"
             class="btn-pedir btn-ver-detalle"
@@ -85,23 +130,25 @@
         </div>
       </article>
 
-      <!-- Destacado 2: Queque Mediano -->
-      <article class="card">
-        <div class="card-contenido">
-          <div class="card-img-wrap">
-            <img src="img/Tradicional.jpg" alt="Queque Mediano con decoración tradicional" class="card-img">
+      <!-- Favorito 2: Queque Mediano (Foto izquierda / Cuadro derecha) -->
+      <article class="favorito-fila">
+        <div class="favorito-media">
+          <img src="img/Tradicional.jpg" alt="Queque Mediano con decoración tradicional" class="favorito-img">
+          <div class="favorito-titulo-placa">
+            <span class="favorito-badge">Más vendido · Tradicional</span>
+            <h3>Queque Mediano</h3>
           </div>
-          <span class="card-etiqueta">Más vendido · Tradicional</span>
-          <h3>Queque Mediano</h3>
-          <p>
-            Equilibrio perfecto entre tamaño y sabor artesanal para celebraciones en casa, con nuestra
-            receta base tradicional sin preservantes.
-          </p>
         </div>
-        <div class="card-pie">
-          <span class="porciones">12 a 14 porciones</span>
-          <span class="relleno"><strong>Relleno:</strong> Leche condensada con cierto grado de cocción</span>
-          <span class="precio">₡13.000</span>
+
+        <div class="favorito-cuadro">
+          <p class="favorito-desc">
+            Equilibrio perfecto entre tamaño y sabor artesanal para celebraciones en casa, con
+            nuestra receta base tradicional y relleno de leche condensada cocida.
+          </p>
+          <div class="favorito-meta">
+            <span class="favorito-porciones">12 a 14 porciones</span>
+            <span class="favorito-nota">Receta tradicional sin preservantes</span>
+          </div>
           <button
             type="button"
             class="btn-pedir btn-ver-detalle"
@@ -122,23 +169,25 @@
         </div>
       </article>
 
-      <!-- Destacado 3: Arrollado Decorado -->
-      <article class="card">
-        <div class="card-contenido">
-          <div class="card-img-wrap">
-            <img src="img/ArrolladoDec.jpg" alt="Arrollado decorado con merengue italiano de 50 cm" class="card-img">
+      <!-- Favorito 3: Arrollado Decorado (Cuadro izquierda / Foto derecha) -->
+      <article class="favorito-fila">
+        <div class="favorito-media">
+          <img src="img/ArrolladoDec.jpg" alt="Arrollado decorado con merengue italiano de 50 cm" class="favorito-img">
+          <div class="favorito-titulo-placa">
+            <span class="favorito-badge">50 cm · Merengue italiano</span>
+            <h3>Arrollado Decorado</h3>
           </div>
-          <span class="card-etiqueta">50 cm · Merengue italiano</span>
-          <h3>Arrollado Decorado</h3>
-          <p>
-            Arrollado de 50 cm de largo acabado con suave merengue italiano, perfecto para dar un
-            toque especial a celebraciones y mesas dulces.
-          </p>
         </div>
-        <div class="card-pie">
-          <span class="porciones">20 porciones · 50 cm</span>
-          <span class="relleno"><strong>Relleno:</strong> Leche condensada con cierto grado de cocción</span>
-          <span class="precio">₡17.000</span>
+
+        <div class="favorito-cuadro">
+          <p class="favorito-desc">
+            Arrollado artesanal de 50 cm de largo acabado con suave merengue italiano, ideal para
+            dar un toque especial a celebraciones, cafés de la tarde y mesas dulces.
+          </p>
+          <div class="favorito-meta">
+            <span class="favorito-porciones">20 porciones · 50 cm</span>
+            <span class="favorito-nota">Relleno de leche condensada cocida</span>
+          </div>
           <button
             type="button"
             class="btn-pedir btn-ver-detalle"
@@ -160,8 +209,8 @@
       </article>
     </div>
 
-    <div class="hero-botones" style="margin-top: 2.5rem;">
-      <a href="catalogo.html" class="btn-hero">Explorar Todo el Catálogo</a>
+    <div class="hero-botones" style="margin-top: 2.75rem;">
+      <a href="catalogo.html" class="btn-seccion-esmeralda">Explorar Todo el Catálogo</a>
     </div>
   </section>
 
@@ -185,7 +234,7 @@
     </div>
   </div>
 
-  <!-- Banda de Proceso en 3 Pasos -->
+  <!-- 4. Banda de Proceso en 3 Pasos -->
   <section id="como-pedir" class="pasos-banda">
     <div class="pasos-grid">
       <div class="paso-item">
@@ -206,29 +255,17 @@
     </div>
   </section>
 
-  <!-- Adelanto de Queques Personalizados -->
-  <section class="contenedor">
-    <div class="form-card" style="text-align: center;">
-      <span class="card-etiqueta">Diseños a la Medida · 48 h de Anticipación</span>
-      <h2 class="titulo-seccion" style="margin-bottom: 1rem;">Queques Personalizados</h2>
-      <p class="subtitulo-seccion" style="margin-bottom: 1.75rem;">
-        Bodas, temáticas especiales, impresión en hoja de arroz, números de chocolate o confitillo sobre
-        el tamaño de queque que prefieras.
-      </p>
-      <a href="personalizados.html" class="btn-hero">Ir a Queques Personalizados</a>
-    </div>
-  </section>
-
-  <!-- Adelanto Sobre Nosotros -->
+  <!-- 5. Adelanto Sobre Nosotros -->
   <section id="nosotros" class="contenedor nosotros">
+    <span class="eyebrow-seccion">Nuestra Esencia • Desamparados</span>
     <h2 class="titulo-seccion">Sobre Nosotros</h2>
     <p>
       En Pastelería Las Esmeraldas elaboramos cada receta de manera 100% artesanal desde 1980,
       utilizando harina, huevos, leche y mantequilla sin mejorantes ni preservantes para llevar sabor
       y frescura a tu mesa.
     </p>
-    <div class="hero-botones" style="margin-top: 1.5rem;">
-      <a href="nosotros.html" class="btn-pedir" style="max-width: 240px;">Conocer Nuestra Historia</a>
+    <div class="hero-botones" style="margin-top: 1.75rem;">
+      <a href="nosotros.html" class="btn-enlace-editorial">Conocer Nuestra Historia</a>
     </div>
   </section>
 
