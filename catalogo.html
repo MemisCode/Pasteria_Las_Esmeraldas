@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Artesanal | Pastelería Las Esmeraldas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 1. Encabezado / Navbar -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo-link">
+        <img src="img/logo-clasico.png" alt="Pastelería Las Esmeraldas - Queques Especiales" class="logo-img">
+      </a>
+      <nav class="nav-links">
+        <a href="catalogo.html">Catálogo</a>
+        <a href="personalizados.html">Personalizados</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="nosotros.html">Nosotros</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================
+    SECCIÓN 1: ENCABEZADO EDITORIAL DE CATÁLOGO + FILTROS
+         ========================================================= -->
+    <section class="catalogo-hero">
+      <div class="catalogo-hero-inner">
+        <!-- Bloque central del título -->
+        <div class="catalogo-hero-centro">
+          <h1 class="titulo-seccion catalogo-titulo">Catálogo</h1>
+          <p class="subtitulo-seccion catalogo-subtitulo">
+            Queques tradicionales, arrollados y postres horneados diariamente con harina, huevos, leche y mantequilla reales, sin mejorantes ni preservantes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Navegación de categorías tipo pestaña editorial -->
+      <div class="catalogo-navegacion-wrap" id="catalogoNavegacionWrap">
+        <nav class="catalogo-filtros" aria-label="Filtrar productos por categoría">
+          <button type="button" class="filtro-btn activo" data-filtro="todos">
+            Todos <span class="filtro-conteo">(13)</span>
+          </button>
+          <button type="button" class="filtro-btn" data-filtro="queques">
+            Queques <span class="filtro-conteo">(8)</span>
+          </button>
+          <button type="button" class="filtro-btn" data-filtro="especiales">
+            Especiales <span class="filtro-conteo">(1)</span>
+          </button>
+          <button type="button" class="filtro-btn" data-filtro="tortas-frias">
+            Frías <span class="filtro-conteo">(1)</span>
+          </button>
+          <button type="button" class="filtro-btn" data-filtro="arrollados">
+            Arrollados <span class="filtro-conteo">(1)</span>
+          </button>
+          <button type="button" class="filtro-btn" data-filtro="postres">
+            Postres <span class="filtro-conteo">(2)</span>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- =========================================================
+    SECCIÓN 2: VITRINA DE PRODUCTOS (NOMBRE ARRIBA IZQ / FOTO / PORCIONES ABAJO DER)
+         ========================================================= -->
+    <section class="contenedor catalogo-vitrina" aria-label="Lista de productos del catálogo">
+      <div class="catalogo-grid" id="catalogoGrid">
+
+        <!-- 1. Queque Mini -->
+        <article class="catalogo-card" data-categoria="queques">
+          <div class="catalogo-card-header">
+            <h2>Queque Mini</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Queque Mini"
+            data-producto="Queque Mini"
+            data-porciones-num="6"
+            data-precio-num="₡7.500"
+            data-titulo="Queque Mini"
+            data-etiqueta="Decoración Tradicional"
+            data-porciones="6 a 8 porciones"
+            data-relleno="Leche condensada con cierto grado de cocción"
+            data-precio="₡7.500"
+            data-tiempo="Disponible o para el día siguiente (colores predeterminados)"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="Formato mini elaborado con ingredientes reales, sin mejorantes ni preservantes, ideal para detalles o reuniones pequeñas."
+          >
+            <img src="img/Tradicional.jpg" alt="Queque Mini con decoración tradicional">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">6 a 8 porciones</span>
+          </div>
+        </article>
+
+        <!-- 2. Queque Pequeño -->
+        <article class="catalogo-card" data-categoria="queques">
+          <div class="catalogo-card-header">
+            <h2>Queque Pequeño</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Queque Pequeño"
+            data-producto="Queque Pequeño"
+            data-porciones-num="10"
+            data-precio-num="₡10.000"
+            data-titulo="Queque Pequeño"
+            data-etiqueta="Decoración Tradicional · Más vendido"
+            data-porciones="10 a 12 porciones"
+            data-relleno="Leche condensada con cierto grado de cocción"
+            data-precio="₡10.000"
+            data-tiempo="Disponible o para el día siguiente (colores predeterminados)"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="Receta clásica sin mejorantes ni preservantes, lista en decoración tradicional con colores predeterminados."
+          >
+            <img src="img/Tradicional.jpg" alt="Queque Pequeño con decoración tradicional">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">10 a 12 porciones</span>
+          </div>
+        </article>
+
+        <!-- 3. Queque Mediano -->
+        <article class="catalogo-card" data-categoria="queques">
+          <div class="catalogo-card-header">
+            <h2>Queque Mediano</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Queque Mediano"
+            data-producto="Queque Mediano"
+            data-porciones-num="12"
+            data-precio-num="₡13.000"
+            data-titulo="Queque Mediano"
+            data-etiqueta="Decoración Tradicional · Más vendido"
+            data-porciones="12 a 14 porciones"
+            data-relleno="Leche condensada con cierto grado de cocción"
+            data-precio="₡13.000"
+            data-tiempo="Disponible o para el día siguiente (colores predeterminados)"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="Receta clásica sin mejorantes ni preservantes, lista en decoración tradicional con colores predeterminados."
+          >
+            <img src="img/Tradicional.jpg" alt="Queque Mediano con decoración tradicional">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">12 a 14 porciones</span>
+          </div>
+        </article>
+
+        <!-- 4. Queque Grande -->
+        <article class="catalogo-card" data-categoria="queques">
+          <div class="catalogo-card-header">
+            <h2>Queque Grande</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Queque Grande"
+            data-producto="Queque Grande"
+            data-porciones-num="20"
+            data-precio-num="₡18.000"
+            data-titulo="Queque Grande"
+            data-etiqueta="Decoración Tradicional · Reuniones"
+            data-porciones="20 a 24 porciones"
+            data-relleno="Leche condensada con cierto grado de cocción"
+            data-precio="₡18.000"
+            data-tiempo="Encargar con al menos 48 horas de anticipación"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="Queque grande elaborado con harina, huevos, leche y mantequilla reales, relleno de leche condensada cocida."
+          >
+            <img src="img/Tradicional.jpg" alt="Queque Grande con decoración tradicional">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">20 a 24 porciones</span>
+          </div>
+        </article>
+
+        <!-- 5. Queque 20 -->
+        <article class="catalogo-card" data-categoria="queques">
+          <div class="catalogo-card-header">
+            <h2>Queque 20</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Queque 20"
+            data-producto="Queque 20"
+            data-porciones-num="20"
+            data-precio-num="Por definir"
+            data-titulo="Queque 20"
+            data-etiqueta="Queque Tradicional"
+            data-porciones="20 porciones"
+            data-relleno="Leche condensada con cierto grado de cocción"
+            data-precio="Por definir"
+            data-tiempo="Encargar con al menos 48 horas de anticipación"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="Queque tradicional de 20 porciones, horneado con ingredientes reales y sin preservantes."
+          >
+            <img src="img/Tradicional.jpg" alt="Queque 20 porciones">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">20 porciones</span>
+          </div>
+        </article>
+
+        <!-- 6. Queque 24 -->
+        <article class="catalogo-card" data-categoria="queques">
+          <div class="catalogo-card-header">
+            <h2>Queque 24</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Queque 24"
+            data-producto="Queque 24"
+            data-porciones-num="24"
+            data-precio-num="Por definir"
+            data-titulo="Queque 24"
+            data-etiqueta="Queque Tradicional"
+            data-porciones="24 porciones"
+            data-relleno="Leche condensada con cierto grado de cocción"
+            data-precio="Por definir"
+            data-tiempo="Encargar con al menos 48 horas de anticipación"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="Queque tradicional de 24 porciones, ideal para celebraciones y encuentros familiares."
+          >
+            <img src="img/Tradicional.jpg" alt="Queque 24 porciones">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">24 porciones</span>
+          </div>
+        </article>
+
+        <!-- 7. Queque 28 -->
+        <article class="catalogo-card" data-categoria="queques">
+          <div class="catalogo-card-header">
+            <h2>Queque 28</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Queque 28"
+            data-producto="Queque 28"
+            data-porciones-num="28"
+            data-precio-num="Por definir"
+            data-titulo="Queque 28"
+            data-etiqueta="Queque Tradicional"
+            data-porciones="28 porciones"
+            data-relleno="Leche condensada con cierto grado de cocción"
+            data-precio="Por definir"
+            data-tiempo="Encargar con al menos 48 horas de anticipación"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="Queque tradicional de 28 porciones con nuestra receta artesanal de casa."
+          >
+            <img src="img/Tradicional.jpg" alt="Queque 28 porciones">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">28 porciones</span>
+          </div>
+        </article>
+
+        <!-- 8. Queque 32 -->
+        <article class="catalogo-card" data-categoria="queques">
+          <div class="catalogo-card-header">
+            <h2>Queque 32</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Queque 32"
+            data-producto="Queque 32"
+            data-porciones-num="32"
+            data-precio-num="Por definir"
+            data-titulo="Queque 32"
+            data-etiqueta="Queque Tradicional"
+            data-porciones="32 porciones"
+            data-relleno="Leche condensada con cierto grado de cocción"
+            data-precio="Por definir"
+            data-tiempo="Encargar con al menos 48 horas de anticipación"
+            data-imagen="img/Tradicional.jpg"
+            data-descripcion="Queque tradicional de 32 porciones para eventos grandes con acabado clásico."
+          >
+            <img src="img/Tradicional.jpg" alt="Queque 32 porciones">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">32 porciones</span>
+          </div>
+        </article>
+
+        <!-- 9. Torta Fría (12 porciones) -->
+        <article class="catalogo-card" data-categoria="tortas-frias">
+          <div class="catalogo-card-header">
+            <h2>Torta Fría</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Torta Fría"
+            data-producto="Torta Fría"
+            data-porciones-num="12"
+            data-precio-num="Por definir"
+            data-titulo="Torta Fría"
+            data-etiqueta="Torta Fría"
+            data-porciones="12 porciones"
+            data-relleno="Crema y receta fría de la casa"
+            data-precio="Por definir"
+            data-tiempo="Encargar con 24 a 48 horas de anticipación"
+            data-imagen="img/hero-catalogo.jpg"
+            data-descripcion="Torta fría de 12 porciones, fresca y equilibrada, preparada bajo pedido."
+          >
+            <img src="img/hero-catalogo.jpg" alt="Torta Fría de 12 porciones">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">12 porciones</span>
+          </div>
+        </article>
+
+        <!-- 10. Queque de Chocolate (12 porciones) -->
+        <article class="catalogo-card" data-categoria="especiales">
+          <div class="catalogo-card-header">
+            <h2>Queque de Chocolate</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Queque de Chocolate"
+            data-producto="Queque de Chocolate"
+            data-porciones-num="12"
+            data-precio-num="Por definir"
+            data-titulo="Queque de Chocolate"
+            data-etiqueta="Especialidad de Casa"
+            data-porciones="12 porciones"
+            data-relleno="Receta de chocolate artesanal"
+            data-precio="Por definir"
+            data-tiempo="Encargar con 24 a 48 horas de anticipación"
+            data-imagen="img/hero-catalogo.jpg"
+            data-descripcion="Queque de chocolate de 12 porciones, con sabor profundo y textura suave horneada en casa."
+          >
+            <img src="img/hero-catalogo.jpg" alt="Queque de Chocolate de 12 porciones">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">12 porciones</span>
+          </div>
+        </article>
+
+        <!-- 11. Arrollado -->
+        <article class="catalogo-card" data-categoria="arrollados">
+          <div class="catalogo-card-header">
+            <h2>Arrollado</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Arrollado"
+            data-producto="Arrollado"
+            data-porciones-num="20"
+            data-precio-num="₡17.000"
+            data-titulo="Arrollado"
+            data-etiqueta="50 cm · Merengue italiano"
+            data-porciones="20 porciones (50 cm)"
+            data-relleno="Leche condensada con cierto grado de cocción"
+            data-precio="₡17.000"
+            data-tiempo="Consultar disponibilidad o encargar con anticipación"
+            data-imagen="img/ArrolladoDec.jpg"
+            data-descripcion="Arrollado artesanal de 50 cm de largo para 20 porciones, cubierto con merengue italiano."
+          >
+            <img src="img/ArrolladoDec.jpg" alt="Arrollado artesanal con merengue italiano">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">20 porciones</span>
+          </div>
+        </article>
+
+        <!-- 12. Flan de coco -->
+        <article class="catalogo-card" data-categoria="postres">
+          <div class="catalogo-card-header">
+            <h2>Flan de coco</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Flan de coco"
+            data-producto="Flan de coco"
+            data-porciones-num="10"
+            data-precio-num="₡11.000"
+            data-titulo="Flan de coco"
+            data-etiqueta="Postre de Casa"
+            data-porciones="10 a 12 porciones"
+            data-relleno="Caramelo artesanal y coco rallado"
+            data-precio="₡11.000"
+            data-tiempo="Encargar con 24 a 48 horas de anticipación"
+            data-imagen="img/hero-catalogo.jpg"
+            data-descripcion="Flan horneado con coco natural y caramelo de la casa, sin preservantes."
+          >
+            <img src="img/hero-catalogo.jpg" alt="Flan de coco artesanal">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">10 a 12 porciones</span>
+          </div>
+        </article>
+
+        <!-- 13. Tres Leches -->
+        <article class="catalogo-card" data-categoria="postres">
+          <div class="catalogo-card-header">
+            <h2>Tres Leches</h2>
+          </div>
+
+          <div
+            class="catalogo-card-media btn-ver-detalle"
+            role="button"
+            tabindex="0"
+            title="Ver detalles de Tres Leches"
+            data-producto="Tres Leches"
+            data-porciones-num="12"
+            data-precio-num="₡14.000"
+            data-titulo="Tres Leches"
+            data-etiqueta="Postre de Casa"
+            data-porciones="12 a 15 porciones"
+            data-relleno="Bañado artesanal de tres leches"
+            data-precio="₡14.000"
+            data-tiempo="Encargar con 24 a 48 horas de anticipación"
+            data-imagen="img/hero-catalogo.jpg"
+            data-descripcion="Bizcocho suave bañado en mezcla tradicional de tres leches y merengue ligero."
+          >
+            <img src="img/hero-catalogo.jpg" alt="Postre Tres Leches artesanal">
+          </div>
+
+          <div class="catalogo-card-footer">
+            <span class="catalogo-porciones">12 a 15 porciones</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+    SECCIÓN 3: FRANJA BREVE DE ANTICIPACIÓN Y RETIRO
+         ========================================================= -->
+    <section class="catalogo-notas-banda" aria-label="Información de preparación y retiro">
+      <div class="catalogo-notas-grid">
+        <div class="catalogo-nota-item">
+          <span class="catalogo-nota-eyebrow">Disponibilidad</span>
+          <h3>Diseños Tradicionales</h3>
+          <p>
+            Disponibles en vitrina según existencia del día o listos para retirar al día siguiente en colores clásicos predeterminados.
+          </p>
+        </div>
+
+        <div class="catalogo-nota-item">
+          <span class="catalogo-nota-eyebrow">Horneado Fresco</span>
+          <h3>Encargos y Postres</h3>
+          <p>
+            Los arrollados, tres leches y postres de casa se preparan frescos bajo pedido con al menos <strong>24 a 48 horas</strong> de anticipación.
+          </p>
+        </div>
+
+        <div class="catalogo-nota-item">
+          <span class="catalogo-nota-eyebrow">Desamparados, San José</span>
+          <h3>Reserva y Retiro</h3>
+          <p>
+            Todo encargo se confirma con adelanto vía <strong>SINPE Móvil</strong> y se retira recién decorado en nuestro local.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+    SECCIÓN 4: PUENTE HACIA QUEQUES PERSONALIZADOS
+         ========================================================= -->
+    <section class="contenedor catalogo-personalizados-puente">
+      <div class="catalogo-puente-caja">
+        <span class="eyebrow-seccion">Diseños a la Medida • 48 h de Anticipación</span>
+        <h2 class="titulo-seccion">¿Buscas un Diseño Personalizado?</h2>
+        <p class="subtitulo-seccion">
+          Si deseas una temática especial, impresión en hoja de arroz, números de chocolate, confitillo o una combinación de colores específica, preparamos tu queque sobre cualquiera de nuestros tamaños base.
+        </p>
+        <a href="personalizados.html" class="btn-enlace-editorial">Explorar Queques Personalizados</a>
+      </div>
+    </section>
+
+    <!-- =========================================================
+    SECCIÓN 5: LLAMADO FINAL A ORDENAR / CONTACTO RÁPIDO
+         ========================================================= -->
+    <section class="catalogo-cierre-banda">
+      <div class="catalogo-cierre-inner">
+        <span class="eyebrow-seccion">Listos para Hornear</span>
+        <h2>¿Ya elegiste qué llevar?</h2>
+        <p>
+          Selecciona cualquier imagen del catálogo para ver porciones, precio e ingredientes, pasa directo al formulario de pedidos o escríbenos para confirmar disponibilidad.
+        </p>
+        <div class="catalogo-cierre-acciones">
+          <a href="pedidos.html" class="btn-seccion-esmeralda">Iniciar mi Pedido</a>
+          <a
+            href="https://wa.me/50684267372?text=Hola%20Pasteler%C3%ADa%20Las%20Esmeraldas%2C%20quisiera%20consultar%20disponibilidad%20del%20cat%C3%A1logo."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-enlace-editorial"
+          >
+            Consultar por WhatsApp
+          </a>
+        </div>
+        <span class="catalogo-cierre-nota">Retiro en Desamparados · Confirmación con adelanto por SINPE Móvil</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- Ventana Modal de Detalles del Producto -->
+  <div id="modal-detalle" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+    <div class="modal-caja modal-caja-horizontal">
+      <button type="button" class="modal-cerrar" id="modal-cerrar" aria-label="Cerrar ventana de detalles">&times;</button>
+
+      <div id="modal-media" class="modal-media modal-media-izq"></div>
+
+      <div class="modal-cuerpo modal-cuerpo-der">
+        <div class="modal-encabezado-info">
+          <h3 id="modal-titulo"></h3>
+          <p id="modal-precio" class="modal-precio-destacado"></p>
+        </div>
+
+        <div class="modal-detalle-bloque">
+          <p class="modal-porciones-linea"><strong>Porciones:</strong> <span id="modal-porciones"></span></p>
+          <p id="modal-descripcion" class="modal-descripcion"></p>
+        </div>
+
+        <button type="button" class="btn-submit modal-btn-ordenar" id="btn-modal-ordenar">Ordenar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Pie de Página y Contacto -->
+  <footer id="contacto" class="footer-editorial">
+    <div class="footer-grid">
+      <!-- Columna 1: Identidad -->
+      <div class="footer-col footer-marca">
+        <h3>Pastelería Las Esmeraldas</h3>
+        <span class="footer-sub">Queques Especiales • Desde 1980</span>
+        <p>
+          Recetas artesanales horneadas con ingredientes reales, sin mejorantes ni preservantes.
+        </p>
+      </div>
+
+      <!-- Columna 2: Navegación -->
+      <nav class="footer-col footer-nav" aria-label="Enlaces del pie de página">
+        <h4>Explorar</h4>
+        <ul>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="personalizados.html">Personalizados</a></li>
+          <li><a href="pedidos.html">Pedidos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+        </ul>
+      </nav>
+
+      <!-- Columna 3: Redes Sociales -->
+      <div class="footer-col footer-social">
+        <h4>Síguenos y Contáctanos</h4>
+        <p>Descubre nuestras creaciones y novedades en redes sociales</p>
+
+        <div class="footer-social-links">
+          <!-- Facebook -->
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="Facebook de Pastelería Las Esmeraldas"
+            title="Facebook"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/>
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="Instagram de Pastelería Las Esmeraldas"
+            title="Instagram"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+
+          <!-- WhatsApp -->
+          <a
+            href="https://wa.me/50684267372?text=Hola%20Pasteler%C3%ADa%20Las%20Esmeraldas%2C%20me%20gustar%C3%ADa%20consultar%20por%20un%20pedido."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="WhatsApp de Pastelería Las Esmeraldas"
+            title="WhatsApp"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.031 19.385c-1.454 0-2.796-.42-3.928-1.144l-2.742.72.732-2.671c-.798-1.184-1.264-2.607-1.263-4.143.002-4.132 3.366-7.495 7.499-7.495 2.004.001 3.887.781 5.302 2.198 1.416 1.417 2.195 3.301 2.194 5.304-.002 4.133-3.367 7.495-7.494 7.495z"/>
+            </svg>
+          </a>
+
+          <!-- TikTok -->
+          <a
+            href="https://www.tiktok.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="TikTok de Pastelería Las Esmeraldas"
+            title="TikTok"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <p>&copy; 2026 Pastelería Las Esmeraldas. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

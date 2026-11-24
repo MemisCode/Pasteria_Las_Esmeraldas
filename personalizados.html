@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Queques Personalizados | Pastelería Las Esmeraldas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 1. Encabezado / Navbar -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo-link">
+        <img src="img/logo-clasico.png" alt="Pastelería Las Esmeraldas - Queques Especiales" class="logo-img">
+      </a>
+      <nav class="nav-links">
+        <a href="catalogo.html">Catálogo</a>
+        <a href="personalizados.html">Personalizados</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="nosotros.html">Nosotros</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================
+    SECCIÓN 1: ENCABEZADO EDITORIAL DE PERSONALIZADOS
+         ========================================================= -->
+    <section class="catalogo-hero">
+      <div class="catalogo-hero-inner">
+        <div class="catalogo-hero-centro">
+          <span class="eyebrow-seccion">Diseños a la Medida • Mínimo 48 Horas de Anticipación</span>
+          <h1 class="titulo-seccion catalogo-titulo">Queques Personalizados</h1>
+          <p class="subtitulo-seccion catalogo-subtitulo">
+            Horneados con ingredientes reales y cubiertos con lustre de mantequilla artesanal. Adaptamos tu idea sobre nuestras bases tradicionales con técnicas decorativas y rellenos hechos en casa.
+          </p>
+        </div>
+      </div>
+
+      <!-- Anclas rápidas a las 3 categorías y sabores -->
+      <div class="catalogo-navegacion-wrap" id="catalogoNavegacionWrap">
+        <nav class="catalogo-filtros" aria-label="Navegar secciones de personalizados">
+          <a href="#sec-infantiles" class="filtro-btn activo" style="text-decoration: none;">Infantiles</a>
+          <a href="#sec-eventos" class="filtro-btn" style="text-decoration: none;">Eventos Especiales</a>
+          <a href="#sec-unicos" class="filtro-btn" style="text-decoration: none;">Diseños Únicos</a>
+          <a href="#sec-sabores" class="filtro-btn" style="text-decoration: none;">Lustre y Rellenos</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- =========================================================
+    SECCIÓN 2: BLOQUE 1 — INFANTILES
+         ========================================================= -->
+    <section id="sec-infantiles" class="contenedor pers-bloque">
+      <div class="pers-bloque-encabezado">
+        <h2 class="titulo-seccion">Infantiles</h2>
+        <p class="subtitulo-seccion">
+          Cumpleaños llenos de color, personajes y detalles pensados para sorprender a los más pequeños.
+        </p>
+      </div>
+
+      <div class="pers-grid">
+        <!-- Tarjeta Infantil 1: Hoja de Arroz -->
+        <article class="pers-card">
+          <div class="pers-card-media">
+            <img src="img/hero-personalizados.jpg" alt="Queque infantil con impresión en hoja de arroz">
+          </div>
+          <div class="pers-card-body">
+            <span class="card-etiqueta">Técnica · Hoja de Arroz</span>
+            <h3>Temáticos con Hoja de Arroz</h3>
+            <p>
+              Impresión comestible en hoja de arroz con el personaje o ilustración favorita del cumpleañero, acompañada de bordes y combinaciones de color en lustre de mantequilla.
+            </p>
+            <div class="pers-card-acciones">
+              <button
+                type="button"
+                class="btn-pedir"
+                onclick="seleccionarProducto('Queque Personalizado (Infantil - Hoja de Arroz)', 'Por definir', '')"
+              >
+                Cotizar o Pedir este Estilo
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tarjeta Infantil 2: Toppers y Color -->
+        <article class="pers-card">
+          <div class="pers-card-media">
+            <img src="img/Tradicional.jpg" alt="Queque infantil decorado con toppers personalizados">
+          </div>
+          <div class="pers-card-body">
+            <span class="card-etiqueta">Técnica · Toppers y Paleta Viva</span>
+            <h3>Cumpleaños con Toppers</h3>
+            <p>
+              Diseños alegres con <em>toppers</em> decorativos, nombre, edad y degradados de color hechos a medida sobre cualquiera de nuestros tamaños base.
+            </p>
+            <div class="pers-card-acciones">
+              <button
+                type="button"
+                class="btn-pedir"
+                onclick="seleccionarProducto('Queque Personalizado (Infantil - Toppers)', 'Por definir', '')"
+              >
+                Cotizar o Pedir este Estilo
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================================================
+    SECCIÓN 3: BLOQUE 2 — EVENTOS ESPECIALES
+         ========================================================= -->
+    <section id="sec-eventos" class="pers-banda-alterna">
+      <div class="contenedor">
+        <div class="pers-bloque-encabezado">
+          <h2 class="titulo-seccion">Eventos Especiales</h2>
+          <p class="subtitulo-seccion">
+            Acabados delicados, flores y estilo Lambeth para acompañar momentos inolvidables.
+          </p>
+        </div>
+
+        <div class="pers-grid pers-grid-4">
+          <!-- 1. Bodas -->
+          <article class="pers-card">
+            <div class="pers-card-media">
+              <img src="img/hero-personalizados.jpg" alt="Queque personalizado para bodas">
+            </div>
+            <div class="pers-card-body">
+              <span class="card-etiqueta">Flores · Estilo Lambeth</span>
+              <h3>Bodas</h3>
+              <p>
+                Tonos sobrios, detalles con flores naturales o decorativas y trazos clásicos en lustre de mantequilla para celebraciones íntimas o familiares.
+              </p>
+              <div class="pers-card-acciones">
+                <button
+                  type="button"
+                  class="btn-pedir"
+                  onclick="seleccionarProducto('Queque Personalizado (Boda)', 'Por definir', '')"
+                >
+                  Consultar Boda
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. Primera Comunión -->
+          <article class="pers-card">
+            <div class="pers-card-media">
+              <img src="img/Tradicional.jpg" alt="Queque personalizado para primera comunión">
+            </div>
+            <div class="pers-card-body">
+              <span class="card-etiqueta">Toppers · Detalles Clásicos</span>
+              <h3>Primera Comunión</h3>
+              <p>
+                Acabados blancos, marfil o pastel con <em>toppers</em> conmemorativos, flores sutiles y relieves delicados.
+              </p>
+              <div class="pers-card-acciones">
+                <button
+                  type="button"
+                  class="btn-pedir"
+                  onclick="seleccionarProducto('Queque Personalizado (Primera Comunión)', 'Por definir', '')"
+                >
+                  Consultar Comunión
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. Revelación de Sexo -->
+          <article class="pers-card">
+            <div class="pers-card-media">
+              <img src="img/hero-catalogo.jpg" alt="Queque personalizado para revelación de sexo">
+            </div>
+            <div class="pers-card-body">
+              <span class="card-etiqueta">Sorpresa Interior · Toppers</span>
+              <h3>Revelación de Sexo</h3>
+              <p>
+                Exterior neutro elegante con <em>toppers</em> temáticos y relleno o interior teñido del color sorpresa para el momento de partir el queque.
+              </p>
+              <div class="pers-card-acciones">
+                <button
+                  type="button"
+                  class="btn-pedir"
+                  onclick="seleccionarProducto('Queque Personalizado (Revelación de Sexo)', 'Por definir', '')"
+                >
+                  Consultar Revelación
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. Despedida de Soltero(a) -->
+          <article class="pers-card">
+            <div class="pers-card-media">
+              <img src="img/ArrolladoDec.jpg" alt="Queque personalizado para despedida de soltero o soltera">
+            </div>
+            <div class="pers-card-body">
+              <span class="card-etiqueta">Lambeth · Toppers · Temático</span>
+              <h3>Despedida de Soltero(a)</h3>
+              <p>
+                Diseños divertidos, modernos o estilo <em>vintage</em> Lambeth con mensajes personalizados y paleta de colores a tu gusto.
+              </p>
+              <div class="pers-card-acciones">
+                <button
+                  type="button"
+                  class="btn-pedir"
+                  onclick="seleccionarProducto('Queque Personalizado (Despedida de Soltero/a)', 'Por definir', '')"
+                >
+                  Consultar Despedida
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+    SECCIÓN 4: BLOQUE 3 — DISEÑOS ÚNICOS / A MANO ALZADA
+         ========================================================= -->
+    <section id="sec-unicos" class="contenedor pers-bloque">
+      <div class="pers-bloque-encabezado">
+        <h2 class="titulo-seccion">Diseños Únicos y A Mano Alzada</h2>
+        <p class="subtitulo-seccion">
+          ¿Tienes en mente una idea diferente que no encaja en lo tradicional? Lo dibujamos y creamos contigo.
+        </p>
+      </div>
+
+    <!-- tarjetas de personalizados a mano alzada -->
+     <div class="pers-grid pers-grid-4">
+        <!-- 1. Dibujo a Mano Alzada -->
+        <article class="pers-card">
+          <div class="pers-card-media">
+            <img src="img/hero-historia.jpg" alt="Queque decorado con dibujo a mano alzada">
+          </div>
+          <div class="pers-card-body">
+            <span class="card-etiqueta">Trazo Libre · Lustre</span>
+            <h3>Dibujo a Mano Alzada</h3>
+            <p>
+              Ilustraciones o motivos dibujados directamente sobre el lustre de mantequilla para quienes buscan un trazo artesanal y original.
+            </p>
+            <div class="pers-card-acciones">
+              <button
+                type="button"
+                class="btn-pedir"
+                onclick="seleccionarProducto('Queque Personalizado (Mano Alzada)', 'Por definir', '')"
+              >
+                Cotizar Mano Alzada
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Estilo Lambeth -->
+        <article class="pers-card">
+          <div class="pers-card-media">
+            <img src="img/hero-personalizados.jpg" alt="Queque con decoración estilo Lambeth">
+          </div>
+          <div class="pers-card-body">
+            <span class="card-etiqueta">Manga Pastelera · Relieves</span>
+            <h3>Estilo Lambeth</h3>
+            <p>
+              Decoración con volantes, grecas y relieves clásicos trabajados con manga pastelera en lustre de mantequilla.
+            </p>
+            <div class="pers-card-acciones">
+              <button
+                type="button"
+                class="btn-pedir"
+                onclick="seleccionarProducto('Queque Personalizado (Estilo Lambeth)', 'Por definir', '')"
+              >
+                Cotizar Estilo Lambeth
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Ideas con Referencia o Boceto -->
+        <article class="pers-card">
+          <div class="pers-card-media">
+            <img src="img/Tradicional.jpg" alt="Queque diseñado a partir de una referencia del cliente">
+          </div>
+          <div class="pers-card-body">
+            <span class="card-etiqueta">A Tu Medida · Referencia</span>
+            <h3>Tu Propia Referencia</h3>
+            <p>
+              Si tienes una foto, idea o combinación distinta que no encaja en otras categorías, la adaptamos a nuestras bases de queque.
+            </p>
+            <div class="pers-card-acciones">
+              <button
+                type="button"
+                class="btn-pedir"
+                onclick="seleccionarProducto('Queque Personalizado (Referencia Propia)', 'Por definir', '')"
+              >
+                Cotizar Idea Propia
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Detalles Mixtos y Acabados -->
+        <article class="pers-card">
+          <div class="pers-card-media">
+            <img src="img/ArrolladoDec.jpg" alt="Queque personalizado con combinación de técnicas">
+          </div>
+          <div class="pers-card-body">
+            <span class="card-etiqueta">Flores · Toppers · Hoja de Arroz</span>
+            <h3>Combinaciones Especiales</h3>
+            <p>
+              Mezcla técnicas como flores, <em>toppers</em> o impresión en hoja de arroz para aniversarios, graduaciones o celebraciones únicas.
+            </p>
+            <div class="pers-card-acciones">
+              <button
+                type="button"
+                class="btn-pedir"
+                onclick="seleccionarProducto('Queque Personalizado (Combinación Especial)', 'Por definir', '')"
+              >
+                Cotizar Combinación
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+    SECCIÓN 5: GUÍA DE LUSTRE DE MANTEQUILLA Y RELLENOS ARTESANALES
+         ========================================================= -->
+    <section id="sec-sabores" class="catalogo-notas-banda" aria-label="Lustre y rellenos artesanales">
+      <div class="pers-sabores-header">
+        <span class="eyebrow-seccion">El Sabor de la Casa</span>
+        <h2 class="titulo-seccion">Lustre y Rellenos Artesanales</h2>
+        <p class="subtitulo-seccion">
+          Cada queque personalizado se cubre con nuestro lustre de mantequilla y puedes elegir el relleno que mejor acompañe tu celebración.
+        </p>
+      </div>
+
+      <div class="catalogo-notas-grid">
+        <div class="catalogo-nota-item">
+          <span class="catalogo-nota-eyebrow">Acabado Exterior</span>
+          <h3>Lustre de Mantequilla</h3>
+          <p>
+            Cremoso, suave y equilibrado en dulzor; ideal tanto para acabados lisos y dibujos a mano alzada como para relieves estilo <strong>Lambeth</strong>.
+          </p>
+        </div>
+
+        <div class="catalogo-nota-item">
+          <span class="catalogo-nota-eyebrow">Preparadas en Casa</span>
+          <h3>Jaleas Artesanales</h3>
+          <p>
+            Rellenos frutales elaborados artesanalmente con fruta natural en dos opciones clásicas: <strong>jalea de fresa</strong> o <strong>jalea de piña</strong>.
+          </p>
+        </div>
+
+        <div class="catalogo-nota-item">
+          <span class="catalogo-nota-eyebrow">Receta Tradicional</span>
+          <h3>Leche Condensada Saborizada</h3>
+          <p>
+            Nuestro relleno tradicional de leche condensada cocida, disponible también con saborizantes artesanales de <strong>coco</strong> o <strong>higos</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+    SECCIÓN 5.5: GUÍA DE TAMAÑOS BASE
+         ========================================================= -->
+    <section id="sec-tamanos" class="contenedor pers-tamanos-bloque" aria-label="Tamaños base disponibles">
+      <div class="pers-bloque-encabezado">
+        <span class="eyebrow-seccion">Sobre Nuestras Bases Tradicionales</span>
+        <h2 class="titulo-seccion">Tamaños y Porciones</h2>
+        <p class="subtitulo-seccion">
+          Cualquier diseño personalizado se prepara sobre nuestros tamaños base. Elige el que mejor se ajuste a tus invitados.
+        </p>
+      </div>
+
+      <div class="pers-tamanos-grid">
+        <div class="pers-tamano-card">
+          <span class="pers-tamano-etiqueta">Celebración Íntima</span>
+          <h3>Pequeño</h3>
+          <p class="pers-tamano-porciones">10 a 12 porciones</p>
+        </div>
+
+        <div class="pers-tamano-card">
+          <span class="pers-tamano-etiqueta">Reunión Familiar</span>
+          <h3>Mediano</h3>
+          <p class="pers-tamano-porciones">12 a 14 porciones</p>
+        </div>
+
+        <div class="pers-tamano-card">
+          <span class="pers-tamano-etiqueta">Fiestas y Cumpleaños</span>
+          <h3>Grande</h3>
+          <p class="pers-tamano-porciones">20 a 24 porciones</p>
+        </div>
+
+        <div class="pers-tamano-card">
+          <span class="pers-tamano-etiqueta">Bodas y Eventos</span>
+          <h3>Especiales</h3>
+          <p class="pers-tamano-porciones">28 a 32 porciones</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+    SECCIÓN 6: LLAMADO FINAL A ORDENAR
+         ========================================================= -->
+    <section class="catalogo-cierre-banda">
+      <div class="catalogo-cierre-inner">
+        <span class="eyebrow-seccion">Encargos con 48 h de Anticipación</span>
+        <h2>¿Listo para darle forma a tu queque?</h2>
+        <p>
+          Indícanos la cantidad de porciones, el estilo decorativo y el relleno de tu preferencia en el formulario de pedidos, o escríbenos para asesorarte con tu idea.
+        </p>
+        <div class="catalogo-cierre-acciones">
+          <a href="pedidos.html" class="btn-seccion-esmeralda">Iniciar mi Pedido Personalizado</a>
+          <a
+            href="https://wa.me/50684267372?text=Hola%20Pasteler%C3%ADa%20Las%20Esmeraldas%2C%20quisiera%20cotizar%20un%20queque%20personalizado."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-enlace-editorial"
+          >
+            Cotizar por WhatsApp
+          </a>
+        </div>
+        <span class="catalogo-cierre-nota">Retiro en Desamparados · Confirmación con adelanto por SINPE Móvil</span>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de Página y Contacto -->
+  <footer id="contacto" class="footer-editorial">
+    <div class="footer-grid">
+      <div class="footer-col footer-marca">
+        <h3>Pastelería Las Esmeraldas</h3>
+        <span class="footer-sub">Queques Especiales • Desde 1980</span>
+        <p>
+          Recetas artesanales horneadas con ingredientes reales, sin mejorantes ni preservantes.
+        </p>
+      </div>
+
+      <nav class="footer-col footer-nav" aria-label="Enlaces del pie de página">
+        <h4>Explorar</h4>
+        <ul>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="personalizados.html">Personalizados</a></li>
+          <li><a href="pedidos.html">Pedidos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col footer-social">
+        <h4>Síguenos y Contáctanos</h4>
+        <p>Descubre nuestras creaciones y novedades en redes sociales</p>
+
+        <div class="footer-social-links">
+          <a
+            href="https://www.facebook.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="Facebook de Pastelería Las Esmeraldas"
+            title="Facebook"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="Instagram de Pastelería Las Esmeraldas"
+            title="Instagram"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+
+          <a
+            href="https://wa.me/50684267372?text=Hola%20Pasteler%C3%ADa%20Las%20Esmeraldas%2C%20me%20gustar%C3%ADa%20consultar%20por%20un%20pedido."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="WhatsApp de Pastelería Las Esmeraldas"
+            title="WhatsApp"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zM12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.031 19.385c-1.454 0-2.796-.42-3.928-1.144l-2.742.72.732-2.671c-.798-1.184-1.264-2.607-1.263-4.143.002-4.132 3.366-7.495 7.499-7.495 2.004.001 3.887.781 5.302 2.198 1.416 1.417 2.195 3.301 2.194 5.304-.002 4.133-3.367 7.495-7.494 7.495z"/>
+            </svg>
+          </a>
+
+          <a
+            href="https://www.tiktok.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-btn"
+            aria-label="TikTok de Pastelería Las Esmeraldas"
+            title="TikTok"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <p>&copy; 2026 Pastelería Las Esmeraldas. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
