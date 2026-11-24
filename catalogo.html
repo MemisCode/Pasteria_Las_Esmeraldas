@@ -475,33 +475,67 @@
       </div>
     </section>
 
-    <!-- =========================================================
-    SECCIÓN 3: FRANJA BREVE DE ANTICIPACIÓN Y RETIRO
+   <!-- =========================================================
+    SECCIÓN 3: CALCULADORA DE PORCIONES Y PISOS + NOTAS DE RETIRO
          ========================================================= -->
-    <section class="catalogo-notas-banda" aria-label="Información de preparación y retiro">
-      <div class="catalogo-notas-grid">
-        <div class="catalogo-nota-item">
-          <span class="catalogo-nota-eyebrow">Disponibilidad</span>
-          <h3>Diseños Tradicionales</h3>
+    <section id="calculadora-tamano" class="catalogo-notas-banda" aria-label="Calculadora de tamaño de queque y retiro">
+      <div class="calc-contenedor">
+        <div class="calc-encabezado">
+          <span class="catalogo-nota-eyebrow">Tamaños Grandes y Varios Pisos</span>
+          <h2>¿Celebración grande? Dinos cuántas porciones necesitas</h2>
           <p>
-            Disponibles en vitrina según existencia del día o listos para retirar al día siguiente en colores clásicos predeterminados.
+            Calculamos el tamaño ideal en 1, 2 o hasta 3 pisos con <strong>precio base en decoración tradicional</strong> (mínimo 48 horas de anticipación).
           </p>
         </div>
 
-        <div class="catalogo-nota-item">
-          <span class="catalogo-nota-eyebrow">Horneado Fresco</span>
-          <h3>Encargos y Postres</h3>
-          <p>
-            Los arrollados, tres leches y postres de casa se preparan frescos bajo pedido con al menos <strong>24 a 48 horas</strong> de anticipación.
-          </p>
+        <div class="calc-controles">
+          <div class="calc-input-wrap">
+            <label for="calc-porciones-cat">Cantidad aproximada de porciones</label>
+            <input type="number" id="calc-porciones-cat" min="1" max="500" inputmode="numeric" placeholder="Ej. 35, 50, 80">
+          </div>
+
+          <label class="calc-check">
+            <input type="checkbox" id="calc-pisos-cat">
+            Lo quiero en varios pisos
+          </label>
         </div>
 
-        <div class="catalogo-nota-item">
-          <span class="catalogo-nota-eyebrow">Desamparados, San José</span>
-          <h3>Reserva y Retiro</h3>
-          <p>
-            Todo encargo se confirma con adelanto vía <strong>SINPE Móvil</strong> y se retira recién decorado en nuestro local.
-          </p>
+        <div id="calc-resultado-cat" class="calc-resultado oculto" aria-live="polite"></div>
+
+        <details id="calc-manual-wrap-cat" class="calc-manual oculto">
+          <summary>Ajustar pisos manualmente</summary>
+          <div class="calc-manual-grid">
+            <div class="campo-grupo">
+              <label for="calc-piso1-cat">Piso 1 (Base)</label>
+              <select id="calc-piso1-cat"></select>
+            </div>
+            <div class="campo-grupo">
+              <label for="calc-piso2-cat">Piso 2 (Menor a la base)</label>
+              <select id="calc-piso2-cat"></select>
+            </div>
+            <div class="campo-grupo">
+              <label for="calc-piso3-cat">Piso 3 (Opcional, menor al piso 2)</label>
+              <select id="calc-piso3-cat"></select>
+            </div>
+          </div>
+        </details>
+
+        <div class="catalogo-notas-grid catalogo-notas-grid-2">
+          <div class="catalogo-nota-item">
+            <span class="catalogo-nota-eyebrow">Horneado Fresco</span>
+            <h3>Encargos y Postres</h3>
+            <p>
+              Los arrollados, tres leches y postres de casa se preparan frescos bajo pedido con al menos <strong>24 a 48 horas</strong> de anticipación.
+            </p>
+          </div>
+
+          <div class="catalogo-nota-item">
+            <span class="catalogo-nota-eyebrow">Desamparados, San José</span>
+            <h3>Reserva y Retiro</h3>
+            <p>
+              Todo encargo se confirma con adelanto vía <strong>SINPE Móvil</strong> y se retira recién decorado en nuestro local.
+            </p>
+          </div>
         </div>
       </div>
     </section>

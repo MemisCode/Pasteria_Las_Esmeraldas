@@ -62,7 +62,6 @@ const TELEFONO_WA_COMPLETO = `506${NUMERO_WHATSAPP}`;
 function seleccionarProducto(nombreProducto, precioBase, porcionesSugeridas) {
   const selectProducto = document.getElementById("producto");
   const inputMonto = document.getElementById("monto_estimado");
-  const inputPorciones = document.getElementById("porciones");
   const inputDetalles = document.getElementById("detalles");
 
   if (!selectProducto) {
@@ -91,8 +90,10 @@ function seleccionarProducto(nombreProducto, precioBase, porcionesSugeridas) {
     valorFinalSelect = nombreProducto;
   } else if (opcionesDisponibles.includes(productoBase)) {
     valorFinalSelect = productoBase;
-  } else if (nombreProducto) {
+} else if (nombreProducto) {
     const nuevaOpcion = new Option(nombreProducto, nombreProducto);
+    if (porcionesSugeridas) nuevaOpcion.setAttribute("data-porciones", porcionesSugeridas);
+    if (precioBase) nuevaOpcion.setAttribute("data-precio", precioBase);
     selectProducto.add(nuevaOpcion);
     valorFinalSelect = nombreProducto;
   }
@@ -103,10 +104,6 @@ function seleccionarProducto(nombreProducto, precioBase, porcionesSugeridas) {
 
   selectProducto.dispatchEvent(new Event("change"));
 
-  if (porcionesSugeridas && inputPorciones) {
-    inputPorciones.value = porcionesSugeridas;
-  }
-
   if (inputMonto) {
     inputMonto.value = precioBase || "Por definir";
   }
@@ -114,6 +111,12 @@ function seleccionarProducto(nombreProducto, precioBase, porcionesSugeridas) {
   if (detalleEstilo && inputDetalles && !inputDetalles.value.trim()) {
     inputDetalles.value = `Estilo / ocasión: ${detalleEstilo}. Relleno deseado: `;
   }
+
+  actualizarResumenProducto(
+    nombreProducto,
+    porcionesSugeridas || (detalleEstilo ? `Estilo: ${detalleEstilo}` : ""),
+    precioBase || ""
+  );
 
   const seccionPedidos = document.getElementById("pedidos") || document.getElementById("formularioPedido");
   if (seccionPedidos) {
@@ -129,8 +132,56 @@ const radiosDecoracion = document.querySelectorAll('input[name="tipo_decoracion"
 const botonesColor = document.querySelectorAll(".color-btn");
 const inputColorSeleccionado = document.getElementById("color_seleccionado");
 const inputColorOtro = document.getElementById("color_otro");
+const textoColorElegido = document.getElementById("color-elegido-texto");
 const inputFechaEl = document.getElementById("fecha");
 const avisoFechaEl = document.getElementById("aviso-fecha");
+const IMAGENES_PEDIDO = {
+  "Queque Pequeño": "img/Tradicional.jpg",
+  "Queque Mediano": "img/Tradicional.jpg",
+  "Queque Grande": "img/hero-historia.jpg",
+  "Queque Especiales": "img/hero-personalizados.jpg",
+  "Queque Personalizado": "img/hero-personalizados.jpg"
+};
+
+function actualizarResumenProducto(nombreValor, porcionesTexto, precioTexto = "") {
+  const nombreEl = document.getElementById("resumen-producto-nombre");
+  const metaEl = document.getElementById("resumen-producto-meta");
+  const imgEl = document.getElementById("resumen-producto-img");
+  if (!nombreEl || !metaEl || !imgEl) return;
+
+  if (!nombreValor) {
+    nombreEl.textContent = "Aún no has elegido un queque";
+    metaEl.textContent = "Selecciona una opción de la lista o cambia de producto cuando gustes.";
+    imgEl.src = "img/hero-personalizados.jpg";
+    imgEl.alt = "Vista previa del queque seleccionado";
+    return;
+  }
+
+  nombreEl.textContent = nombreValor;
+
+  const partesMeta = [];
+  if (porcionesTexto && porcionesTexto !== "Por definir") {
+    partesMeta.push(`Porciones / referencia: ${porcionesTexto}`);
+  }
+
+  const precioLimpio = String(precioTexto || "").trim();
+  if (precioLimpio && precioLimpio.toLowerCase() !== "por definir") {
+    const precioMostrar = /^\d+(\.\d+)?$/.test(precioLimpio)
+      ? `₡${Number(precioLimpio).toLocaleString("es-CR")}`
+      : precioLimpio;
+    partesMeta.push(`Precio: ${precioMostrar}`);
+  }
+
+  metaEl.textContent = partesMeta.length
+    ? partesMeta.join(" · ")
+    : "Listo para completar relleno, fecha y detalles.";
+
+  const claveCoincidente = Object.keys(IMAGENES_PEDIDO).find((clave) =>
+    nombreValor.toLowerCase().includes(clave.toLowerCase())
+  );
+  imgEl.src = claveCoincidente ? IMAGENES_PEDIDO[claveCoincidente] : "img/hero-personalizados.jpg";
+  imgEl.alt = `Imagen de ${nombreValor}`;
+}
 
 const PRODUCTOS_48H = [
   "Queque Personalizado",
@@ -149,9 +200,14 @@ function formatearFechaLocal(fecha) {
 function requiere48Horas() {
   if (!selectProductoEl) return false;
   const prod = selectProductoEl.value || "";
-  const esQueque = prod.toLowerCase().includes("queque");
+  const prodMin = prod.toLowerCase();
+  const esQueque = prodMin.includes("queque");
   const deco = document.querySelector('input[name="tipo_decoracion"]:checked')?.value;
-  return PRODUCTOS_48H.includes(prod) || (esQueque && deco === "Personalizado");
+  const esTamano48h =
+    PRODUCTOS_48H.includes(prod) ||
+    prodMin.includes("pisos") ||
+    prodMin.includes("mayor a 20");
+  return esTamano48h || (esQueque && deco === "Personalizado");
 }
 
 function actualizarMinimoFecha() {
@@ -203,6 +259,13 @@ if (botonesColor.length) {
         inputColorSeleccionado.value = color;
       }
 
+      if (textoColorElegido) {
+        textoColorElegido.innerHTML =
+          color === "Otro"
+            ? 'Color seleccionado: <strong>Personalizado (escríbelo abajo)</strong>'
+            : `Color seleccionado: <strong>${color}</strong>`;
+      }
+
       if (inputColorOtro) {
         if (color === "Otro") {
           inputColorOtro.classList.remove("oculto");
@@ -225,7 +288,27 @@ if (selectProductoEl) {
     const inputMonto = document.getElementById("monto_estimado");
 
     if (inputMonto) {
-      inputMonto.value = precioBase || "Por definir";
+    inputMonto.value = precioBase || "Por definir";
+  }
+
+ actualizarResumenProducto(
+    this.value,
+    opcionSeleccionada.getAttribute("data-porciones") || "",
+    precioBase || ""
+  );
+
+  const panelPorcionesPedido = document.getElementById("panel-porciones-pedido");
+    if (panelPorcionesPedido) {
+      const esMayor20 = this.value === "Queque mayor a 20 porciones";
+      panelPorcionesPedido.classList.toggle("oculto", !esMayor20);
+      if (esMayor20 && window.resultadoPedidoEspecial && !window.resultadoPedidoEspecial.excedeMaximo) {
+        if (inputMonto) inputMonto.value = String(window.resultadoPedidoEspecial.precio);
+        actualizarResumenProducto(
+          window.resultadoPedidoEspecial.nombre,
+          `${window.resultadoPedidoEspecial.porciones} porciones`,
+          String(window.resultadoPedidoEspecial.precio)
+        );
+      }
     }
 
     if (opcionesQuequeEl) {
@@ -401,7 +484,22 @@ if (formularioPedidoEl) {
     }
 
     const idPedido = "P-" + Math.floor(1000 + Math.random() * 9000);
-    const tipoProducto = document.getElementById("producto")?.value || "";
+    let tipoProducto = document.getElementById("producto")?.value || "";
+    let porcionesCalculadas = "";
+    if (tipoProducto === "Queque mayor a 20 porciones") {
+      if (!window.resultadoPedidoEspecial || window.resultadoPedidoEspecial.excedeMaximo) {
+        alert("Ingresa una cantidad válida de porciones (hasta 105) o usa el botón de WhatsApp para cotizar tu evento grande.");
+        if (btn) {
+          btn.innerText = "Registrar Pedido";
+          btn.disabled = false;
+        }
+        document.getElementById("calc-porciones-ped")?.focus();
+        return;
+      }
+      tipoProducto = window.resultadoPedidoEspecial.nombre;
+      porcionesCalculadas = `${window.resultadoPedidoEspecial.porciones} porciones`;
+    }
+    const rellenoSeleccionado = document.getElementById("relleno")?.value || "Leche condensada";
     const esQueque = tipoProducto.toLowerCase().includes("queque");
 
     let resumenOpciones = "";
@@ -432,12 +530,13 @@ if (formularioPedidoEl) {
     }
 
     const detallesUsuario = document.getElementById("detalles")?.value.trim() || "";
-    const detallesCompletos = resumenOpciones
-      ? `[${resumenOpciones}] — ${detallesUsuario}`
-      : detallesUsuario;
+    const partesDetalles = [`Relleno: ${rellenoSeleccionado}`];
+    if (resumenOpciones) partesDetalles.push(resumenOpciones);
+    if (detallesUsuario) partesDetalles.push(detallesUsuario);
+    const detallesCompletos = partesDetalles.join(" — ");
 
     const opcionActual = selectProductoEl?.options[selectProductoEl.selectedIndex];
-    const porcionesRef = opcionActual ? (opcionActual.getAttribute("data-porciones") || "N/A") : "N/A";
+    const porcionesRef = porcionesCalculadas || (opcionActual ? (opcionActual.getAttribute("data-porciones") || "N/A") : "N/A");
 
     const datosPedido = {
       accion: "nuevo_pedido",
@@ -446,6 +545,7 @@ if (formularioPedidoEl) {
       telefono: document.getElementById("telefono")?.value.trim() || "",
       fecha_entrega: inputFechaEl?.value || "",
       tipo_producto: tipoProducto,
+      relleno: rellenoSeleccionado,
       detalles_producto: detallesCompletos,
       porciones: porcionesRef,
       metodo_entrega: document.getElementById("entrega")?.value || "",
@@ -461,6 +561,7 @@ if (formularioPedidoEl) {
       `👤 *Cliente:* ${datosPedido.nombre_cliente}\n` +
       `📞 *Teléfono:* ${datosPedido.telefono}\n` +
       `🍰 *Producto:* ${datosPedido.tipo_producto}\n` +
+      `🍯 *Relleno:* ${datosPedido.relleno}\n` +
       (resumenOpciones ? `🎨 *Opciones:* ${resumenOpciones}\n` : "") +
       `📅 *Entrega:* ${fechaLegible}\n` +
       `🚚 *Modalidad:* ${datosPedido.metodo_entrega}\n` +
@@ -480,11 +581,23 @@ if (formularioPedidoEl) {
       alert(`¡Gracias ${datosPedido.nombre_cliente}! Tu pedido (${idPedido}) quedó agendado. Ahora se abrirá WhatsApp para confirmar los detalles.`);
 
       formularioPedidoEl.reset();
+      const rellenoEl = document.getElementById("relleno");
+      if (rellenoEl) rellenoEl.value = "Leche condensada";
       const montoEl = document.getElementById("monto_estimado");
       if (montoEl) montoEl.value = "Por definir";
-      if (opcionesQuequeEl) opcionesQuequeEl.classList.add("oculto");
+     if (opcionesQuequeEl) opcionesQuequeEl.classList.add("oculto");
       if (panelPersonalizadoEl) panelPersonalizadoEl.classList.add("oculto");
+      if (inputColorSeleccionado) inputColorSeleccionado.value = "";
       if (inputColorOtro) inputColorOtro.classList.add("oculto");
+      if (textoColorElegido) {
+        textoColorElegido.innerHTML = 'Color seleccionado: <strong>Sin seleccionar</strong>';
+      }
+      botonesColor.forEach((b) => b.classList.remove("activo"));
+      window.resultadoPedidoEspecial = null;
+      document.getElementById("panel-porciones-pedido")?.classList.add("oculto");
+      document.getElementById("calc-resultado-ped")?.classList.add("oculto");
+      document.getElementById("calc-manual-wrap-ped")?.classList.add("oculto");
+      actualizarResumenProducto("", "");
 
       window.location.href = urlWhatsApp;
     } catch (error) {
@@ -656,4 +769,232 @@ if (formularioPedidoEl) {
   window.addEventListener("resize", actualizarBarraScroll);
   window.addEventListener("load", actualizarBarraScroll);
   actualizarBarraScroll();
+})();
+
+// 9. Calculadora de porciones y pisos (Catálogo y Pedidos)
+(function () {
+  const MOLDES = [
+    { id: "pequeno", nombre: "Queque Pequeño", porciones: 12, precio: 10500 },
+    { id: "mediano", nombre: "Queque Mediano", porciones: 14, precio: 13000 },
+    { id: "grande", nombre: "Queque Grande", porciones: 20, precio: 17000 },
+    { id: "q20", nombre: "Queque 20", porciones: 25, precio: 20000 },
+    { id: "q24", nombre: "Queque 24", porciones: 30, precio: 24000 },
+    { id: "q28", nombre: "Queque 28", porciones: 35, precio: 28000 },
+    { id: "q32", nombre: "Queque 32", porciones: 40, precio: 32000 }
+  ];
+
+  const MAX_PORCIONES = 105; // Queque 32 (40) + Queque 28 (35) + Queque 24 (30)
+  window.resultadoPedidoEspecial = null;
+
+  function formatoColones(monto) {
+    return `₡${Number(monto).toLocaleString("es-CR")}`;
+  }
+
+  function armarResultado(pisos) {
+    const porciones = pisos.reduce((acc, m) => acc + m.porciones, 0);
+    const precio = pisos.reduce((acc, m) => acc + m.precio, 0);
+    const nombre =
+      pisos.length === 1
+        ? pisos[0].nombre
+        : `Queque ${pisos.length} pisos · ${pisos.map((m) => m.nombre).join(" + ")}`;
+    return { excedeMaximo: false, pisos, nombre, porciones, precio };
+  }
+
+  function calcularAutomatico(porcionesDeseadas, forzarVariosPisos) {
+    const n = Number(porcionesDeseadas);
+    if (!Number.isFinite(n) || n <= 0) return null;
+    if (n > MAX_PORCIONES) return { excedeMaximo: true, porcionesDeseadas: n };
+
+    if (n <= 40 && !forzarVariosPisos) {
+      const molde = MOLDES.find((m) => m.porciones >= n);
+      return armarResultado([molde]);
+    }
+
+    const candidatos = [];
+    if (n <= 75) {
+      for (let i = 1; i < MOLDES.length; i++) {
+        for (let j = 0; j < i; j++) {
+          const pisos = [MOLDES[i], MOLDES[j]];
+          const res = armarResultado(pisos);
+          if (res.porciones >= n) {
+            candidatos.push({ ...res, separacion: i - j });
+          }
+        }
+      }
+    } else {
+      for (let i = 2; i < MOLDES.length; i++) {
+        for (let j = 1; j < i; j++) {
+          for (let k = 0; k < j; k++) {
+            const pisos = [MOLDES[i], MOLDES[j], MOLDES[k]];
+            const res = armarResultado(pisos);
+            if (res.porciones >= n) {
+              candidatos.push({ ...res, separacion: i - k });
+            }
+          }
+        }
+      }
+    }
+
+    candidatos.sort(
+      (a, b) =>
+        a.porciones - b.porciones ||
+        a.precio - b.precio ||
+        b.separacion - a.separacion
+    );
+
+    return candidatos[0] || null;
+  }
+
+  function iniciarCalculadora(prefijo, esCatalogo) {
+    const inputPorc = document.getElementById(`calc-porciones-${prefijo}`);
+    const checkPisos = document.getElementById(`calc-pisos-${prefijo}`);
+    const cajaResultado = document.getElementById(`calc-resultado-${prefijo}`);
+    const wrapManual = document.getElementById(`calc-manual-wrap-${prefijo}`);
+    const sel1 = document.getElementById(`calc-piso1-${prefijo}`);
+    const sel2 = document.getElementById(`calc-piso2-${prefijo}`);
+    const sel3 = document.getElementById(`calc-piso3-${prefijo}`);
+
+    if (!inputPorc || !checkPisos || !cajaResultado || !sel1 || !sel2 || !sel3) return;
+
+    function llenarOpciones(selectEl, maxIndiceExclusivo, incluirNinguno) {
+      const valorPrevio = selectEl.value;
+      selectEl.innerHTML = "";
+      if (incluirNinguno) {
+        selectEl.add(new Option("Ninguno", ""));
+      }
+      for (let i = maxIndiceExclusivo - 1; i >= 0; i--) {
+        const m = MOLDES[i];
+        selectEl.add(new Option(`${m.nombre} (${m.porciones} porc · ${formatoColones(m.precio)})`, String(i)));
+      }
+      if (Array.from(selectEl.options).some((o) => o.value === valorPrevio)) {
+        selectEl.value = valorPrevio;
+      }
+    }
+
+    llenarOpciones(sel1, MOLDES.length, false);
+
+    function sincronizarSelects(pisos) {
+      const idx1 = MOLDES.findIndex((m) => m.id === pisos[0].id);
+      sel1.value = String(idx1);
+      llenarOpciones(sel2, idx1, true);
+
+      if (pisos[1]) {
+        const idx2 = MOLDES.findIndex((m) => m.id === pisos[1].id);
+        sel2.value = String(idx2);
+        llenarOpciones(sel3, idx2, true);
+        if (pisos[2]) {
+          const idx3 = MOLDES.findIndex((m) => m.id === pisos[2].id);
+          sel3.value = String(idx3);
+        } else {
+          sel3.value = "";
+        }
+      } else {
+        sel2.value = "";
+        llenarOpciones(sel3, 0, true);
+        sel3.value = "";
+      }
+    }
+
+    function renderizar(resultado) {
+      if (!resultado) {
+        cajaResultado.classList.add("oculto");
+        if (wrapManual) wrapManual.classList.add("oculto");
+        if (!esCatalogo) window.resultadoPedidoEspecial = null;
+        return;
+      }
+
+      cajaResultado.classList.remove("oculto");
+
+      if (resultado.excedeMaximo) {
+        if (wrapManual) wrapManual.classList.add("oculto");
+        if (!esCatalogo) window.resultadoPedidoEspecial = resultado;
+        const msgWa = `¡Hola Pastelería Las Esmeraldas! Necesito cotizar un queque para evento grande de aproximadamente ${resultado.porcionesDeseadas} porciones.`;
+        const linkWa = `https://wa.me/${TELEFONO_WA_COMPLETO}?text=${encodeURIComponent(msgWa)}`;
+        cajaResultado.innerHTML = `
+          <span class="calc-resultado-titulo">Evento grande (${resultado.porcionesDeseadas} porciones)</span>
+          <p class="calc-resultado-meta">Para más de ${MAX_PORCIONES} porciones (máximo 3 pisos) preparamos una cotización a medida o montaje combinado.</p>
+          <div class="calc-resultado-acciones">
+            <a href="${linkWa}" target="_blank" rel="noopener noreferrer" class="btn-seccion-esmeralda">Cotizar por WhatsApp</a>
+          </div>
+        `;
+        return;
+      }
+
+      if (wrapManual) wrapManual.classList.remove("oculto");
+
+      const botonCatalogo = esCatalogo
+        ? `<div class="calc-resultado-acciones">
+             <button type="button" class="btn-seccion-esmeralda" id="btn-ordenar-calc-${prefijo}">Ordenar este tamaño</button>
+           </div>`
+        : "";
+
+      cajaResultado.innerHTML = `
+        <span class="calc-resultado-titulo">${resultado.nombre}</span>
+        <p class="calc-resultado-meta"><strong>Cubre:</strong> ${resultado.porciones} porciones · <strong>Base tradicional:</strong> ${formatoColones(resultado.precio)}</p>
+        <p class="calc-resultado-nota">Precio base en decoración tradicional. Los diseños personalizados se cotizan sobre esta base al confirmar por WhatsApp. Requiere mínimo 48 horas.</p>
+        ${botonCatalogo}
+      `;
+
+      if (esCatalogo) {
+        const btnOrdenar = document.getElementById(`btn-ordenar-calc-${prefijo}`);
+        if (btnOrdenar) {
+          btnOrdenar.addEventListener("click", () => {
+            seleccionarProducto(
+              resultado.nombre,
+              String(resultado.precio),
+              `${resultado.porciones} porciones`
+            );
+          });
+        }
+      } else {
+        window.resultadoPedidoEspecial = resultado;
+        const inputMonto = document.getElementById("monto_estimado");
+        if (inputMonto) inputMonto.value = String(resultado.precio);
+        if (typeof actualizarResumenProducto === "function") {
+          actualizarResumenProducto(
+            resultado.nombre,
+            `${resultado.porciones} porciones`,
+            String(resultado.precio)
+          );
+        }
+      }
+    }
+
+    function recalcularDesdeInput() {
+      const res = calcularAutomatico(inputPorc.value, checkPisos.checked);
+      if (res && !res.excedeMaximo) {
+        sincronizarSelects(res.pisos);
+      }
+      renderizar(res);
+    }
+
+    function recalcularDesdeManual() {
+      const idx1 = Number(sel1.value);
+      llenarOpciones(sel2, idx1, true);
+      const pisos = [MOLDES[idx1]];
+
+      if (sel2.value !== "") {
+        const idx2 = Number(sel2.value);
+        pisos.push(MOLDES[idx2]);
+        llenarOpciones(sel3, idx2, true);
+        if (sel3.value !== "") {
+          pisos.push(MOLDES[Number(sel3.value)]);
+        }
+      } else {
+        llenarOpciones(sel3, 0, true);
+        sel3.value = "";
+      }
+
+      renderizar(armarResultado(pisos));
+    }
+
+    inputPorc.addEventListener("input", recalcularDesdeInput);
+    checkPisos.addEventListener("change", recalcularDesdeInput);
+    sel1.addEventListener("change", recalcularDesdeManual);
+    sel2.addEventListener("change", recalcularDesdeManual);
+    sel3.addEventListener("change", recalcularDesdeManual);
+  }
+
+  iniciarCalculadora("cat", true);
+  iniciarCalculadora("ped", false);
 })();

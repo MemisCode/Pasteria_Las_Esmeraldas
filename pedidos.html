@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacer Pedido | Pastelería Las Esmeraldas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 1. Encabezado / Navbar -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo-link">
+        <img src="img/logo-clasico.png" alt="Pastelería Las Esmeraldas - Queques Especiales" class="logo-img">
+      </a>
+      <nav class="nav-links">
+        <a href="catalogo.html">Catálogo</a>
+        <a href="personalizados.html">Personalizados</a>
+        <a href="pedidos.html" aria-current="page">Pedidos</a>
+        <a href="nosotros.html">Nosotros</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Encabezado Editorial -->
+    <section class="catalogo-hero">
+      <div class="catalogo-hero-inner">
+        <div class="catalogo-hero-centro">
+          <span class="eyebrow-seccion">Encargos • Mínimo 48 Horas en Queques Grandes y Personalizados</span>
+          <h1 class="titulo-seccion catalogo-titulo">Solicitar un Pedido</h1>
+          <p class="subtitulo-seccion catalogo-subtitulo">
+            Completa los datos de tu queque, relleno y decoración. Al enviar el formulario se registrará tu solicitud y se abrirá WhatsApp para coordinar el adelanto por SINPE Móvil.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulario + Guía Lateral -->
+    <section id="pedidos" class="contenedor pers-bloque">
+      <div class="pedidos-layout">
+        <form id="formularioPedido" class="pedidos-form-caja" novalidate>
+          <h2 class="titulo-seccion">Datos del Pedido</h2>
+
+        <div id="resumen-seleccion" class="pedido-resumen-seleccion">
+        <div class="pedido-resumen-media">
+         <img id="resumen-producto-img" src="img/hero-personalizados.jpg" alt="Vista previa del queque seleccionado">
+        </div>
+        <div class="pedido-resumen-texto">
+            <span class="pedido-resumen-etiqueta">Queque seleccionado</span>
+            <strong id="resumen-producto-nombre">Aún no has elegido un queque</strong>
+            <p id="resumen-producto-meta">Selecciona una opción de la lista o cambia de producto cuando gustes.</p>
+        </div>
+      </div>
+        <div class="campo-grupo">
+            <label for="producto">Producto o tamaño base</label>
+            <select id="producto" name="producto" required>
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="Queque Pequeño" data-porciones="12 porciones" data-precio="10500">Queque Pequeño (12 porciones · ₡10 500)</option>
+              <option value="Queque Mediano" data-porciones="14 porciones" data-precio="13000">Queque Mediano (14 porciones · ₡13 000)</option>
+              <option value="Queque Grande" data-porciones="20 porciones" data-precio="17000">Queque Grande (20 porciones · ₡17 000)</option>
+              <option value="Queque mayor a 20 porciones" data-porciones="Por definir" data-precio="Por definir">Más de 20 porciones / Varios pisos</option>
+              <option value="Queque Personalizado" data-porciones="Por definir" data-precio="Por definir">Queque Personalizado</option>
+            </select>
+          </div>
+
+          <div id="panel-porciones-pedido" class="calc-panel-pedido oculto">
+            <div class="calc-controles calc-controles-compacto">
+              <div class="calc-input-wrap">
+                <label for="calc-porciones-ped">¿Para cuántas porciones necesitas el queque?</label>
+                <input type="number" id="calc-porciones-ped" min="1" max="500" inputmode="numeric" placeholder="Ej. 30, 55, 85">
+              </div>
+
+              <label class="calc-check">
+                <input type="checkbox" id="calc-pisos-ped">
+                Lo quiero en varios pisos
+              </label>
+            </div>
+
+            <div id="calc-resultado-ped" class="calc-resultado oculto" aria-live="polite"></div>
+
+            <details id="calc-manual-wrap-ped" class="calc-manual oculto">
+              <summary>Ajustar pisos manualmente</summary>
+              <div class="calc-manual-grid">
+                <div class="campo-grupo">
+                  <label for="calc-piso1-ped">Piso 1 (Base)</label>
+                  <select id="calc-piso1-ped"></select>
+                </div>
+                <div class="campo-grupo">
+                  <label for="calc-piso2-ped">Piso 2 (Menor a la base)</label>
+                  <select id="calc-piso2-ped"></select>
+                </div>
+                <div class="campo-grupo">
+                  <label for="calc-piso3-ped">Piso 3 (Opcional)</label>
+                  <select id="calc-piso3-ped"></select>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <!-- Opciones específicas de Queque (controladas por script.js) -->
+          <div id="opciones-queque" class="oculto">
+            <div class="campo-grupo">
+              <span class="campo-etiqueta">Tipo de decoración</span>
+              <div class="radio-fila">
+                <label><input type="radio" name="tipo_decoracion" value="Tradicional" checked> Tradicional</label>
+                <label><input type="radio" name="tipo_decoracion" value="Personalizado"> Personalizado</label>
+              </div>
+            </div>
+
+            <div class="campo-grupo">
+              <label for="relleno">Relleno artesanal</label>
+              <select id="relleno" name="relleno">
+                <option value="Leche condensada" selected>Leche condensada (Predeterminado)</option>
+                <option value="Jalea de fresa artesanal">Jalea de fresa artesanal</option>
+                <option value="Jalea de piña artesanal">Jalea de piña artesanal</option>
+                <option value="Leche condensada con coco">Leche condensada con coco</option>
+                <option value="Leche condensada con higos">Leche condensada con higos</option>
+              </select>
+            </div>
+            <!--peleta seleccion colores circulares-->
+            <div class="campo-grupo">
+              <span class="campo-etiqueta">Color principal del lustre</span>
+              <div class="colores-fila">
+                <button type="button" class="color-btn color-circulo" data-color="Blanco" title="Blanco" aria-label="Blanco" style="--swatch: #ffffff;"></button>
+                <button type="button" class="color-btn color-circulo" data-color="Rosado" title="Rosado" aria-label="Rosado" style="--swatch: #F2B8C6;"></button>
+                <button type="button" class="color-btn color-circulo" data-color="Celeste" title="Celeste" aria-label="Celeste" style="--swatch: #A9D0E6;"></button>
+                <button type="button" class="color-btn color-circulo" data-color="Lila" title="Lila" aria-label="Lila" style="--swatch: #D2BCE8;"></button>
+                <button type="button" class="color-btn color-circulo" data-color="Amarillo" title="Amarillo" aria-label="Amarillo" style="--swatch: #F6DF96;"></button>
+                <button type="button" class="color-btn color-circulo" data-color="Verde" title="Verde" aria-label="Verde" style="--swatch: #04cc90;"></button>
+                <button type="button" class="color-btn color-btn-otro" data-color="Otro">+ Otro</button>
+              </div>
+              <span id="color-elegido-texto" class="color-elegido-texto">Color seleccionado: <strong>Sin seleccionar</strong></span>
+              <input type="hidden" id="color_seleccionado" name="color_seleccionado" value="">
+              <input type="text" id="color_otro" name="color_otro" class="oculto" placeholder="Especifica el color deseado">
+            </div>
+
+            <div id="panel-personalizado" class="oculto">
+              <div class="campo-grupo">
+                <span class="campo-etiqueta">Técnicas o detalles decorativos</span>
+                <div class="extras-grid">
+                  <label><input type="checkbox" name="extras_queque" value="Hoja de arroz"> Hoja de arroz</label>
+                  <label><input type="checkbox" name="extras_queque" value="Toppers"> Toppers</label>
+                  <label><input type="checkbox" name="extras_queque" value="Flores"> Flores</label>
+                  <label><input type="checkbox" name="extras_queque" value="Estilo Lambeth"> Estilo Lambeth</label>
+                  <label><input type="checkbox" name="extras_queque" value="Dibujo a mano alzada"> Dibujo a mano alzada</label>
+                </div>
+              </div>
+
+              <div class="campo-grupo">
+                <label for="imagen_whatsapp">¿Enviarás imagen de referencia por WhatsApp?</label>
+                <select id="imagen_whatsapp" name="imagen_whatsapp">
+                  <option value="No">No</option>
+                  <option value="Sí, enviaré foto o boceto">Sí, enviaré foto o boceto</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. María Fernanda Solís" required>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="telefono">Teléfono / WhatsApp</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Ej. 8888-8888" required>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="fecha">Fecha y hora de retiro</label>
+            <input type="datetime-local" id="fecha" name="fecha" required>
+            <small id="aviso-fecha" class="oculto">Este encargo requiere al menos 48 horas de anticipación.</small>
+          </div>
+
+          <div class="campo-grupo">
+            <label for="entrega">Modalidad</label>
+            <select id="entrega" name="entrega" required>
+              <option value="Retiro en local" selected>Retiro en local</option>
+            </select>
+          </div>
+
+          <input type="hidden" id="monto_estimado" name="monto_estimado" value="Por definir">
+
+          <div class="campo-grupo">
+            <label for="detalles">Detalles adicionales, dedicatoria o notas</label>
+            <textarea id="detalles" name="detalles" rows="4" placeholder="Indica dedicatoria, temática, ocasión o cualquier indicación extra..."></textarea>
+          </div>
+
+          <button type="submit" id="btnEnviar" class="btn-seccion-esmeralda">Registrar Pedido</button>
+        </form>
+
+        <aside class="pedidos-info-lateral">
+          <span class="eyebrow-seccion">Cómo Funciona</span>
+          <h3>Pasos para Confirmar tu Encargo</h3>
+          <ul class="pers-lista-tecnicas">
+            <li><strong>1. Llena el formulario:</strong> Elige tamaño, relleno artesanal (predeterminado: leche condensada), decoración y fecha.</li>
+            <li><strong>2. Anticipación:</strong> Los queques grandes y personalizados requieren mínimo 48 horas.</li>
+            <li><strong>3. Retiro en local:</strong> Por ahora todos los pedidos se retiran en el local en Desamparados.</li>
+            <li><strong>4. Confirmación por SINPE:</strong> Al enviar, te llevamos a WhatsApp para confirmar el monto y el adelanto.</li>
+          </ul>
+          <a
+            href="https://wa.me/50684267372?text=Hola%20Pasteler%C3%ADa%20Las%20Esmeraldas%2C%20quisiera%20hacer%20una%20consulta%20sobre%20un%20pedido."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-enlace-editorial"
+          >
+            Consultar por WhatsApp
+          </a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de Página -->
+  <footer id="contacto" class="footer-editorial">
+    <div class="footer-grid">
+      <div class="footer-col footer-marca">
+        <h3>Pastelería Las Esmeraldas</h3>
+        <span class="footer-sub">Queques Especiales • Desde 1980</span>
+        <p>Recetas artesanales horneadas con ingredientes reales, sin mejorantes ni preservantes.</p>
+      </div>
+
+      <nav class="footer-col footer-nav" aria-label="Enlaces del pie de página">
+        <h4>Explorar</h4>
+        <ul>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="personalizados.html">Personalizados</a></li>
+          <li><a href="pedidos.html">Pedidos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col footer-social">
+        <h4>Síguenos y Contáctanos</h4>
+        <p>Retiro en Desamparados · Coordinación directa por WhatsApp</p>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <p>&copy; 2026 Pastelería Las Esmeraldas. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
