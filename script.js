@@ -234,10 +234,17 @@ function actualizarMinimoFecha() {
 function actualizarPanelPersonalizado() {
   if (!panelPersonalizadoEl) return;
   const seleccionado = document.querySelector('input[name="tipo_decoracion"]:checked');
-  if (seleccionado && seleccionado.value === "Personalizado") {
+  const esPersonalizado = Boolean(seleccionado && seleccionado.value === "Personalizado");
+  const notaTradicionalEl = document.getElementById("relleno-tradicional-nota");
+
+  if (esPersonalizado) {
     panelPersonalizadoEl.classList.remove("oculto");
+    if (notaTradicionalEl) notaTradicionalEl.classList.add("oculto");
   } else {
     panelPersonalizadoEl.classList.add("oculto");
+    if (notaTradicionalEl) notaTradicionalEl.classList.remove("oculto");
+    const rellenoEl = document.getElementById("relleno");
+    if (rellenoEl) rellenoEl.value = "Leche condensada";
   }
   actualizarMinimoFecha();
 }

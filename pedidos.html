@@ -109,16 +109,11 @@
               </div>
             </div>
 
-            <div class="campo-grupo">
-              <label for="relleno">Relleno artesanal</label>
-              <select id="relleno" name="relleno">
-                <option value="Leche condensada" selected>Leche condensada (Predeterminado)</option>
-                <option value="Jalea de fresa artesanal">Jalea de fresa artesanal</option>
-                <option value="Jalea de piña artesanal">Jalea de piña artesanal</option>
-                <option value="Leche condensada con coco">Leche condensada con coco</option>
-                <option value="Leche condensada con higos">Leche condensada con higos</option>
-              </select>
+            <div id="relleno-tradicional-nota" class="campo-grupo">
+              <span class="campo-etiqueta">Relleno artesanal</span>
+              <p class="color-elegido-texto">Leche condensada <strong>(Predeterminado)</strong></p>
             </div>
+
             <!--peleta seleccion colores circulares-->
             <div class="campo-grupo">
               <span class="campo-etiqueta">Color principal del lustre</span>
@@ -134,6 +129,17 @@
               <span id="color-elegido-texto" class="color-elegido-texto">Color seleccionado: <strong>Sin seleccionar</strong></span>
               <input type="hidden" id="color_seleccionado" name="color_seleccionado" value="">
               <input type="text" id="color_otro" name="color_otro" class="oculto" placeholder="Especifica el color deseado">
+            </div>
+
+            <div class="campo-grupo">
+              <label for="relleno">Relleno artesanal</label>
+              <select id="relleno" name="relleno">
+                <option value="Leche condensada" selected>Leche condensada (Predeterminado)</option>
+                <option value="Jalea de fresa artesanal">Jalea de fresa artesanal</option>
+                <option value="Jalea de piña artesanal">Jalea de piña artesanal</option>
+                <option value="Leche condensada con coco">Leche condensada con coco</option>
+                <option value="Leche condensada con higos">Leche condensada con higos</option>
+              </select>
             </div>
 
             <div id="panel-personalizado" class="oculto">
