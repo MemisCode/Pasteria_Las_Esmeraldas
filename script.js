@@ -1114,6 +1114,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Interactividad de Favoritos de la Casa (Mosaico 2x2)
 document.addEventListener("DOMContentLoaded", () => {
+
+  // Navbar integrada al Hero que pasa a fija al hacer scroll
+const navbarHero = document.getElementById("navbarPrincipal");
+if (navbarHero && navbarHero.classList.contains("navbar-hero")) {
+  const actualizarNavbarScroll = () => {
+    if (window.scrollY > 60) {
+      navbarHero.classList.add("navbar--fija");
+    } else {
+      navbarHero.classList.remove("navbar--fija");
+    }
+  };
+
+  actualizarNavbarScroll();
+  window.addEventListener("scroll", actualizarNavbarScroll, { passive: true });
+}
+
   const tiles = document.querySelectorAll(".favorito-tile");
   if (!tiles.length) return;
 
