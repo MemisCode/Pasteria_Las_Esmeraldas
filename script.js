@@ -136,28 +136,88 @@ const textoColorElegido = document.getElementById("color-elegido-texto");
 const inputFechaEl = document.getElementById("fecha");
 const avisoFechaEl = document.getElementById("aviso-fecha");
 const IMAGENES_PEDIDO = {
-  "Queque Pequeño": "img/Tradicional.jpg",
-  "Queque Mediano": "img/Tradicional.jpg",
-  "Queque Grande": "img/hero-historia.jpg",
-  "Queque Especiales": "img/hero-personalizados.jpg",
-  "Queque Personalizado": "img/hero-personalizados.jpg"
+  "Queque Mini": "img/catalogo/qmin.webp",
+  "Queque Pequeño": "img/catalogo/qpeq.webp",
+  "Queque Mediano": "img/catalogo/qmed.webp",
+  "Queque Grande": "img/catalogo/qgrd.webp",
+  "Queque Especiales": "img/catalogo/especiales.webp",
+  "Queque Personalizado": "img/personalizados/personalizados.webp"
 };
+
+let tecnicaPersonalizadaActiva = "";
+
+function detectarTecnicaDesdeTexto(texto = "") {
+  const t = String(texto).toLowerCase();
+  if (t.includes("hoja de arroz") || t.includes("lámina") || t.includes("lamina")) {
+    return "Hoja de arroz";
+  }
+  if (t.includes("topper")) return "Toppers";
+  if (t.includes("flor")) return "Flores";
+  if (t.includes("lambeth")) return "Estilo Lambeth";
+  if (t.includes("mano alzada") || t.includes("dibujo")) return "Dibujo a mano alzada";
+  return "";
+}
+
+function sincronizarOpcionesTecnica(tecnica) {
+  if (!tecnica) return;
+
+  const radioPersonalizado = document.querySelector('input[name="tipo_decoracion"][value="Personalizado"]');
+  if (radioPersonalizado && !radioPersonalizado.checked) {
+    radioPersonalizado.checked = true;
+    radioPersonalizado.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+
+  const checkboxes = document.querySelectorAll('#panel-personalizado input[type="checkbox"], input[type="checkbox"][name*="decoracion"], input[type="checkbox"][name*="tecnica"]');
+  checkboxes.forEach((chk) => {
+    const etiqueta = (chk.value || chk.parentElement?.textContent || "").trim().toLowerCase();
+    if (etiqueta.includes(tecnica.toLowerCase())) {
+      chk.checked = true;
+      chk.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  });
+
+  const requiereImagenWa = ["Hoja de arroz", "Toppers", "Dibujo a mano alzada"].includes(tecnica);
+  if (requiereImagenWa) {
+    const selectWa = document.querySelector('select[name*="whatsapp"], select[id*="whatsapp"], select[id*="referencia"]');
+    if (selectWa) {
+      const opcionSi = Array.from(selectWa.options).find((opt) =>
+        /^(s[íi]|yes)/i.test(opt.value.trim()) || /^(s[íi]|yes)/i.test(opt.textContent.trim())
+      );
+      if (opcionSi) {
+        selectWa.value = opcionSi.value;
+        selectWa.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    }
+  }
+}
 
 function actualizarResumenProducto(nombreValor, porcionesTexto, precioTexto = "") {
   const nombreEl = document.getElementById("resumen-producto-nombre");
   const metaEl = document.getElementById("resumen-producto-meta");
   const imgEl = document.getElementById("resumen-producto-img");
+  const selectProducto = document.getElementById("producto");
   if (!nombreEl || !metaEl || !imgEl) return;
 
   if (!nombreValor) {
     nombreEl.textContent = "Aún no has elegido un queque";
     metaEl.textContent = "Selecciona una opción de la lista o cambia de producto cuando gustes.";
-    imgEl.src = "img/hero-personalizados.jpg";
+    imgEl.src = "img/default.webp";
     imgEl.alt = "Vista previa del queque seleccionado";
     return;
   }
 
-  nombreEl.textContent = nombreValor;
+  const nombreLower = nombreValor.toLowerCase();
+  const esPersonalizado = Boolean(
+    selectProducto && selectProducto.value.toLowerCase().includes("personalizado")
+  );
+
+  // Mantiene "Queque Personalizado" en el título cuando la calculadora devuelve un tamaño base
+  const tituloMostrar =
+    esPersonalizado && !nombreLower.includes("personalizado")
+      ? `Queque Personalizado · ${nombreValor}`
+      : nombreValor;
+
+  nombreEl.textContent = tituloMostrar;
 
   const partesMeta = [];
   if (porcionesTexto && porcionesTexto !== "Por definir") {
@@ -169,18 +229,39 @@ function actualizarResumenProducto(nombreValor, porcionesTexto, precioTexto = ""
     const precioMostrar = /^\d+(\.\d+)?$/.test(precioLimpio)
       ? `₡${Number(precioLimpio).toLocaleString("es-CR")}`
       : precioLimpio;
-    partesMeta.push(`Precio: ${precioMostrar}`);
+    partesMeta.push(esPersonalizado ? `Base: ${precioMostrar} (a cotizar)` : `Precio: ${precioMostrar}`);
   }
 
   metaEl.textContent = partesMeta.length
     ? partesMeta.join(" · ")
     : "Listo para completar relleno, fecha y detalles.";
 
-  const claveCoincidente = Object.keys(IMAGENES_PEDIDO).find((clave) =>
-    nombreValor.toLowerCase().includes(clave.toLowerCase())
-  );
-  imgEl.src = claveCoincidente ? IMAGENES_PEDIDO[claveCoincidente] : "img/hero-personalizados.jpg";
-  imgEl.alt = `Imagen de ${nombreValor}`;
+  if (nombreLower.includes("piso")) {
+    imgEl.src = "img/personalizados/dospisos.webp";
+
+    const radioPersonalizado = document.querySelector('input[name="tipo_decoracion"][value="Personalizado"]');
+    if (radioPersonalizado && !radioPersonalizado.checked) {
+      radioPersonalizado.checked = true;
+      radioPersonalizado.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  } else if (esPersonalizado) {
+    imgEl.src = IMAGENES_PEDIDO["Queque Personalizado"] || "img/personalizados/personalizados.webp";
+  } else {
+    const claveCoincidente = Object.keys(IMAGENES_PEDIDO).find((clave) =>
+      nombreLower.includes(clave.toLowerCase())
+    );
+    imgEl.src = claveCoincidente ? IMAGENES_PEDIDO[claveCoincidente] : "img/catalogo/grandes.webp";
+  }
+
+  imgEl.alt = `Imagen de ${tituloMostrar}`;
+
+  const tecnicaDetectada = detectarTecnicaDesdeTexto(nombreValor);
+  if (tecnicaDetectada) {
+    tecnicaPersonalizadaActiva = tecnicaDetectada;
+  }
+  if (tecnicaPersonalizadaActiva) {
+    sincronizarOpcionesTecnica(tecnicaPersonalizadaActiva);
+  }
 }
 
 const PRODUCTOS_48H = [
@@ -304,19 +385,28 @@ if (selectProductoEl) {
     precioBase || ""
   );
 
+  if (!(this.value || "").toLowerCase().includes("personalizado")) {
+  tecnicaPersonalizadaActiva = "";
+}
+
   const panelPorcionesPedido = document.getElementById("panel-porciones-pedido");
-    if (panelPorcionesPedido) {
-      const esMayor20 = this.value === "Queque mayor a 20 porciones";
-      panelPorcionesPedido.classList.toggle("oculto", !esMayor20);
-      if (esMayor20 && window.resultadoPedidoEspecial && !window.resultadoPedidoEspecial.excedeMaximo) {
-        if (inputMonto) inputMonto.value = String(window.resultadoPedidoEspecial.precio);
-        actualizarResumenProducto(
-          window.resultadoPedidoEspecial.nombre,
-          `${window.resultadoPedidoEspecial.porciones} porciones`,
-          String(window.resultadoPedidoEspecial.precio)
-        );
-      }
-    }
+if (panelPorcionesPedido) {
+  const valorLower = (this.value || "").toLowerCase();
+  const mostrarCalculadora =
+    this.value === "Queque mayor a 20 porciones" ||
+    valorLower.includes("personalizado");
+
+  panelPorcionesPedido.classList.toggle("oculto", !mostrarCalculadora);
+
+  if (mostrarCalculadora && window.resultadoPedidoEspecial && !window.resultadoPedidoEspecial.excedeMaximo) {
+    if (inputMonto) inputMonto.value = String(window.resultadoPedidoEspecial.precio);
+    actualizarResumenProducto(
+      window.resultadoPedidoEspecial.nombre,
+      `${window.resultadoPedidoEspecial.porciones} porciones`,
+      String(window.resultadoPedidoEspecial.precio)
+    );
+  }
+}
 
     if (opcionesQuequeEl) {
       const esQueque = this.value.toLowerCase().includes("queque");
@@ -921,7 +1011,7 @@ if (formularioPedidoEl) {
           <span class="calc-resultado-titulo">Evento grande (${resultado.porcionesDeseadas} porciones)</span>
           <p class="calc-resultado-meta">Para más de ${MAX_PORCIONES} porciones (máximo 3 pisos) preparamos una cotización a medida o montaje combinado.</p>
           <div class="calc-resultado-acciones">
-            <a href="${linkWa}" target="_blank" rel="noopener noreferrer" class="btn-seccion-esmeralda">Cotizar por WhatsApp</a>
+            <a href="${linkWa}" target="_blank" rel="noopener noreferrer" class="btn btn-primario">Cotizar por WhatsApp</a>
           </div>
         `;
         return;
@@ -931,7 +1021,7 @@ if (formularioPedidoEl) {
 
       const botonCatalogo = esCatalogo
         ? `<div class="calc-resultado-acciones">
-             <button type="button" class="btn-seccion-esmeralda" id="btn-ordenar-calc-${prefijo}">Ordenar este tamaño</button>
+             <button type="button" class="btn btn-primario" id="btn-ordenar-calc-${prefijo}">Ordenar este tamaño</button>
            </div>`
         : "";
 
@@ -1005,3 +1095,117 @@ if (formularioPedidoEl) {
   iniciarCalculadora("cat", true);
   iniciarCalculadora("ped", false);
 })();
+
+// Mantener visible el subrayado en el enlace de la página actual
+document.addEventListener("DOMContentLoaded", () => {
+  const paginaActual = window.location.pathname.split("/").pop() || "index.html";
+  const enlacesNav = document.querySelectorAll(".navbar a:not(.logo-link)");
+
+  enlacesNav.forEach((enlace) => {
+    const href = enlace.getAttribute("href") || "";
+    const destino = href.split("/").pop().split("#")[0].split("?")[0];
+
+    if (destino === paginaActual) {
+      enlace.classList.add("activo");
+      enlace.setAttribute("aria-current", "page");
+    }
+  });
+});
+
+// Interactividad de Favoritos de la Casa (Mosaico 2x2)
+document.addEventListener("DOMContentLoaded", () => {
+  const tiles = document.querySelectorAll(".favorito-tile");
+  if (!tiles.length) return;
+
+  const titulo = document.getElementById("fav-titulo");
+  const descripcion = document.getElementById("fav-descripcion");
+  const hint = document.getElementById("fav-hint");
+  const detalles = document.getElementById("fav-detalles");
+  const porciones = document.getElementById("fav-porciones");
+  const relleno = document.getElementById("fav-relleno");
+  const precio = document.getElementById("fav-precio");
+  const tiempo = document.getElementById("fav-tiempo");
+  const btnOrdenar = document.getElementById("fav-btn-ordenar");
+
+  tiles.forEach((tile) => {
+    tile.addEventListener("click", () => {
+      tiles.forEach((t) => t.classList.remove("activo"));
+      tile.classList.add("activo");
+
+      titulo.textContent = tile.dataset.producto || "";
+      descripcion.textContent = tile.dataset.descripcion || "";
+      porciones.textContent = tile.dataset.porciones || "";
+      relleno.textContent = tile.dataset.relleno || "";
+      precio.textContent = tile.dataset.precio || "";
+      tiempo.textContent = tile.dataset.tiempo || "";
+
+      hint.hidden = true;
+      detalles.hidden = false;
+      btnOrdenar.hidden = false;
+
+      // Envía los datos seleccionados a pedidos.html
+      const params = new URLSearchParams({
+        producto: tile.dataset.producto || "",
+        porciones: tile.dataset.porcionesNum || "",
+        precio: tile.dataset.precioNum || ""
+      });
+      btnOrdenar.href = `pedidos.html?${params.toString()}`;
+    });
+  });
+});
+
+// Alternar relleno artesanal según tipo de decoración en pedidos.html
+document.addEventListener("DOMContentLoaded", () => {
+  const radiosDecoracion = document.querySelectorAll('input[name="tipo_decoracion"]');
+  const notaTradicional = document.getElementById("relleno-tradicional-nota");
+  const grupoPersonalizado = document.getElementById("relleno-personalizado-grupo");
+  const selectRelleno = document.getElementById("relleno");
+
+  if (!radiosDecoracion.length || !notaTradicional || !grupoPersonalizado) return;
+
+  function actualizarRelleno() {
+    const activo = document.querySelector('input[name="tipo_decoracion"]:checked');
+    const esPersonalizado = activo && activo.value === "Personalizado";
+
+    notaTradicional.classList.toggle("oculto", esPersonalizado);
+    grupoPersonalizado.classList.toggle("oculto", !esPersonalizado);
+
+    if (!esPersonalizado && selectRelleno) {
+      selectRelleno.value = "Leche condensada";
+    }
+  }
+
+  radiosDecoracion.forEach((radio) => {
+    radio.addEventListener("change", actualizarRelleno);
+  });
+
+  actualizarRelleno();
+});
+
+// Cambiar imagen de vista previa en pedidos.html al marcar "varios pisos"
+document.addEventListener("DOMContentLoaded", () => {
+  const checkPisos = document.getElementById("calc-pisos-ped");
+  const selectProducto = document.getElementById("producto");
+  const imgResumen = document.getElementById("resumen-producto-img");
+
+  if (!checkPisos || !imgResumen) return;
+
+  const IMG_VARIOS_PISOS = "img/personalizados/dospisos.webp"; // Ajusta al nombre real de tu archivo
+  const IMG_BASE_GRANDE = "img/catalogo/especiales.webp"; // Foto al desmarcar la casilla
+
+  function actualizarImagenPisos() {
+    if (checkPisos.checked) {
+      imgResumen.src = IMG_VARIOS_PISOS;
+      imgResumen.alt = "Queque de varios pisos";
+    } else if (selectProducto) {
+      const producto = selectProducto.value;
+      const rutaOriginal =
+        (typeof IMAGENES_PEDIDO !== "undefined" && IMAGENES_PEDIDO[producto]) ||
+        IMG_BASE_GRANDE;
+      imgResumen.src = rutaOriginal;
+      imgResumen.alt = `Imagen de ${producto || "queque seleccionado"}`;
+    }
+  }
+
+  checkPisos.addEventListener("change", actualizarImagenPisos);
+});

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros | Pastelería Las Esmeraldas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Encabezado / Navbar -->
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="logo-link">
+        <img src="img/logo-clasico.png" alt="Pastelería Las Esmeraldas - Queques Especiales" class="logo-img">
+      </a>
+      <nav class="nav-links">
+        <a href="catalogo.html">Catálogo</a>
+        <a href="personalizados.html">Personalizados</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="nosotros.html" aria-current="page">Nosotros</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Sección 1: Encabezado Editorial -->
+    <section class="catalogo-hero">
+      <div class="catalogo-hero-inner">
+        <div class="catalogo-hero-centro">
+          <span class="eyebrow-seccion">Tradición Familiar • Desde 1980</span>
+          <h1 class="titulo-seccion catalogo-titulo">Nuestra Historia</h1>
+          <p class="subtitulo-seccion catalogo-subtitulo">
+            Texto provisional de introducción sobre los inicios de Pastelería Las Esmeraldas en Desamparados y la pasión por hornear con ingredientes reales.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 2: Historia en dos bloques alternados -->
+    <section class="contenedor nosotros-historia" aria-label="Historia de la pastelería">
+
+      <!-- Bloque 1: Foto izquierda, texto derecha -->
+      <div class="nosotros-fila">
+        <figure class="nosotros-media">
+          <img
+            src="https://picsum.photos/seed/esmeraldas-origen/800/600"
+            alt="Fotografía provisional de los inicios de la pastelería"
+            loading="lazy"
+          >
+        </figure>
+        <div class="nosotros-texto">
+          <span class="eyebrow-seccion">Los Inicios</span>
+          <h2 class="titulo-seccion">Cuatro décadas de receta artesanal</h2>
+          <p>
+            Párrafo provisional uno: aquí irá el relato de cómo nació el proyecto en 1980, los primeros horneados en casa y el sueño familiar que dio nombre a la pastelería. Puedes extender este bloque a tres o cuatro líneas para equilibrarlo con la altura de la fotografía.
+          </p>
+          <p>
+            Párrafo provisional dos: espacio reservado para mencionar cómo las recetas tradicionales pasaron de generación en generación, conservando siempre el cuidado por el detalle y el trato cercano con cada cliente del cantón.
+          </p>
+        </div>
+      </div>
+
+      <!-- Bloque 2: Texto izquierda, foto derecha -->
+      <div class="nosotros-fila nosotros-fila-invertida">
+        <figure class="nosotros-media">
+          <img
+            src="https://picsum.photos/seed/esmeraldas-taller/800/600"
+            alt="Fotografía provisional del taller y horneado diario"
+            loading="lazy"
+          >
+        </figure>
+        <div class="nosotros-texto">
+          <span class="eyebrow-seccion">Nuestra Esencia</span>
+          <h2 class="titulo-seccion">Ingredientes reales, sin atajos</h2>
+          <p>
+            Párrafo provisional tres: aquí puedes detallar tu compromiso diario con la harina, huevos, leche y mantequilla reales, sin mejorantes ni preservantes, explicando por qué cada queque y relleno artesanal sabe a hecho en casa.
+          </p>
+          <p>
+            Párrafo provisional cuatro: espacio final para hablar sobre cómo acompañan hoy cumpleaños, bodas y reuniones familiares en Desamparados, combinando los diseños clásicos de siempre con decoraciones personalizadas.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Sección 3: Ubicación y contacto (conectada a Sección 7 de script.js) -->
+    <section class="catalogo-notas-banda" aria-label="Ubicación del local">
+      <div class="nosotros-ubicacion">
+        <span class="catalogo-nota-eyebrow">Visítanos</span>
+        <h2>Nuestro Local en Desamparados</h2>
+        <p id="texto-direccion" class="nosotros-direccion">
+          Desamparados, San José, Costa Rica (aquí puedes escribir la dirección exacta o señas del local)
+        </p>
+
+        <div class="nosotros-acciones">
+          <a
+            id="link-whatsapp-ubicacion"
+            href="https://wa.me/50684267372"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primario"
+          >
+            Pedir ubicación por WhatsApp
+          </a>
+          <button type="button" id="btn-copiar-direccion" class="btn btn-secundario">
+            Copiar dirección
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de Página -->
+  <footer id="contacto" class="footer-editorial">
+    <div class="footer-grid">
+      <div class="footer-col footer-marca">
+        <h3>Pastelería Las Esmeraldas</h3>
+        <span class="footer-sub">Queques Especiales • Desde 1980</span>
+        <p>Recetas artesanales horneadas con ingredientes reales, sin mejorantes ni preservantes.</p>
+      </div>
+
+      <nav class="footer-col footer-nav" aria-label="Enlaces del pie de página">
+        <h4>Explorar</h4>
+        <ul>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="personalizados.html">Personalizados</a></li>
+          <li><a href="pedidos.html">Pedidos</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col footer-social">
+        <h4>Síguenos y Contáctanos</h4>
+        <p>Retiro en Desamparados · Coordinación directa por WhatsApp</p>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <p>&copy; 2026 Pastelería Las Esmeraldas. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <a
+    href="https://wa.me/50684267372?text=Hola%2C%20tengo%20una%20consulta%20sobre%20Pasteler%C3%ADa%20Las%20Esmeraldas."
+    class="whatsapp-flotante"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Consultar por WhatsApp"
+    title="Escríbenos por WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+      <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>

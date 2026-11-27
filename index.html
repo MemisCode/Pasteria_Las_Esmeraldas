@@ -36,7 +36,7 @@
           leche y mantequilla reales, sin mejorantes ni preservantes.
         </p>
         <div class="hero-botones">
-          <a href="nosotros.html" class="btn-hero">Conocer Nuestra Historia</a>
+          <a href="nosotros.html" class="btn btn-hero">Conocer Nuestra Historia</a>
         </div>
       </div>
     </article>
@@ -51,7 +51,7 @@
           tres leches y flan de coco, elaborados con ingredientes reales.
         </p>
         <div class="hero-botones">
-          <a href="catalogo.html" class="btn-hero">Explorar Catálogo</a>
+          <a href="catalogo.html" class="btn btn-hero">Explorar Catálogo</a>
         </div>
       </div>
     </article>
@@ -66,7 +66,7 @@
           sobre el tamaño de queque que prefieras.
         </p>
         <div class="hero-botones">
-          <a href="personalizados.html" class="btn-hero">Diseñar mi Queque</a>
+          <a href="personalizados.html" class="btn btn-hero">Diseñar mi Queque</a>
         </div>
       </div>
     </article>
@@ -79,150 +79,121 @@
     </div>
   </section>
 
-  <!-- 3. Favoritos de la Casa -->
-  <section id="destacados" class="contenedor contenedor-amplio">
+ <!-- 3. Favoritos de la Casa (Estilo Editorial 2x2) -->
+  <section id="destacados" class="contenedor contenedor-amplio seccion-favoritos">
     <span class="eyebrow-seccion">Horneado Diario • Sin Preservantes</span>
     <h2 class="titulo-seccion">Favoritos de la Casa</h2>
-    <p class="subtitulo-seccion">
-      Recetas clásicas horneadas sin mejorantes ni preservantes, pensadas para compartir en familia o acompañar cualquier celebración.
-    </p>
 
-    <div class="favoritos-editorial">
-      <!-- Favorito 1: Queque Pequeño (Cuadro izquierda / Foto derecha) -->
-      <article class="favorito-fila">
-        <div
-          class="favorito-media btn-ver-detalle"
-          role="button"
-          tabindex="0"
-          title="Ver detalles de Queque Pequeño"
+    <div class="favoritos-layout">
+
+      <!-- Columna Izquierda: Panel de información dinámico -->
+      <div class="favoritos-panel" aria-live="polite">
+        <h3 id="fav-titulo" class="favoritos-titulo">Nuestros Queques Clásicos</h3>
+        <p id="fav-descripcion" class="favoritos-descripcion">
+          Recetas clásicas horneadas sin mejorantes ni preservantes, pensadas para compartir en familia o acompañar cualquier celebración.
+        </p>
+
+        <!-- Aviso inicial (se oculta al elegir un queque) -->
+        <p id="fav-hint" class="favoritos-hint">
+          Haz clic en cualquiera de los tamaños para ver porciones, relleno y precio.
+        </p>
+
+        <!-- Detalles del queque seleccionado (oculto al inicio) -->
+        <div id="fav-detalles" class="favoritos-detalles" hidden>
+          <div class="fav-dato"><span>Porciones</span><strong id="fav-porciones"></strong></div>
+          <div class="fav-dato"><span>Relleno</span><strong id="fav-relleno"></strong></div>
+          <div class="fav-dato"><span>Precio</span><strong id="fav-precio"></strong></div>
+          <div class="fav-dato"><span>Disponibilidad</span><strong id="fav-tiempo"></strong></div>
+        </div>
+
+        <div class="favoritos-acciones">
+          <a id="fav-btn-ordenar" href="pedidos.html" class="btn btn-primario" hidden>
+            Ordenar este queque
+          </a>
+          <a href="catalogo.html" class="btn btn-secundario">
+            Ver todo el catálogo
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Cuadrícula 2x2 de los 4 tamaños -->
+      <div class="favoritos-mosaico">
+
+        <!-- 1. Queque Mini (ajusta imagen, porciones y precio) -->
+        <button
+          type="button"
+          class="favorito-tile"
+          data-producto="Queque Mini"
+          data-porciones-num="2"
+          data-precio-num="4000"
+          data-etiqueta="Decoración Tradicional · Tamaño Mini"
+          data-porciones="2 porciones"
+          data-relleno="Leche condensada con cierto grado de cocción"
+          data-precio="₡4000"
+          data-tiempo="Disponible o para el día siguiente (colores predeterminados)"
+          data-descripcion="Ideal para un detalle especial o una celebración íntima, horneado con nuestra receta clásica artesanal."
+        >
+          <img src="img/catalogo/qmin.webp" alt="Queque Mini con decoración tradicional">
+          <span class="favorito-tile-label">Queque Mini</span>
+        </button>
+
+        <!-- 2. Queque Pequeño -->
+        <button
+          type="button"
+          class="favorito-tile"
           data-producto="Queque Pequeño"
           data-porciones-num="10"
           data-precio-num="10500"
-          data-titulo="Queque Pequeño"
           data-etiqueta="Decoración Tradicional · Más vendido"
           data-porciones="10 a 12 porciones"
           data-relleno="Leche condensada con cierto grado de cocción"
-          data-precio="₡10.000"
+          data-precio="₡10.500"
           data-tiempo="Disponible o para el día siguiente (colores predeterminados)"
-          data-imagen="img/Tradicional.jpg"
-          data-descripcion="Receta clásica sin mejorantes ni preservantes, lista en decoración tradicional con colores predeterminados."
+          data-descripcion="Uno de los favoritos de la casa para reuniones familiares. Masa clásica horneada con harina, huevos, leche y mantequilla reales."
         >
-          <img src="img/Tradicional.jpg" alt="Queque Pequeño con decoración tradicional" class="favorito-img">
-          <div class="favorito-titulo-placa">
-            <span class="favorito-badge">Más vendido · Tradicional</span>
-            <h3>Queque Pequeño</h3>
-          </div>
-        </div>
+          <img src="img/catalogo/qpeq.webp" alt="Queque Pequeño con decoración tradicional">
+          <span class="favorito-tile-label">Queque Pequeño</span>
+        </button>
 
-        <div class="favorito-cuadro">
-          <p class="favorito-desc">
-            Uno de los favoritos de la casa para reuniones familiares. Masa clásica horneada con
-            harina, huevos, leche y mantequilla reales, sin mejorantes ni preservantes.
-          </p>
-          <div class="favorito-meta">
-            <span class="favorito-porciones">10 a 12 porciones</span>
-            <span class="favorito-nota">Colores clásicos predeterminados</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Favorito 2: Queque Mediano (Foto izquierda / Cuadro derecha) -->
-      <article class="favorito-fila">
-        <div
-          class="favorito-media btn-ver-detalle"
-          role="button"
-          tabindex="0"
-          title="Ver detalles de Queque Mediano"
+        <!-- 3. Queque Mediano -->
+        <button
+          type="button"
+          class="favorito-tile"
           data-producto="Queque Mediano"
           data-porciones-num="12"
           data-precio-num="13000"
-          data-titulo="Queque Mediano"
           data-etiqueta="Decoración Tradicional · Más vendido"
           data-porciones="12 a 14 porciones"
           data-relleno="Leche condensada con cierto grado de cocción"
           data-precio="₡13.000"
           data-tiempo="Disponible o para el día siguiente (colores predeterminados)"
-          data-imagen="img/Tradicional.jpg"
-          data-descripcion="Receta clásica sin mejorantes ni preservantes, lista en decoración tradicional con colores predeterminados."
+          data-descripcion="Equilibrio perfecto entre tamaño y sabor artesanal para celebraciones en casa, con receta tradicional sin preservantes."
         >
-          <img src="img/Tradicional.jpg" alt="Queque Mediano con decoración tradicional" class="favorito-img">
-          <div class="favorito-titulo-placa">
-            <span class="favorito-badge">Más vendido · Tradicional</span>
-            <h3>Queque Mediano</h3>
-          </div>
-        </div>
+          <img src="img/catalogo/qmed.webp" alt="Queque Mediano con decoración tradicional">
+          <span class="favorito-tile-label">Queque Mediano</span>
+        </button>
 
-        <div class="favorito-cuadro">
-          <p class="favorito-desc">
-            Equilibrio perfecto entre tamaño y sabor artesanal para celebraciones en casa, con
-            nuestra receta base tradicional y relleno de leche condensada cocida.
-          </p>
-          <div class="favorito-meta">
-            <span class="favorito-porciones">12 a 14 porciones</span>
-            <span class="favorito-nota">Receta tradicional sin preservantes</span>
-          </div>
-        </div>
-      </article>
-
-      <!-- Favorito 3: Arrollado Decorado (Cuadro izquierda / Foto derecha) -->
-      <article class="favorito-fila">
-        <div
-          class="favorito-media btn-ver-detalle"
-          role="button"
-          tabindex="0"
-          title="Ver detalles de Arrollado Decorado"
-          data-producto="Arrollado Decorado"
+        <!-- 4. Queque Grande (ajusta imagen, porciones y precio) -->
+        <button
+          type="button"
+          class="favorito-tile"
+          data-producto="Queque Grande"
           data-porciones-num="20"
           data-precio-num="17000"
-          data-titulo="Arrollado Decorado"
-          data-etiqueta="50 cm · Merengue italiano"
-          data-porciones="20 porciones (50 cm de largo)"
+          data-etiqueta="Decoración Tradicional · Para compartir"
+          data-porciones="18 a 20 porciones"
           data-relleno="Leche condensada con cierto grado de cocción"
           data-precio="₡17.000"
-          data-tiempo="Consultar disponibilidad o encargar con anticipación"
-          data-imagen="img/ArrolladoDec.jpg"
-          data-descripcion="Arrollado de 50 cm de largo para 20 porciones, decorado con merengue italiano."
+          data-tiempo="Encargar con anticipación (colores predeterminados)"
+          data-descripcion="Pensado para fiestas y reuniones grandes, manteniendo el sabor casero y la suavidad de nuestra receta tradicional."
         >
-          <img src="img/ArrolladoDec.jpg" alt="Arrollado decorado con merengue italiano de 50 cm" class="favorito-img">
-          <div class="favorito-titulo-placa">
-            <span class="favorito-badge">50 cm · Merengue italiano</span>
-            <h3>Arrollado Decorado</h3>
-          </div>
-        </div>
+          <img src="img/catalogo/qgrd.webp" alt="Queque Grande con decoración tradicional">
+          <span class="favorito-tile-label">Queque Grande</span>
+        </button>
 
-        <div class="favorito-cuadro">
-          <p class="favorito-desc">
-            Arrollado artesanal de 50 cm de largo acabado con suave merengue italiano, ideal para
-            dar un toque especial a celebraciones, cafés de la tarde y mesas dulces.
-          </p>
-          <div class="favorito-meta">
-            <span class="favorito-porciones">20 porciones · 50 cm</span>
-            <span class="favorito-nota">Relleno de leche condensada cocida</span>
-          </div>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- Ventana Modal de Detalles del Producto -->
-  <div id="modal-detalle" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
-    <div class="modal-caja">
-      <button type="button" class="modal-cerrar" id="modal-cerrar" aria-label="Cerrar ventana de detalles">&times;</button>
-      <div id="modal-media" class="modal-media"></div>
-      <div class="modal-cuerpo">
-        <span id="modal-etiqueta" class="card-etiqueta"></span>
-        <h3 id="modal-titulo"></h3>
-        <p id="modal-descripcion" class="modal-descripcion"></p>
-        <div class="modal-datos">
-          <div><strong>Porciones:</strong> <span id="modal-porciones"></span></div>
-          <div id="modal-relleno-row"><strong>Relleno:</strong> <span id="modal-relleno"></span></div>
-          <div><strong>Precio:</strong> <span id="modal-precio"></span></div>
-          <div><strong>Tiempo:</strong> <span id="modal-tiempo"></span></div>
-        </div>
-        <button type="button" class="btn-submit" id="btn-modal-ordenar">Hacer pedido u ordenar</button>
       </div>
     </div>
-  </div>
+  </section>
 
  <!-- 4. Banda de Proceso en 3 Pasos -->
   <section id="como-pedir" class="pasos-banda">
@@ -235,7 +206,7 @@
         <p class="pasos-bajada">
           Un proceso claro y cercano para que recibas tu queque recién horneado, ya sea en diseño tradicional o a la medida.
         </p>
-        <a href="pedidos.html" class="btn-seccion-esmeralda">Iniciar mi Pedido</a>
+        <a href="pedidos.html" class="btn btn-primario">Iniciar mi Pedido</a>
       </div>
 
       <!-- Columna derecha: 3 pasos con números grandes -->
@@ -274,57 +245,46 @@
     </div>
   </section>
 
-<!-- 5. Nuestra Ubicación (Franja Editorial a Ancho Completo) -->
-  <section id="nosotros" class="ubicacion-franja">
-    <div class="ubicacion-franja-inner">
-      
-      <!-- Mitad Izquierda: Título centrado, recuadro de mapa/foto y dirección -->
-      <div class="ubicacion-info">
-        <h2 class="titulo-seccion ubicacion-titulo">Nuestra Ubicación</h2>
+<!-- 5. Nuestra Ubicación -->
+  <section id="nosotros" class="contenedor contenedor-amplio seccion-visita">
+    <div class="visita-grid">
 
-        <!-- Recuadro para mapa de Google Maps o fotografía -->
-        <div class="ubicacion-mapa-marco">
-          <iframe
-            src="https://www.google.com/maps?q=Desamparados,+San+Jose,+Costa+Rica&output=embed"
-            title="Ubicación de Pastelería Las Esmeraldas en Desamparados, San José"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-          <!-- Si prefieres usar una foto en lugar del mapa interactivo, borra el iframe de arriba y usa:
-          <img src="img/ubicacion-local.jpg" alt="Fachada o punto de referencia en Desamparados">
-          -->
-        </div>
+      <!-- Columna izquierda: fotografía limpia, sin mapa ni textos encima -->
+      <div class="visita-media">
+        <img src="img/desamp.jpg" alt="Desamparados, San José - Pastelería Las Esmeraldas" />
+      </div>
 
-        <div class="ubicacion-detalles">
-          <h3>Desamparados, San José</h3>
-          <p id="texto-direccion" class="ubicacion-direccion">
+      <!-- Columna derecha: ubicación, señas y botones unificados -->
+      <div class="visita-info">
+        <span class="visita-eyebrow">Coordina tu visita o retiro</span>
+        <h2 class="visita-titulo">Nuestra Ubicación</h2>
+
+        <div class="visita-detalles">
+          <p class="visita-ciudad">Desamparados, San José</p>
+          <p id="texto-direccion" class="visita-direccion">
             [Escribe aquí tus señas o dirección exacta en Desamparados, Costa Rica]
           </p>
-          <p class="ubicacion-nota">
+          <p class="visita-nota">
             Retiro de encargos previa coordinación de fecha y horario.
           </p>
         </div>
-      </div>
 
-      <!-- Mitad Derecha: Panel de acciones rápidas -->
-      <div class="ubicacion-panel">
-        <span class="ubicacion-etiqueta">Coordina tu visita o retiro</span>
-        <p class="ubicacion-panel-texto">
+        <p class="visita-texto">
           Solicita el pin por WhatsApp o copia las señas para llevarlas en tu teléfono.
         </p>
 
-        <div class="ubicacion-acciones">
+        <div class="visita-acciones">
           <a
             id="link-whatsapp-ubicacion"
             href="https://wa.me/50684267372?text=Hola%2C%20me%20gustar%C3%ADa%20que%20me%20compartan%20la%20ubicaci%C3%B3n%20de%20Pasteler%C3%ADa%20Las%20Esmeraldas."
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-ubicacion btn-whatsapp"
+            class="btn btn-primario"
           >
             Pedir ubicación por WhatsApp
           </a>
 
-          <button type="button" id="btn-copiar-direccion" class="btn-ubicacion btn-copiar">
+          <button type="button" id="btn-copiar-direccion" class="btn btn-secundario">
             Copiar dirección
           </button>
         </div>
@@ -427,5 +387,20 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <a
+    href="https://wa.me/50684267372?text=Hola%2C%20tengo%20una%20consulta%20sobre%20Pasteler%C3%ADa%20Las%20Esmeraldas."
+    class="whatsapp-flotante"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Consultar por WhatsApp"
+    title="Escríbenos por WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+      <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+    </svg>
+  </a>
+
 </body>
 </html>
