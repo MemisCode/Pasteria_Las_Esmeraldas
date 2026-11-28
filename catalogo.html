@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catálogo Artesanal | Pastelería Las Esmeraldas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,11 +14,13 @@
   <!-- 1. Encabezado / Navbar -->
   <header class="navbar">
     <div class="navbar-inner">
-      <a href="index.html" class="logo-link">
-        <img src="img/logo-clasico.png" alt="Pastelería Las Esmeraldas - Queques Especiales" class="logo-img">
+      <a href="index.html" class="logo-link logo-texto" aria-label="Pastelería Las Esmeraldas - Inicio">
+        <span class="logo-pre">Pastelería</span>
+        <span class="logo-marca">Las Esmeraldas</span>
+        <span class="logo-anio">Desde 1980</span>
       </a>
-      <nav class="nav-links">
-        <a href="catalogo.html">Catálogo</a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="catalogo.html" class="activo">Catálogo</a>
         <a href="personalizados.html">Personalizados</a>
         <a href="pedidos.html">Pedidos</a>
         <a href="nosotros.html">Nosotros</a>
@@ -27,14 +32,20 @@
     <!-- =========================================================
     SECCIÓN 1: ENCABEZADO EDITORIAL DE CATÁLOGO + FILTROS
          ========================================================= -->
+
     <section class="catalogo-hero">
-      <div class="catalogo-hero-inner">
-        <!-- Bloque central del título -->
-        <div class="catalogo-hero-centro">
-          <h1 class="titulo-seccion catalogo-titulo">Catálogo</h1>
-          <p class="subtitulo-seccion catalogo-subtitulo">
-            Queques tradicionales, arrollados y postres horneados diariamente con harina, huevos, leche y mantequilla reales, sin mejorantes ni preservantes.
-          </p>
+      <div class="catalogo-hero-banner">
+        <div class="catalogo-hero-inner">
+          <div class="catalogo-hero-centro">
+            <h1 class="titulo-seccion catalogo-titulo">Catálogo</h1>
+            <p class="subtitulo-seccion catalogo-subtitulo">
+              Queques tradicionales, arrollados y postres horneados diariamente con harina, huevos, leche y mantequilla reales, sin mejorantes ni preservantes.
+            </p>
+          </div>
+        </div>
+
+        <div class="catalogo-hero-media" aria-hidden="true">
+          <img src="img/default.webp" alt="">
         </div>
       </div>
 
@@ -42,10 +53,10 @@
       <div class="catalogo-navegacion-wrap" id="catalogoNavegacionWrap">
         <nav class="catalogo-filtros" aria-label="Filtrar productos por categoría">
           <button type="button" class="filtro-btn activo" data-filtro="todos">
-            Todos <span class="filtro-conteo">(13)</span>
+            Todos <span class="filtro-conteo">(9)</span>
           </button>
           <button type="button" class="filtro-btn" data-filtro="queques">
-            Queques <span class="filtro-conteo">(8)</span>
+            Queques <span class="filtro-conteo">(4)</span>
           </button>
           <button type="button" class="filtro-btn" data-filtro="especiales">
             Especiales <span class="filtro-conteo">(1)</span>
@@ -64,7 +75,7 @@
     </section>
 
     <!-- =========================================================
-    SECCIÓN 2: VITRINA DE PRODUCTOS (NOMBRE ARRIBA IZQ / FOTO / PORCIONES ABAJO DER)
+    SECCIÓN 2: VITRINA DE PRODUCTOS
          ========================================================= -->
     <section class="contenedor catalogo-vitrina" aria-label="Lista de productos del catálogo">
       <div class="catalogo-grid" id="catalogoGrid">
@@ -193,7 +204,7 @@
           </div>
         </article>
 
-        <!-- 5. Torta Fría (12 porciones) -->
+        <!-- 5. Torta Fría -->
         <article class="catalogo-card" data-categoria="tortas-frias">
           <div class="catalogo-card-header">
             <h2>Torta Fría</h2>
@@ -224,7 +235,7 @@
           </div>
         </article>
 
-        <!-- 6 Queque de Chocolate (12 porciones) -->
+        <!-- 6. Queque de Chocolate -->
         <article class="catalogo-card" data-categoria="especiales">
           <div class="catalogo-card-header">
             <h2>Queque de Chocolate</h2>
@@ -351,7 +362,7 @@
       </div>
     </section>
 
-   <!-- =========================================================
+    <!-- =========================================================
     SECCIÓN 3: CALCULADORA DE PORCIONES Y PISOS + NOTAS DE RETIRO
          ========================================================= -->
     <section id="calculadora-tamano" class="catalogo-notas-banda" aria-label="Calculadora de tamaño de queque y retiro">
@@ -426,7 +437,7 @@
         <p class="subtitulo-seccion">
           Si deseas una temática especial, impresión en hoja de arroz, números de chocolate, confitillo o una combinación de colores específica, preparamos tu queque sobre cualquiera de nuestros tamaños base.
         </p>
-       <a href="personalizados.html" class="btn btn-secundario">Explorar Queques Personalizados</a>
+        <a href="personalizados.html" class="btn btn-secundario">Explorar Queques Personalizados</a>
       </div>
     </section>
 
@@ -443,13 +454,13 @@
         <div class="catalogo-cierre-acciones">
           <a href="pedidos.html" class="btn btn-primario">Iniciar mi Pedido</a>
           <a
-             href="https://wa.me/50684267372?text=Hola%20Pasteler%C3%ADa%20Las%20Esmeraldas%2C%20quisiera%20consultar%20disponibilidad%20del%20cat%C3%A1logo."
-             target="_blank"
-             rel="noopener noreferrer"
-             class="btn btn-secundario"
+            href="https://wa.me/50684267372?text=Hola%20Pasteler%C3%ADa%20Las%20Esmeraldas%2C%20quisiera%20consultar%20disponibilidad%20del%20cat%C3%A1logo."
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secundario"
           >
-           Consultar por WhatsApp
-         </a>
+            Consultar por WhatsApp
+          </a>
         </div>
         <span class="catalogo-cierre-nota">Retiro en Desamparados · Confirmación con adelanto por SINPE Móvil</span>
       </div>
@@ -482,7 +493,6 @@
   <!-- 6. Pie de Página y Contacto -->
   <footer id="contacto" class="footer-editorial">
     <div class="footer-grid">
-      <!-- Columna 1: Identidad -->
       <div class="footer-col footer-marca">
         <h3>Pastelería Las Esmeraldas</h3>
         <span class="footer-sub">Queques Especiales • Desde 1980</span>
@@ -491,7 +501,6 @@
         </p>
       </div>
 
-      <!-- Columna 2: Navegación -->
       <nav class="footer-col footer-nav" aria-label="Enlaces del pie de página">
         <h4>Explorar</h4>
         <ul>
@@ -502,13 +511,11 @@
         </ul>
       </nav>
 
-      <!-- Columna 3: Redes Sociales -->
       <div class="footer-col footer-social">
         <h4>Síguenos y Contáctanos</h4>
         <p>Descubre nuestras creaciones y novedades en redes sociales</p>
 
         <div class="footer-social-links">
-          <!-- Facebook -->
           <a
             href="https://www.facebook.com/"
             target="_blank"
@@ -522,7 +529,6 @@
             </svg>
           </a>
 
-          <!-- Instagram -->
           <a
             href="https://www.instagram.com/"
             target="_blank"
@@ -536,7 +542,6 @@
             </svg>
           </a>
 
-          <!-- WhatsApp -->
           <a
             href="https://wa.me/50684267372?text=Hola%20Pasteler%C3%ADa%20Las%20Esmeraldas%2C%20me%20gustar%C3%ADa%20consultar%20por%20un%20pedido."
             target="_blank"
@@ -550,7 +555,6 @@
             </svg>
           </a>
 
-          <!-- TikTok -->
           <a
             href="https://www.tiktok.com/"
             target="_blank"
